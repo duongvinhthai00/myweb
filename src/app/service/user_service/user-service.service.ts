@@ -8,7 +8,7 @@ import { UserModel } from 'src/app/model/UserModel';
   providedIn: 'root'
 })
 export class UserServiceService implements OnInit{
-  user = null;
+  user : UserModel = null;
   constructor(private http : HttpClient) { }
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class UserServiceService implements OnInit{
   }
 
   Login(data){
-    return this.http.post(`http://localhost:8080/api/v1/users/login`,data).pipe(
+    return this.http.post<UserModel>(`http://localhost:8080/api/v1/users/login`,data).pipe(
       catchError(this.handleError)
     )
   }

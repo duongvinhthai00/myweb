@@ -1,6 +1,13 @@
 <h1>Menu</h1>
-<a [routerLink]="['/','login']">Dang Nhap</a>
-<a [routerLink]="['/','register']">Dang Ky</a>
+
+<div *ngIf="this.userService.user;else noLogin">
+    Ten : {{this.userService.user.name}}
+</div>
+<ng-template #noLogin>
+    <a  [routerLink]="['/','login']">Dang Nhap</a>
+    <a [routerLink]="['/','register']">Dang Ky</a>
+</ng-template>
+
 <router-outlet></router-outlet>
 <div class="footer">
     futter here
