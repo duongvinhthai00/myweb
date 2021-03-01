@@ -12,12 +12,25 @@ export class RegisterComponent {
   registerForm = new FormGroup({
     name : new FormControl(""),
     email : new FormControl(""),
+    repeatpassword : new FormControl(""),
     password : new FormControl(""),
     user_name : new FormControl(""),
     phone : new FormControl("") ,
     address: new FormControl("")
   });
-  message : string;
+
+  cheackPass1 = false;
+
+  cheackPass(event){
+    console.log(this.registerForm.value);
+    if(this.registerForm.value.password != this.registerForm.value.repeatpassword){
+      this.cheackPass1 = true;
+    }else{
+      this.cheackPass1 = false;
+    }
+    
+  }
+  error : any;
   seletedFile : File = null;
   constructor(private UserService : UserServiceService,private route : Router){}
   registerSuccess : any;
@@ -26,11 +39,7 @@ export class RegisterComponent {
     this.seletedFile = event.target.files[0];
   }
 
-  onSuccess(){
-    setTimeout(()=>{
-      this.route.navigate(['/login']);
-    },2000)
-  }
+
 
   Submit(){
     console.log(this.registerForm.value);
@@ -38,10 +47,10 @@ export class RegisterComponent {
       console.log(data);
         this.UserService.UploadFile(this.seletedFile,data).subscribe(data=>{
           this.registerSuccess = data;
-          this.onSuccess();
+          this.route.navigate(['/login']);
         });
     },(error=>{
-      this.message = error.error.message;
+      this.error = error.error;
     }));
   }
 }

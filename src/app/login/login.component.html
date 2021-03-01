@@ -1,6 +1,46 @@
-<br>
-<form (ngSubmit)="Submit()" [formGroup]="loginForm">
-    Tên Đăng Nhập : <input type="text" formControlName="user_name"><br>
-    PassWord : <input type="text" formControlName="password"><br>
-    <input type="submit" value="Đăng Nhập">
-</form>
+<!-- Main Content - start -->
+<main>
+    <section class="container stylization maincont">
+
+
+        <ul class="b-crumbs">
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+            <li>
+                <span>Login</span>
+            </li>
+        </ul>
+        <h1 class="main-ttl"><span>Login</span></h1>
+        <div class="auth-wrap">
+            <div class="auth-col">
+                <div *ngIf="this.error?.message" class="alert alert-danger" role="alert">
+                    {{this.error.message}}
+                </div>
+                <h2>Login</h2>
+                <form (ngSubmit)="Submit()" [formGroup]= "loginForm" class="login">
+                    
+                    <p>
+                        <label for="username">UserName <span class="required">*</span></label><input formControlName="user_name" type="text" id="username">
+                        <span *ngIf="error?.user_name" style="margin-left: 105px;color:red">{{error.user_name}}</span>
+                    </p>
+                    <p>
+                        <label for="password">Password <span class="required">*</span></label><input formControlName="password" type="password" id="password">
+                        <span *ngIf="error?.password" style="margin-left: 105px;color:red">{{error.password}}</span>
+                    </p>
+                    <p class="auth-submit">
+                        <input type="submit" value="Login">
+                        <input type="checkbox" checked id="rememberme" value="forever">
+                        <label for="rememberme">Remember me</label>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+
+
+    </section>
+</main>
+<!-- Main Content - end -->

@@ -1,20 +1,65 @@
-<div *ngIf="registerSuccess">
-    Dang Ky Thanh Cong
-</div>
+<!-- Main Content - start -->
+<main>
+    <section class="container stylization maincont">
 
-<form (ngSubmit) = "Submit()" [formGroup] = "registerForm">
-    Name :  <input type="text" formControlName="name"><br>
-    User_Name : <input type="text" formControlName="user_name"><br>
-    PassWord : <input type="text" formControlName="password"><br>
-    Email : <input type="text" formControlName="email"><br>
-    Phone : <input type="text" formControlName="phone"><br>
-    Address : <input type="text" formControlName="address"><br>
-    Avatar : <input type="file" (change) = "selectedFile($event)"><br>
-    <input type="submit" value="Dang Ky">
-</form>
-{{message}}
-{{registerForm.value | json}}
 
+        <ul class="b-crumbs">
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+            <li>
+                <span>Registration</span>
+            </li>
+        </ul>
+        <h1 class="main-ttl"><span>Registration</span></h1>
+        <div class="auth-wrap">
+            <div class="auth-col">
+                <h2>Register</h2>
+                <form (ngSubmit)="Submit()" class="register" [formGroup]="registerForm">
+                    <p>
+                        <label for="reg_email">Name <span class="required">*</span></label><input formControlName="name" type="text" id="reg_email">
+                        <span *ngIf="error.name" style="margin-left: 105px;color:red">{{error.name}}</span>
+                    </p>
+                    <p>
+                        <label for="reg_email">UserName <span class="required">*</span></label><input type="text" formControlName="user_name" id="reg_email">
+                        <span *ngIf="error.user_name" style="margin-left: 105px;color:red">{{error.user_name}}</span>
+                        <span *ngIf="error.message" style="margin-left: 105px;color:red">{{error.message}}</span>
+                    </p>
+                    <p>
+                        <label for="reg_email">Password <span class="required">*</span></label><input type="password" formControlName="password" id="reg_email">
+                        <span *ngIf="error.password" style="margin-left: 105px;color:red">{{error.password}}</span>
+                    </p>
+                    <p>
+                        <label for="reg_username">RPPassword <span class="required">*</span></label><input type="password" (change)="cheackPass($event)" formControlName="repeatpassword" id="reg_email">
+                        <span *ngIf="cheackPass1" style="margin-left: 105px;color:red">sai mat khau</span>
+                    </p>
+                    <p>
+                        <label for="reg_email">Address <span class="required">*</span></label><input type="text" formControlName="address" id="reg_email">
+                        <span *ngIf="error.address" style="margin-left: 105px;color:red">{{error.address}}</span>
+                    </p>
+                    <p>
+                        <label for="reg_password">Phone <span class="required">*</span></label><input type="text" formControlName="phone" id="reg_password">
+                        <span *ngIf="error.phone" style="margin-left: 105px;color:red">{{error.phone}}</span>
+                    </p>
+                    <p>
+                        <label for="reg_password">Email <span class="required">*</span></label><input type="email" formControlName="email" id="reg_password">
+                        <span *ngIf="error.email" style="margin-left: 105px;color:red">{{error.email}}</span>
+                    </p>
+                    <p style="margin-left: 104px;">
+                        <label for="reg_password" >Avatar <span class="required">*</span></label><input (change)="selectedFile($event)" type="file" id="reg_password">
+                    </p>
+                    <p class="auth-submit">
+                        <input type="submit" value="Register">
+                    </p>
+                </form>
+            </div>
+        </div>
+
+    </section>
+</main>
+<!-- Main Content - end -->
 
 
 

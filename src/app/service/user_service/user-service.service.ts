@@ -9,9 +9,16 @@ import { UserModel } from 'src/app/model/UserModel';
 })
 export class UserServiceService implements OnInit{
   user : UserModel = null;
+  keyLogin = "userLogin";
   constructor(private http : HttpClient) { }
 
   ngOnInit() {
+    console.log(this.user);
+  }
+
+  ngOnchange(){
+    this.user = JSON.parse(localStorage.getItem(this.keyLogin));
+    console.log('change');
   }
 
   SaveUser(data){
