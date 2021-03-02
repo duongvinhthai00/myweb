@@ -28,7 +28,7 @@ export class RegisterComponent {
     }else{
       this.cheackPass1 = false;
     }
-    
+
   }
   error : any;
   seletedFile : File = null;
@@ -47,8 +47,8 @@ export class RegisterComponent {
       console.log(data);
         this.UserService.UploadFile(this.seletedFile,data).subscribe(data=>{
           this.registerSuccess = data;
-          this.route.navigate(['/login']);
         });
+        this.route.navigate(['/login']);
     },(error=>{
       this.error = error.error;
     }));
