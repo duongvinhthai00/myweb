@@ -18,13 +18,13 @@
               <span>{{this.CategoryDetail?.c_name}}</span>
           </li>
       </ul>
-      <h1 class="main-ttl"><span>Danh Mục Liên Quan</span></h1>
+      <h1 class="main-ttl"><span>{{this.CategoryDetail?.c_name}}</span></h1>
       <!-- Catalog Sidebar - start -->
       <div class="section-sb">
 
           <!-- Catalog Categories - start -->
           <div class="section-sb-current">
-              <h3><a href="catalog-list.html">Women <span id="section-sb-toggle" class="section-sb-toggle"><span class="section-sb-ico"></span></span></a></h3>
+              <h3><a href="catalog-list.html">Danh Mục Liên Quan <span id="section-sb-toggle" class="section-sb-toggle"><span class="section-sb-ico"></span></span></a></h3>
               <ul class="section-sb-list" id="section-sb-list">
                   <li *ngFor="let item of this.CateGoryList"  class="categ-1">
                       <a href="catalog-list.html">
