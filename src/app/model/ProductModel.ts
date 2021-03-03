@@ -16,3 +16,10 @@ export interface ProductModel{
   pro_view:number,
   created_at:Time
 }
+
+
+export interface ImageModel{
+  id:number,
+  im_name:string,
+  im_product_id:number
+}

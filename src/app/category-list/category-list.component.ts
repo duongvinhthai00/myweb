@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 import { CategoryModel } from '../model/CategoryModel';
-import { ProductModel } from '../model/ProductModel';
+import { ImageModel, ProductModel } from '../model/ProductModel';
 import { HomeServiceService } from '../service/user_service/home_service/home-service.service';
 import { ProductServiceService } from '../service/user_service/product_service/product-service.service';
 
@@ -13,6 +12,8 @@ import { ProductServiceService } from '../service/user_service/product_service/p
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
+  quickView : ProductModel;
+  images : ImageModel[];
   maxPageItems = 2;
   page:number = 1;
   ProductList : ProductModel[];
@@ -31,6 +32,7 @@ export class CategoryListComponent implements OnInit {
         this.productService.getProductByCategory(data).subscribe(data=>{
           console.log(data);
           this.ProductList = data;
+          this.quickView = this.ProductList[0];
         })
       }
     )
@@ -57,7 +59,10 @@ export class CategoryListComponent implements OnInit {
   }
 
   ProducDetail(event){
-    console.log(event);
+    this.quickView = event;
+    this.productService.getImagesByProduct(this.quickView.id).subscribe(data=>{
+      this.images = data;
+    })
   }
 
 

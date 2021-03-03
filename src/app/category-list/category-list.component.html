@@ -101,7 +101,7 @@
           <div class="prod-items section-items prod-list2">
               <div *ngFor="let item of ProductList | paginate :{id:'pag1', itemsPerPage: maxPageItems,
                 currentPage: page,
-                totalItems: ProductList?.length}"  class="prodlist-i">
+                totalItems: ProductList?.length} "  class="prodlist-i">
                   <a class="list-img-carousel prodlist-i-img" href="product.html"><!-- NO SPACE --><img  src="../assets/image/{{item.pro_avatar}}" alt="Adipisci aperiam commodi"><!-- NO SPACE --></a>
                   <div class="prodlist-i-cont">
                       <h3><a href="product.html">{{item.pr_name}}</a>
@@ -133,9 +133,10 @@
                       </div>
                   </div>
               </div>
+              <pagination-controls id="pag1" directionLinks="true" (pageChange)="pageChanged($event)" maxSize="1000"></pagination-controls>
           </div>
 
-          <pagination-controls id="pag1" directionLinks="true" (pageChange)="pageChanged($event)" maxSize="1000"></pagination-controls>
+          
       </div>
       <!-- Catalog Items | List V2 - end -->
 
@@ -144,86 +145,36 @@
           <div class="prod-wrap">
               <a href="product.html">
                   <h1 class="main-ttl">
-                      <span>Reprehenderit adipiscisaddd 555</span>
+                      <span>{{quickView?.pr_name}}</span>
                   </h1>
               </a>
               <div class="prod-slider-wrap">
                   <div class="prod-slider">
                       <ul class="prod-slider-car">
                           <li>
-                              <a data-fancybox-group="popup-product" class="fancy-img" href="http://placehold.it/500x525">
-                                  <img src="http://placehold.it/500x525" alt="">
+                              <a data-fancybox-group="popup-product" class="fancy-img">
+                                  <img src="../assets/image/{{quickView?.pro_avatar}}" width="500px" height="500px" alt="">
                               </a>
                           </li>
-                          <li>
-                              <a data-fancybox-group="popup-product" class="fancy-img" href="http://placehold.it/500x591">
-                                  <img src="http://placehold.it/500x591" alt="">
-                              </a>
-                          </li>
-                          <li>
-                              <a data-fancybox-group="popup-product" class="fancy-img" href="http://placehold.it/500x525">
-                                  <img src="http://placehold.it/500x525" alt="">
-                              </a>
-                          </li>
-                          <li>
-                              <a data-fancybox-group="popup-product" class="fancy-img" href="http://placehold.it/500x722">
-                                  <img src="http://placehold.it/500x722" alt="">
-                              </a>
-                          </li>
-                          <li>
-                              <a data-fancybox-group="popup-product" class="fancy-img" href="http://placehold.it/500x722">
-                                  <img src="http://placehold.it/500x722" alt="">
-                              </a>
-                          </li>
-                          <li>
-                              <a data-fancybox-group="popup-product" class="fancy-img" href="http://placehold.it/500x722">
-                                  <img src="http://placehold.it/500x722" alt="">
-                              </a>
-                          </li>
-                          <li>
-                              <a data-fancybox-group="popup-product" class="fancy-img" href="http://placehold.it/500x722">
-                                  <img src="http://placehold.it/500x722" alt="">
-                              </a>
-                          </li>
+                          <div *ngFor="let item of this.images">
+                              <li>
+                                <a data-fancybox-group="popup-product" class="fancy-img">
+                                    <img src="../assets/image/product2.jpg" width="500px" height="500px" alt="">
+                                </a>
+                                </li>
+                          </div>
+                          
                       </ul>
                   </div>
+                  <div class="bx-controls bx-has-controls-direction"><div class="bx-controls-direction"><a class="bx-prev" href="">Prev</a><a class="bx-next" href="">Next</a></div></div>
                   <div class="prod-thumbs">
                       <ul class="prod-thumbs-car">
-                          <li>
-                              <a data-slide-index="0" href="#">
-                                  <img src="http://placehold.it/500x525" alt="">
+                          <li *ngFor="let item of this.images;let idx = index" style="float: left; list-style: none; position: relative; width: 86.4px; margin-right: 8px;">
+                              <a attr.data-slide-index="{{idx+1}}" href="#">
+                                  <img src="../assets/image/{{item.im_name}}" alt="">
                               </a>
                           </li>
-                          <li>
-                              <a data-slide-index="1" href="#">
-                                  <img src="http://placehold.it/500x591" alt="">
-                              </a>
-                          </li>
-                          <li>
-                              <a data-slide-index="2" href="#">
-                                  <img src="http://placehold.it/500x525" alt="">
-                              </a>
-                          </li>
-                          <li>
-                              <a data-slide-index="3" href="#">
-                                  <img src="http://placehold.it/500x722" alt="">
-                              </a>
-                          </li>
-                          <li>
-                              <a data-slide-index="4" href="#">
-                                  <img src="http://placehold.it/500x722" alt="">
-                              </a>
-                          </li>
-                          <li>
-                              <a data-slide-index="5" href="#">
-                                  <img src="http://placehold.it/500x722" alt="">
-                              </a>
-                          </li>
-                          <li>
-                              <a data-slide-index="6" href="#">
-                                  <img src="http://placehold.it/500x722" alt="">
-                              </a>
-                          </li>
+                         
                       </ul>
                   </div>
               </div>
