@@ -14,3 +14,6 @@ export interface UserModel{
 	created_at:Time,
 	update_at:Time
 }
+
+
+
