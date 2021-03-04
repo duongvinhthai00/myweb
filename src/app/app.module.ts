@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdminhomeComponent } from './adminhome/adminhome.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     LoginComponent,
     RegisterComponent,
     AdminhomeComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -17,4 +17,8 @@ export class ProductServiceService {
     return this.http.get<ImageModel[]>(`http://localhost:8080/api/v6/images/${id}`);
   }
 
+  getProductById(id:number){
+    return this.http.get<ProductModel>(`http://localhost:8080/api/v5/product/${id}`)
+  }
+
 }

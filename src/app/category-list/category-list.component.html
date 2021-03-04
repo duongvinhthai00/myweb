@@ -10,11 +10,6 @@
               </a>
           </li>
           <li>
-              <a href="catalog-list.html">
-                  Category
-              </a>
-          </li>
-          <li>
               <span>{{this.CategoryDetail?.c_name}}</span>
           </li>
       </ul>
@@ -27,7 +22,7 @@
               <h3><a href="catalog-list.html">Danh Mục Liên Quan <span id="section-sb-toggle" class="section-sb-toggle"><span class="section-sb-ico"></span></span></a></h3>
               <ul class="section-sb-list" id="section-sb-list">
                   <li *ngFor="let item of this.CateGoryList"  class="categ-1">
-                      <a href="catalog-list.html">
+                      <a [routerLink]="['/category/',item.id]">
                           <span class="categ-1-label">{{item.c_name}}</span>
                       </a>
                   </li>
@@ -45,23 +40,53 @@
                   FONT-SIZE: 20PX;">
                     BỘ LỌC SẢN PHẨM
                   </div>
-                  <div class="section-filter-item">
-                      <p class="section-filter-ttl" style="font-size: 15px;">Sắp Xếp Theo Ngày <i class="fa fa-angle-down"></i></p>
-                      <div class="section-filter-fields" style="font-size: 13px;">
-                        <div style="margin-bottom: 9px;">
-                          <input type="radio" id="huey" name="drone" value="" checked>
-                          <label for="huey">Ngày Mới Nhất</label>
-                        </div>
 
-                        <div>
-                          <input type="radio" id="dewey" name="drone" value="">
-                          <label for="dewey">Ngày Cũ Nhất</label>
-                        </div>
-                      </div>
+                  <div class="section-filter-item">
+                    <a href="/category/{{CategoryDetail?.id}}">
+                    <p class="section-filter-ttl"> Tìm Kiếm Theo Ngày <i class="fa fa-angle-down"></i></p>
+                    </a>
+                    <div class="section-filter-fields">
+                      <p class="section-filter-field">
+                        <input (change)="SortByTimeNew($event)" id="section-filter-radio1-1" value="on" type="radio" name="section-filter-radio1">
+                        <label class="section-filter-radio" for="section-filter-radio1-1">Ngày Mới Nhất</label>
+                      </p>
+                      <p class="section-filter-field">
+                        <input (change)="SortByTimeLess($event)" id="section-filter-radio1-2" value="on" type="radio" name="section-filter-radio1">
+                        <label class="section-filter-radio" for="section-filter-radio1-2">Ngày Cũ Nhất</label>
+                      </p>
+                    </div>
                   </div>
+
+
+
+                  <div class="section-filter-item">
+                    <a href="/category/{{CategoryDetail?.id}}">
+                    <p class="section-filter-ttl"> Lựa Chọn Theo Giá <i class="fa fa-angle-down"></i></p>
+                    </a>
+                    <div class="section-filter-fields">
+                      <p class="section-filter-field">
+                        <input id="section-filter-radio1-3" (change)="Locgia(0,500000)" value="on" type="radio" name="section-filter-radio1">
+                        <label class="section-filter-radio" for="section-filter-radio1-3">0 - 500k</label>
+                      </p>
+                      <p class="section-filter-field">
+                        <input id="section-filter-radio1-4" (change)="Locgia(500000,1000000)" value="on" type="radio" name="section-filter-radio1">
+                        <label class="section-filter-radio" for="section-filter-radio1-4">500k - 1 Triệu</label>
+                      </p>
+                      <p class="section-filter-field">
+                        <input id="section-filter-radio1-5" (change)="Locgia(1000000,3000000)" value="on" type="radio" name="section-filter-radio1">
+                        <label class="section-filter-radio" for="section-filter-radio1-5">1 Triệu - 3 Triệu</label>
+                      </p>
+                      <p class="section-filter-field">
+                        <input id="section-filter-radio1-6" (change)="Locgia(3000000,10000000)" value="on" type="radio" name="section-filter-radio1">
+                        <label class="section-filter-radio" for="section-filter-radio1-6">Trên 3 Triệu</label>
+                      </p>
+                    </div>
+                  </div>
+
+
+
                   <div class="section-filter-buttons">
-                      <input class="btn btn-themes" id="set_filter" name="set_filter" value="Apply filter" type="button">
-                      <input class="btn btn-link" id="del_filter" name="del_filter" value="Reset" type="button">
+                      <input class="btn btn-themes" id="set_filter" (click)="ResetLuaChon()" name="set_filter" value="Reset Lựa Chọn" type="button">
                   </div>
               </div>
           </div>
@@ -102,14 +127,12 @@
               <div *ngFor="let item of ProductList | paginate :{id:'pag1', itemsPerPage: maxPageItems,
                 currentPage: page,
                 totalItems: ProductList?.length} "  class="prodlist-i">
-                  <a class="list-img-carousel prodlist-i-img" href="product.html"><!-- NO SPACE --><img  src="../assets/image/{{item.pro_avatar}}" alt="Adipisci aperiam commodi"><!-- NO SPACE --></a>
+                  <a class="list-img-carousel prodlist-i-img"><!-- NO SPACE --><img  src="../assets/image/{{item.pro_avatar}}" alt="Adipisci aperiam commodi"><!-- NO SPACE --></a>
                   <div class="prodlist-i-cont">
-                      <h3><a href="product.html">{{item.pr_name}}</a>
+                      <h3><a [routerLink]="['/product-detail/',item.id]">{{item.pr_name}}</a>
                       </h3>
                       <p class="prodlist-i-info">
                           <a href="#" class="prodlist-i-favorites"><i class="fa fa-heart"></i> Add to wishlist</a>
-                          <a href="#" (click)="ProducDetail(item)" class="qview-btn prodlist-i-qview"><i class="fa fa-search"></i> Quick view</a>
-                          <a class="prodlist-i-compare" href="#"><i class="fa fa-bar-chart"></i> Compare</a>
                       </p>
                       <div class="prodlist-i-txt">
                           {{item.pro_description}}
@@ -120,9 +143,9 @@
                           <del *ngIf="item.pro_sale>0">{{item.pro_price|currency: "VND"}}</del>
                                                   </span>
                           <p class="prodlist-i-qnt">
-                              <input value="1" type="text">
-                              <a href="#" class="prodlist-i-plus"><i class="fa fa-angle-up"></i></a>
-                              <a href="#" class="prodlist-i-minus"><i class="fa fa-angle-down"></i></a>
+                              <input #input  value="1" type="text">
+                              <a class="prodlist-i-plus"><i (click)="XuLyInputUp(input)" class="fa fa-angle-up"></i></a>
+                              <a class="prodlist-i-minus"><i (click)="XuLyInputDown(input)" class="fa fa-angle-down"></i></a>
                           </p>
                           <p>
                             Số Lượng Còn : {{item.pro_number}}
@@ -136,128 +159,9 @@
               <pagination-controls id="pag1" directionLinks="true" (pageChange)="pageChanged($event)" maxSize="1000"></pagination-controls>
           </div>
 
-          
+
       </div>
       <!-- Catalog Items | List V2 - end -->
-
-      <!-- Quick View Product - start -->
-      <div class="qview-modal">
-          <div class="prod-wrap">
-              <a href="product.html">
-                  <h1 class="main-ttl">
-                      <span>{{quickView?.pr_name}}</span>
-                  </h1>
-              </a>
-              <div class="prod-slider-wrap">
-                  <div class="prod-slider">
-                      <ul class="prod-slider-car">
-                          <li>
-                              <a data-fancybox-group="popup-product" class="fancy-img">
-                                  <img src="../assets/image/{{quickView?.pro_avatar}}" width="500px" height="500px" alt="">
-                              </a>
-                          </li>
-                          <div *ngFor="let item of this.images">
-                              <li>
-                                <a data-fancybox-group="popup-product" class="fancy-img">
-                                    <img src="../assets/image/product2.jpg" width="500px" height="500px" alt="">
-                                </a>
-                                </li>
-                          </div>
-                          
-                      </ul>
-                  </div>
-                  <div class="bx-controls bx-has-controls-direction"><div class="bx-controls-direction"><a class="bx-prev" href="">Prev</a><a class="bx-next" href="">Next</a></div></div>
-                  <div class="prod-thumbs">
-                      <ul class="prod-thumbs-car">
-                          <li *ngFor="let item of this.images;let idx = index" style="float: left; list-style: none; position: relative; width: 86.4px; margin-right: 8px;">
-                              <a attr.data-slide-index="{{idx+1}}" href="#">
-                                  <img src="../assets/image/{{item.im_name}}" alt="">
-                              </a>
-                          </li>
-                         
-                      </ul>
-                  </div>
-              </div>
-
-              <div class="prod-cont">
-                  <p class="prod-actions">
-                      <a href="#" class="prod-favorites"><i class="fa fa-heart"></i> Add to Wishlist</a>
-                      <a href="#" class="prod-compare"><i class="fa fa-bar-chart"></i> Compare</a>
-                  </p>
-                  <div class="prod-skuwrap">
-                      <p class="prod-skuttl">Color</p>
-                      <ul class="prod-skucolor">
-                          <li class="active">
-                              <img src="../assets/TemplateProduct/img/color/blue.jpg" alt="">
-                          </li>
-                          <li>
-                              <img src="../assets/TemplateProduct/img/color/red.jpg" alt="">
-                          </li>
-                          <li>
-                              <img src="../assets/TemplateProduct/img/color/green.jpg" alt="">
-                          </li>
-                          <li>
-                              <img src="../assets/TemplateProduct/img/color/yellow.jpg" alt="">
-                          </li>
-                          <li>
-                              <img src="../assets/TemplateProduct/img/color/purple.jpg" alt="">
-                          </li>
-                      </ul>
-                      <p class="prod-skuttl">Sizes</p>
-                      <div class="offer-props-select">
-                          <p>XL</p>
-                          <ul>
-                              <li><a href="#">XS</a></li>
-                              <li><a href="#">S</a></li>
-                              <li><a href="#">M</a></li>
-                              <li class="active"><a href="#">XL</a></li>
-                              <li><a href="#">L</a></li>
-                              <li><a href="#">4XL</a></li>
-                              <li><a href="#">XXL</a></li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="prod-info">
-                      <p class="prod-price">
-                          <b class="item_current_price">$238</b>
-                      </p>
-                      <p class="prod-qnt">
-                          <input type="text" value="1">
-                          <a href="#" class="prod-plus"><i class="fa fa-angle-up"></i></a>
-                          <a href="#" class="prod-minus"><i class="fa fa-angle-down"></i></a>
-                      </p>
-                      <p class="prod-addwrap">
-                          <a href="#" class="prod-add">Add to cart</a>
-                      </p>
-                  </div>
-                  <ul class="prod-i-props">
-                      <li>
-                          <b>SKU</b> 05464207
-                      </li>
-                      <li>
-                          <b>Manufacturer</b> Mayoral
-                      </li>
-                      <li>
-                          <b>Material</b> Cotton
-                      </li>
-                      <li>
-                          <b>Pattern Type</b> Print
-                      </li>
-                      <li>
-                          <b>Wash</b> Colored
-                      </li>
-                      <li>
-                          <b>Style</b> Cute
-                      </li>
-                      <li>
-                          <b>Color</b> Blue, Red
-                      </li>
-                      <li><a href="#" class="prod-showprops">All Features</a></li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-      <!-- Quick View Product - end -->
   </section>
 </main>
 <!-- Main Content - end -->
