@@ -85,19 +85,17 @@
                             <i class="fa fa-user"></i>
                             <span class="shop-menu-ttl">{{this.userLogined.name}}</span>
                         </a>
-                        <a (click) = "Logout()">
+                        <a style="cursor: pointer;" (click) = "Logout()">
                             <span class="shop-menu-ttl">Logout</span>
                         </a>
                     </li>
                     </ng-template>
-
-
                     <li>
                         <div class="h-cart">
-                            <a href="cart.html">
+                            <a [routerLink]= "['/card']">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="shop-menu-ttl">Cart</span>
-                                (<b>0</b>)
+                                (<b>{{this.totalCard}}</b>)
                             </a>
                         </div>
                     </li>
@@ -110,7 +108,7 @@
 
     <!-- Topmenu - start -->
     <div class="header-bottom">
-        <div class="container">
+        <div class="container" style="padding: 0;">
             <nav class="topmenu">
 
                 <!-- Catalog menu - start -->
@@ -288,7 +286,7 @@
 <!-- Footer - start -->
 <footer class="footer-wrap">
 
-    <div class="container f-menu-list">
+    <div style="padding: 0;" class="container f-menu-list">
         <div class="row">
             <div class="f-menu">
                 <h3>

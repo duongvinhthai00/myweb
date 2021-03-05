@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from './main/app-routing.module';
+import { AppComponent } from './main/app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -12,6 +12,7 @@ import { AdminhomeComponent } from './adminhome/adminhome.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     RegisterComponent,
     AdminhomeComponent,
     CategoryListComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

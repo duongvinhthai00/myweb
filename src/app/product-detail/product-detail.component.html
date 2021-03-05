@@ -109,7 +109,7 @@
 						<a class="prod-minus"><i (click)="XuLyInputDown(input)" class="fa fa-angle-down"></i></a>
 					</p>
 					<p class="prod-addwrap">
-						<a href="#" class="prod-add" rel="nofollow">Add to cart</a>
+						<a style="cursor: pointer;" (click)= "addToCard(this.productDetail,input.value)" class="prod-add" rel="nofollow">Add to cart</a>
 					</p>
 				</div>
         <div style="border-bottom: 1px solid #ccc;padding-bottom: 10px;">
@@ -126,9 +126,9 @@
 			<!-- Product Tabs -->
 			<div class="prod-tabs-wrap">
 				<ul class="prod-tabs">
-					<li><a data-prodtab-num="1" class="active" href="/product-detail/{{productDetail.id}}" data-prodtab="#prod-tab-1">Description</a></li>
-					<li><a data-prodtab-num="2" id="prod-props" href="/product-detail/{{productDetail.id}}" data-prodtab="#prod-tab-2">Features</a></li>
-					<li><a data-prodtab-num="4" href="/product-detail/{{productDetail.id}}"  data-prodtab="#prod-tab-4">Articles (6)</a></li>
+					<li><a data-prodtab-num="1" class="active" href="/product-detail/{{productDetail?.id}}" data-prodtab="#prod-tab-1">Description</a></li>
+					<li><a data-prodtab-num="2" id="prod-props" href="/product-detail/{{productDetail?.id}}" data-prodtab="#prod-tab-2">Features</a></li>
+					<li><a data-prodtab-num="4" href="/product-detail/{{productDetail?.id}}"  data-prodtab="#prod-tab-4">Articles (6)</a></li>
 				</ul>
 				<div class="prod-tab-cont">
 

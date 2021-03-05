@@ -1,7 +1,7 @@
 import { Time } from "@angular/common";
 
 export interface UserModel{
-    id : number
+  id : number
 	phone : string,
 	avatar: string,
 	active: number,
@@ -12,7 +12,8 @@ export interface UserModel{
 	address: string,
 	about: string,
 	created_at:Time,
-	update_at:Time
+	update_at:Time,
+  user_name:string
 }
 
 

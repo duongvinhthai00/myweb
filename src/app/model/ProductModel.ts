@@ -1,4 +1,3 @@
-import { Time } from "@angular/common";
 import { CategoryModel } from "./CategoryModel";
 
 export interface ProductModel{
@@ -16,6 +15,7 @@ export interface ProductModel{
   pro_content :string,
   pro_view:number,
   created_at:Date,
+  updated_at:Date,
   pro_category_id : CategoryModel
 }
 
@@ -23,5 +23,7 @@ export interface ProductModel{
 export interface ImageModel{
   id:number,
   im_name:string,
-  im_product_id:number
+  im_product_id:ProductModel,
+  created_at:Date,
+  updated_at:Date
 }

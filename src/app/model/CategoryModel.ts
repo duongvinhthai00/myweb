@@ -9,8 +9,5 @@ export interface CategoryModel{
   name : string,
   c_name : string,
   c_total_product : number,
-  c_group_id : {
-    id : number,
-    name : string
-  }
+  c_group_id : CategoryGroupModel
 }

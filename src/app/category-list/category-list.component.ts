@@ -1,10 +1,17 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { error } from 'protractor';
+import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
+import { HomeComponent } from '../home/home.component';
+import { CardModel } from '../model/CardModel';
 import { CategoryModel } from '../model/CategoryModel';
 import { ImageModel, ProductModel } from '../model/ProductModel';
-import { HomeServiceService } from '../service/user_service/home_service/home-service.service';
-import { ProductServiceService } from '../service/user_service/product_service/product-service.service';
+import { UserModel } from '../model/UserModel';
+import { CardServiceService } from '../service/card_service/card-service.service';
+import { HomeServiceService } from '../service/home_service/home-service.service';
+import { ProductServiceService } from '../service/product_service/product-service.service';
+import { UserServiceService } from '../service/user_service/user-service.service';
 
 @Component({
   selector: 'app-category-list',
@@ -17,10 +24,11 @@ export class CategoryListComponent implements OnInit {
   ProductList : ProductModel[];
   ProductListFake : ProductModel[];
   CategoryDetail : CategoryModel =null;
-  constructor(private homeService : HomeServiceService,private route :ActivatedRoute,private productService : ProductServiceService,private router : Router) { }
+  constructor(private homeService : HomeServiceService,private route :ActivatedRoute,private productService : ProductServiceService,private router : Router
+    ,private cardService : CardServiceService,private userService : UserServiceService,private homecomponent : HomeComponent) { }
   CateGoryList : CategoryModel[];
   ngOnInit(): void {
-    this.route.params.pipe(pluck("slug")).subscribe(
+     this.route.params.pipe(pluck("slug")).subscribe(
       data=>{
         this.homeService.getCateGoryById(data).subscribe(data1=>{
           this.CategoryDetail = data1;
@@ -35,6 +43,7 @@ export class CategoryListComponent implements OnInit {
       }
     )
   }
+
 
   pageChanged(event){
     this.page = event;
@@ -94,6 +103,35 @@ export class CategoryListComponent implements OnInit {
   XuLyInputDown(input){
     if(parseInt(input.value)>1){
       input.value = parseInt(input.value) - 1;
+    }
+  }
+
+  private user : UserModel;
+  private card : CardModel;
+  addToCard(product : ProductModel,qty : string){
+    this.user  = JSON.parse(localStorage.getItem(this.userService.keyLogin));
+    if(this.user != null){
+      this.card = {
+        c_qty : parseInt(qty),
+        c_product_id : product,
+        c_user_id : this.user
+      }
+      this.cardService.addCard(this.card).subscribe(data=>{
+        if(data != null){
+          this.cardService.getCard(this.user.id).subscribe(data=>{
+            this.homecomponent.totalCard = data.length;
+          });
+          setTimeout(()=>{
+            alert("Thêm Vào Giỏ Hàng Thành Công");
+          },300)
+
+        }
+      },(error)=>{
+        alert(error.error.message);
+      })
+    }
+    else{
+      this.router.navigate(['/login']);
     }
   }
 
