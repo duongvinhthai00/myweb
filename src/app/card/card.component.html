@@ -1,6 +1,6 @@
 <!-- Main Content - start -->
 <main>
-  <section style="background-color: aliceblue;" class="container stylization maincont">
+  <section  class="container stylization maincont">
 
 
       <ul class="b-crumbs">
@@ -31,37 +31,40 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let item of this.card" >
+                  <tr *ngFor="let item of this.card">
                       <td class="cart-image">
-                          <a href="product.html">
-                              <img src="../assets/image/{{this.item.c_product_id.pro_avatar}}" width="96px" height="80px" alt="Quod soluta corrupti">
+                          <a>
+                              <img style="margin: 0;" src="../assets/image/{{this.item.c_product_id.pro_avatar}}" width="96px" height="80px" alt="Quod soluta corrupti">
                           </a>
                       </td>
                       <td class="cart-ttl">
                           <a [routerLink]="['/product-detail/',item.c_product_id.id]">{{this.item.c_product_id.pr_name}}</a>
                       </td>
                       <td class="cart-price">
-                          <b>{{this.item.c_product_id.pro_price | currency:"VND"}}</b>
+                          <b style="font-size: 18px;">{{this.item.c_product_id.pro_pay | currency:"VND"}}</b>
+                          <del style="font-size: 17px;" *ngIf="this.item.c_product_id.pro_sale>0">{{this.item.c_product_id.pro_price | currency:"VND"}}</del>
                       </td>
                       <td class="cart-quantity">
                           <p class="cart-qnt">
-                              <input #input value="{{this.item.c_qty}}" type="text">
+                              <input #input value="{{this.item.c_qty}}" type="text" style="color: blue;">
                               <a style="cursor: pointer;" (click)="this.cardService.XuLyInputUp(input)" class="cart-plus"><i class="fa fa-angle-up"></i></a>
                               <a style="cursor: pointer;"(click)="this.cardService.XuLyInputDown(input)"  class="cart-minus"><i class="fa fa-angle-down"></i></a>
                           </p>
                       </td>
                       <td class="cart-summ">
-                          <b>{{this.item.c_qty * this.item.c_product_id.pro_price | currency:"VND" }}</b>
+                          <b style="font-size: 18px;">{{this.item.c_qty * this.item.c_product_id.pro_pay | currency:"VND" }}</b>
                       </td>
 
                       <td class="cart-del-2">
                         <a style="cursor: pointer;" (click)="updateCard(item,input.value)">
-                          <i style="color: #3a89cf;font-size: 16px;" class="fa fa-refresh" aria-hidden="true"></i>
+                          <i style="color: #3a89cf;font-size: 16px;margin-top: 6px;color: #66b91a;" class="fa fa-refresh" aria-hidden="true"></i>
                         </a>
                       </td>
 
                       <td class="cart-del">
-                          <a (click)="deleteCard(item.id)" style="cursor: pointer;" class="cart-remove"></a>
+                          <a (click)="deleteCard(item.id)" style="cursor: pointer; font-size: 20px;color: #ff712d;">
+                            <i class="fa fa-trash"></i>
+                          </a>
                       </td>
 
                   </tr>
@@ -69,11 +72,11 @@
               </table>
           </div>
           <ul class="cart-total">
-              <li class="cart-summ">TOTAL: <b>$815</b></li>
+              <li *ngIf="card" class="cart-summ">Tổng Cộng:<b style="padding-left: 31px;font-size: 21px;">{{SumCard(this.card) | currency : "VND"}}</b></li>
           </ul>
           <div class="cart-submit">
-              <a href="#" class="cart-submit-btn">Đặt Hàng</a>
-              <a href="#" class="cart-clear">Clear cart</a>
+              <a (click)="check()"  style="cursor: pointer;" class="cart-submit-btn">Đặt Hàng</a>
+              <a style="color: lightseagreen;cursor:pointer;" (click)="deleteAllCard()"  class="cart-clear">Xoá Giỏ Hàng</a>
           </div>
       </form>
       <!-- Cart Items - end -->

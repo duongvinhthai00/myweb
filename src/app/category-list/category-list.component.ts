@@ -121,10 +121,7 @@ export class CategoryListComponent implements OnInit {
           this.cardService.getCard(this.user.id).subscribe(data=>{
             this.homecomponent.totalCard = data.length;
           });
-          setTimeout(()=>{
-            alert("Thêm Vào Giỏ Hàng Thành Công");
-          },300)
-
+          alert("Thêm Vào Giỏ Hàng Thành Công");
         }
       },(error)=>{
         alert(error.error.message);

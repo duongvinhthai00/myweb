@@ -48,7 +48,6 @@ export class ProductDetailComponent implements OnInit  {
  private user : UserModel;
  private card : CardModel;
  addToCard(product : ProductModel,qty : string){
-  console.log('work');
   this.user  = JSON.parse(localStorage.getItem(this.userService.keyLogin));
   if(this.user != null){
     this.card = {

@@ -113,10 +113,10 @@
 
                 <!-- Catalog menu - start -->
                 <div class="topcatalog">
-                    <a class="topcatalog-btn" href="catalog-list.html"><span>TẤT CẢ</span> DANH MỤC</a>
+                    <a class="topcatalog-btn" style="cursor: pointer;background-color: #9c9c9c;color: white;"><span>TẤT CẢ</span> DANH MỤC</a>
                     <ul class="topcatalog-list">
                         <li *ngFor="let item of this.cateGoryGroupList">
-                            <a href="#">
+                            <a style="cursor: pointer;">
                                 {{item.name}}
                             </a>
                             <i class="fa fa-angle-right"></i>
@@ -139,8 +139,8 @@
 
                 <ul class="mainmenu">
                     <li>
-                        <a href="index.html" class="active">
-                            Home
+                        <a [routerLink]="['/']">
+                            Trang Chủ
                         </a>
                     </li>
                     <li class="menu-item-has-children">

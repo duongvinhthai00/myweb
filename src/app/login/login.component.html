@@ -21,7 +21,7 @@
                 </div>
                 <h2>Login</h2>
                 <form (ngSubmit)="Submit()" [formGroup]= "loginForm" class="login">
-                    
+
                     <p>
                         <label for="username">UserName <span class="required">*</span></label><input formControlName="user_name" type="text" id="username">
                         <span *ngIf="error?.user_name" style="margin-left: 105px;color:red">{{error.user_name}}</span>

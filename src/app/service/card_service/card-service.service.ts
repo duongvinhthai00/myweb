@@ -25,6 +25,16 @@ export class CardServiceService {
     return this.http.put<CardModel>("http://localhost:8080/api/v7/cards",card);
   }
 
+  deleteAllCard(userId : number){
+    return this.http.delete(`http://localhost:8080/api/v7/cards-all/${userId}`);
+  }
+
+  checkCardToTransaction(listCardDTO : CardModel[],userId : number){
+    return this.http.post<Boolean>(`http://localhost:8080/api/v7/check-card-transaction/${userId}`,listCardDTO).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   handleError(error){
     return throwError(error);
   }
@@ -37,9 +47,13 @@ export class CardServiceService {
     input.value = parseInt(input.value) + 1;
   }
 
- XuLyInputDown(input){
+  XuLyInputDown(input){
    if(parseInt(input.value)>1){
      input.value = parseInt(input.value) - 1;
    }
   }
+
+
+
+
 }

@@ -13,6 +13,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CardComponent } from './card/card.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CardComponent } from './card/card.component';
     AdminhomeComponent,
     CategoryListComponent,
     ProductDetailComponent,
-    CardComponent
+    CardComponent,
+    TransactionComponent
   ],
   imports: [
     BrowserModule,

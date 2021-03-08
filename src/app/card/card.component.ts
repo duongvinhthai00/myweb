@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
 import { CardModel } from '../model/CardModel';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { CardServiceService } from '../service/card_service/card-service.service';
+import { TransactionComponent } from '../transaction/transaction.component';
 
 @Component({
   selector: 'app-card',
@@ -12,8 +12,16 @@ import { CardServiceService } from '../service/card_service/card-service.service
 })
 export class CardComponent implements OnInit {
   card : CardModel[];
-  constructor(public cardService : CardServiceService,private homeComponent : HomeComponent,private router : Router) { }
+  constructor(public cardService : CardServiceService,private homeComponent : HomeComponent,private router : Router,
+    private transactionCom : TransactionComponent) { }
 
+  SumCard(card : CardModel[]) : number{
+    let tong = 0;
+    for(let i = 0;i<card.length;i++){
+      tong = tong + card[i].c_product_id.pro_pay*card[i].c_qty;
+    }
+    return tong;
+  }
   ngOnInit(): void {
     if(this.homeComponent.userLogined != null){
       this.cardService.getCard(this.homeComponent.userLogined.id).subscribe(data=>{
@@ -26,12 +34,16 @@ export class CardComponent implements OnInit {
 
   updateCard(card : CardModel,input : string){
     card.c_qty = parseInt(input);
-    console.log(card);
     this.cardService.updateCard(card).subscribe(data=>{
       this.cardService.getCard(this.homeComponent.userLogined.id).subscribe(data=>{
         this.card = data;
-        console.log(this.card);
       })
+    },(error)=>{
+      alert(error.error.message);
+      this.cardService.getCard(this.homeComponent.userLogined.id).subscribe(data=>{
+        this.card = data;
+        this.homeComponent.totalCard = data.length;
+      });
     })
   }
 
@@ -39,12 +51,30 @@ export class CardComponent implements OnInit {
     this.cardService.deleteCard(id).subscribe(data=>{
       this.cardService.getCard(this.homeComponent.userLogined.id).subscribe(data=>{
         this.card = data;
-        console.log(this.card);
+        this.homeComponent.totalCard = data.length;
       })
-      alert('Xoá Thành Công');
     },(error)=>{
       alert('Xoá Không Thành Công');
     })
+  }
+
+
+  deleteAllCard(){
+    this.cardService.deleteAllCard(this.homeComponent.userLogined.id).subscribe(data=>{
+      this.cardService.getCard(this.homeComponent.userLogined.id).subscribe(data=>{
+        this.card = data;
+        this.homeComponent.totalCard = data.length;
+      });
+    });
+  }
+
+  check(){
+    this.cardService.checkCardToTransaction(this.card,this.homeComponent.userLogined.id).subscribe(data=>{
+      this.router.navigate(['/transaction']);
+      this.transactionCom.status = false;
+    },(error)=>{
+      alert(error.error.message);
+    });
   }
 
 }

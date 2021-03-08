@@ -27,12 +27,12 @@
 				<div class="prod-slider">
 					<ul class="prod-slider-car">
 						<li>
-							<a href="/product-detail/{{productDetail?.id}}" data-fancybox-group="product" class="fancy-img">
+							<a href="/product-detail/{{productDetail?.id}}">
 								<img src="../assets/image/{{productDetail?.pro_avatar}}" alt="">
 							</a>
 						</li>
 						<li *ngFor="let item of this.imageList">
-							<a   data-fancybox-group="product" class="fancy-img">
+							<a>
 								<img src="../assets/image/{{this.item?.im_name}}" width="500px" height="500px" alt="">
 							</a>
 						</li>
@@ -101,7 +101,7 @@
 				<div class="prod-info">
 					<p class="prod-price">
 						<b class="item_current_price">{{productDetail?.pro_pay | currency : "VND"}}</b>
-            <del style="font-size: 16px;">{{productDetail?.pro_price | currency : "VND"}}</del>
+            <del *ngIf="productDetail?.pro_sale>0" style="font-size: 16px;">{{productDetail?.pro_price | currency : "VND"}}</del>
 					</p>
 					<p class="prod-qnt">
 						<input #input value="1" type="text">
