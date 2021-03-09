@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { HomeComponent } from '../home/home.component';
 import { CardModel } from '../model/CardModel';
 import { CardServiceService } from '../service/card_service/card-service.service';
@@ -12,15 +13,16 @@ import { TransactionComponent } from '../transaction/transaction.component';
 })
 export class CardComponent implements OnInit {
   card : CardModel[];
-  constructor(public cardService : CardServiceService,private homeComponent : HomeComponent,private router : Router,
-    private transactionCom : TransactionComponent) { }
+  constructor(public cardService : CardServiceService,private homeComponent : HomeComponent,private router : Router) { }
 
   SumCard(card : CardModel[]) : number{
-    let tong = 0;
-    for(let i = 0;i<card.length;i++){
+    if(this.card != null){
+      let tong = 0;
+      for(let i = 0;i<card.length;i++){
       tong = tong + card[i].c_product_id.pro_pay*card[i].c_qty;
+      }
+      return tong;
     }
-    return tong;
   }
   ngOnInit(): void {
     if(this.homeComponent.userLogined != null){
@@ -70,8 +72,8 @@ export class CardComponent implements OnInit {
 
   check(){
     this.cardService.checkCardToTransaction(this.card,this.homeComponent.userLogined.id).subscribe(data=>{
+      environment.statusTransaction = false;
       this.router.navigate(['/transaction']);
-      this.transactionCom.status = false;
     },(error)=>{
       alert(error.error.message);
     });

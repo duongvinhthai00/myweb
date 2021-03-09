@@ -5,7 +5,7 @@
 
       <ul class="b-crumbs">
           <li>
-              <a href="index.html">
+              <a [routerLink]="['/']">
                   Home
               </a>
           </li>
@@ -14,72 +14,77 @@
           </li>
       </ul>
       <h1 class="main-ttl"><span>TRANSACTION</span></h1>
+      <form (ngSubmit)="Submit()" [formGroup] = "transactionForm">
       <div class="auth-wrap">
           <div class="auth-col">
               <h2 style="color: #0c7dde;">THÔNG TIN NHẬN HÀNG</h2>
-              <form method="post" class="login" style="margin-top: 21px;">
+              <div method="post" class="login" style="margin-top: 21px;">
                   <p>
-                      <label for="username">E-mail <span class="required">*</span></label><input type="text" id="username">
+                      <label for="username" style="font-weight: bold;color: black;">Tên Người Đặt Hàng <span class="required">*</span></label><input formControlName="name" type="text" id="username">
+                      <span style="margin-left: 103px;color: red;" *ngIf="this.error?.name">{{this.error.name}}</span>
                   </p>
                   <p>
-                      <label for="password">Password <span class="required">*</span></label><input type="password" id="password">
+                    <label for="username" style="font-weight: bold;color: black;"> Số Điện Thoại <span class="required">*</span></label><input formControlName="tr_phone" type="text" id="username">
+                    <span style="margin-left: 103px;color: red;" *ngIf="this.error?.tr_phone">{{this.error.tr_phone}}</span>
                   </p>
-                  <p class="auth-submit">
-                      <input type="submit" value="Login">
-                      <input type="checkbox" id="rememberme" value="forever">
-                      <label for="rememberme">Remember me</label>
+                  <p>
+                    <label for="username" style="font-weight: bold;color: black;"> Địa Chỉ <span class="required">*</span></label><input formControlName="tr_address" type="text" id="username">
+                    <span style="margin-left: 103px;color: red;" *ngIf="this.error?.tr_address">{{this.error.tr_address}}</span>
                   </p>
-              </form>
+                  <p style="display: flex;">
+                    <label for="username" style="font-weight: bold;color: black;">Note <span class="required">*</span></label><textarea formControlName="tr_note" style="margin-left: 17px;" id="username"></textarea>
+                  </p>
+
+                </div>
           </div>
           <div class="auth-col">
               <h2 style="margin : 0;color: #40c74a;text-transform: uppercase;">Danh Sách SẢN PHẨM</h2>
-              <form action="#">
-
+              <div>
                 <div class="cart-items-wrap">
                     <table class="cart-items">
                         <thead>
                         <tr>
                             <td class="cart-image"><b>Photo</b></td>
                             <td class="cart-ttl" style="width: 200px;"><b>TÊN Sản Phẩm</b></td>
-                            <td class="cart-quantity"><b>Số Lượng</b></td>
-                            <td class="cart-summ" style="width: 41px;"><b>Tổng</b></td>
+                            <td class="cart-quantity" style="width: 76px;"><b>Số Lượng</b></td>
+                            <td class="cart-summ" style="width: 70px;"><b>Tổng</b></td>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
+                        <ng-container *ngIf="this.card">
+                        <tr *ngFor="let item of this.card">
                             <td class="cart-image">
                                 <a>
-                                    <img style="margin: 0" src="http://placehold.it/61x80" alt="Similique delectus totam">
+                                    <img style="margin: 0" src="../assets/image/{{item.c_product_id.pro_avatar}}" alt="Similique delectus totam">
                                 </a>
                             </td>
                             <td class="cart-ttl">
-                                <b>Similique delectus totam</b>
+                                <b>{{this.item.c_product_id.pr_name}}</b>
                             </td>
                             <td class="cart-quantity">
                                 <p class="cart-qnt">
-                                    <input readonly value="1" type="text">
+                                    <input style="color: blue;" readonly value="{{this.item.c_qty}}" type="text">
                                 </p>
                             </td>
                             <td class="cart-summ">
-                                <b>$220</b>
-                                <p class="cart-forone">unit price <b>$220</b></p>
+                                <b>{{this.item.c_qty*this.item.c_product_id.pro_pay | currency : "VND"}}</b>
+                                <p class="cart-forone">unit price <b>{{this.item.c_qty*this.item.c_product_id.pro_pay | currency : "VND"}}</b></p>
                             </td>
                         </tr>
+                        </ng-container>
                         </tbody>
                     </table>
                 </div>
                 <ul class="cart-total">
-                    <li style="margin-right: 4px;" class="cart-summ">TOTAL: <b>$815</b></li>
+                    <li style="margin-right: 4px;" class="cart-summ">Tổng Tiền : <b>{{this.SumCard() | currency : "VND"}}</b></li>
                 </ul>
                 <div class="cart-submit">
-                    <a href="#" class="cart-submit-btn">Checkout</a>
+                    <input type="submit" value="Xác Nhận" style="cursor: pointer;" class="cart-submit-btn">
                 </div>
-              </form>
+              </div>
           </div>
       </div>
-
-
-
+      </form>
   </section>
 </main>
 <!-- Main Content - end -->

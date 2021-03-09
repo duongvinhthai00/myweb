@@ -37,7 +37,11 @@ export class CategoryListComponent implements OnInit {
           })
         });
         this.productService.getProductByCategory(data).subscribe(data=>{
-          this.ProductList = data;
+          this.ProductList = data.filter(x=>{
+            if(x.pro_number>0){
+              return true;
+            }
+          });
           this.ProductListFake = [...this.ProductList];
         })
       }

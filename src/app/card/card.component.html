@@ -74,8 +74,8 @@
           <ul class="cart-total">
               <li *ngIf="card" class="cart-summ">Tổng Cộng:<b style="padding-left: 31px;font-size: 21px;">{{SumCard(this.card) | currency : "VND"}}</b></li>
           </ul>
-          <div class="cart-submit">
-              <a (click)="check()"  style="cursor: pointer;" class="cart-submit-btn">Đặt Hàng</a>
+          <div *ngIf="SumCard(this.card) > 0" class="cart-submit">
+              <a style="cursor: pointer;" (click)="check()" class="cart-submit-btn">Đặt Hàng</a>
               <a style="color: lightseagreen;cursor:pointer;" (click)="deleteAllCard()"  class="cart-clear">Xoá Giỏ Hàng</a>
           </div>
       </form>
