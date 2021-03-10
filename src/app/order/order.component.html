@@ -52,7 +52,7 @@
                           <b style="font-size: 18px;">{{item.created_at | date : 'MM/dd/yyyy - hh:mm'}}</b>
                       </td>
                       <td style="text-align: center;" class="cart-summ">
-                        <b style="font-size: 18px;"><a style="padding: 8px;color: white;margin-right: 15px;background-color: rgb(17, 138, 219)"><i class="far fa-eye"></i></a>
+                        <b style="font-size: 18px;"><a [routerLink]="['/order-detail',item.id]" style="padding: 8px;color: white;margin-right: 15px;background-color: rgb(17, 138, 219)"><i class="far fa-eye"></i></a>
                             <a (click)="deleteOrder(this.item)" *ngIf="item.tr_status == 0" style="padding: 8px;color: white;background-color: red;"><i class="fas fa-trash"></i></a>
                         </b>
                         

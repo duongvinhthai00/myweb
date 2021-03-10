@@ -1,31 +1,32 @@
 <!-- Main Content - start -->
 <main>
-  <section  class="container stylization maincont">
+  <section  class="container stylization maincont" style="padding: 0;">
 
 
       <ul class="b-crumbs">
           <li>
-              <a href="index.html">
-                  Home
+              <a [routerLink] = "['/']">
+                  Trang Chủ
               </a>
           </li>
           <li>
-              <span>Cart</span>
+              <span>Giỏ Hàng</span>
           </li>
       </ul>
-      <h1 class="main-ttl"><span>Cart</span></h1>
+      <h1 class="main-ttl"><span>Giỏ Hàng Của Tôi</span></h1>
       <!-- Cart Items - start -->
+      <div class="card">
+          <div style="padding: 10px 0;background-color: #4ac598;"><b class="test" style="color:white;">Danh Sách Sản Phẩm</b></div>
       <form action="#">
-
           <div class="cart-items-wrap">
               <table class="cart-items">
                   <thead>
                   <tr>
-                      <td style="font-size: 19px;" class="cart-image"><b>Photo</b></td>
-                      <td style="font-size: 19px;" class="cart-ttl"><b>Tên Sản Phẩm</b></td>
-                      <td style="font-size: 19px;" class="cart-price"><b>Giá</b></td>
-                      <td style="font-size: 19px;" class="cart-quantity"><b>Số Lượng</b></td>
-                      <td style="font-size: 19px;" class="cart-summ"><b>Tổng Tiền</b></td>
+                      <td style="font-size: 16px;text-align: center;" class="cart-image"><b>Ảnh</b></td>
+                      <td style="font-size: 16px;" class="cart-ttl"><b>Tên Sản Phẩm</b></td>
+                      <td style="font-size: 16px;" class="cart-price"><b>Giá</b></td>
+                      <td style="font-size: 16px;" class="cart-quantity"><b>Số Lượng</b></td>
+                      <td style="font-size: 16px;" class="cart-summ"><b>Tổng Tiền</b></td>
                       <td class="cart-del">&nbsp;</td>
                       <td class="cart-del">&nbsp;</td>
                   </tr>
@@ -66,21 +67,20 @@
                             <i class="fa fa-trash"></i>
                           </a>
                       </td>
-
                   </tr>
                   </tbody>
               </table>
           </div>
           <ul class="cart-total">
-              <li *ngIf="card" class="cart-summ">Tổng Cộng:<b style="padding-left: 31px;font-size: 21px;">{{SumCard(this.card) | currency : "VND"}}</b></li>
+              <li *ngIf="SumCard(this.card)>0" class="cart-summ" style="font-size: 16px;margin-right: 15px;">Tổng Cộng:<b style="padding-left: 31px;font-size: 21px;">{{SumCard(this.card) | currency : "VND"}}</b></li>
           </ul>
-          <div *ngIf="SumCard(this.card) > 0" class="cart-submit">
+          <div style="margin-right: 15px;" *ngIf="SumCard(this.card) > 0" class="cart-submit">
               <a style="cursor: pointer;" (click)="check()" class="cart-submit-btn">Đặt Hàng</a>
               <a style="color: lightseagreen;cursor:pointer;" (click)="deleteAllCard()"  class="cart-clear">Xoá Giỏ Hàng</a>
           </div>
       </form>
       <!-- Cart Items - end -->
-
+      </div>
   </section>
 </main>
 <!-- Main Content - end -->

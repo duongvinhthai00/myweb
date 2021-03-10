@@ -5,21 +5,21 @@
 
         <ul class="b-crumbs">
             <li>
-                <a href="index.html">
-                    Home
+                <a [routerLink]="['/']">
+                    Trang Chủ
                 </a>
             </li>
             <li>
-                <span>Login</span>
+                <span>Đăng Nhập</span>
             </li>
         </ul>
-        <h1 class="main-ttl"><span>Login</span></h1>
+        <h1 class="main-ttl"><span>Đăng Nhập</span></h1>
         <div class="auth-wrap">
             <div class="auth-col">
                 <div *ngIf="this.error?.message" class="alert alert-danger" role="alert">
                     {{this.error.message}}
                 </div>
-                <h2>Login</h2>
+                <h2>Đăng Nhập</h2>
                 <form (ngSubmit)="Submit()" [formGroup]= "loginForm" class="login">
 
                     <p>

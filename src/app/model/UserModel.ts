@@ -13,7 +13,7 @@ export interface UserModel{
 	about: string,
 	created_at:Time,
 	update_at:Time,
-  user_name:string
+  	user_name:string
 }
 
 

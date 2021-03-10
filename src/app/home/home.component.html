@@ -72,15 +72,15 @@
                     <li *ngIf="this.userLogined == null;else user123"  class="topauth">
                         <a [routerLink] = "['/register']">
                             <i class="fa fa-lock"></i>
-                            <span class="shop-menu-ttl">Registration</span>
+                            <span class="shop-menu-ttl">Đăng Ký</span>
                         </a>
                         <a [routerLink] = "['/login']">
-                            <span class="shop-menu-ttl">Login</span>
+                            <span class="shop-menu-ttl">Đăng Nhập</span>
                         </a>
                     </li>
 
                     <ng-template #user123>
-                        <li class="topauth">
+                        <li style="margin-right: -12px;" class="topauth">
                         <div class="dropdown">
                         <a style="background: none;cursor: pointer;">
                             <i class="fa fa-user"></i>
@@ -106,7 +106,7 @@
                         <div class="h-cart">
                             <a [routerLink]= "['/card']">
                                 <i class="fa fa-shopping-cart"></i>
-                                <span class="shop-menu-ttl">Cart</span>
+                                <span class="shop-menu-ttl">Giỏ Hàng</span>
                                 (<b>{{this.totalCard}}</b>)
                             </a>
                         </div>

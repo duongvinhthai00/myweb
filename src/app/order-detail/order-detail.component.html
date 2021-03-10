@@ -1,0 +1,103 @@
+<!-- Main Content - start -->
+<main>
+  <section class="container stylization maincont">
+
+
+      <ul class="b-crumbs">
+          <li>
+              <a href="index.html">
+                  Home
+              </a>
+          </li>
+          <li>
+              <span>order</span>
+          </li>
+      </ul>
+      <h1 class="main-ttl" style="font-size: 22px;
+    margin: 0 0 35px;
+    font-weight: bold;
+    color: black;"><span>MY ORDERS</span></h1>
+      <!-- Cart Items - start -->
+        <div class="container" style="padding: 0;">
+        <div class="card">
+            <div style="background-color: #4ac598;" class="card-header">
+                <b style="color: aliceblue;">Hóa Đơn Ngày : </b>
+                <strong style="color: white;" >{{this.transaction.created_at | date:'dd/MM/yyyy'}}</strong>
+                <span class="float-right"> <strong>Status:</strong> <span _ngcontent-nhr-c53="" class="badge badge-success1" style="background-color: #bcc712;">Đang Gửi</span></span>
+
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-sm-6">
+                        <h6 class="mb-3">From:</h6>
+                        <div>
+                            <strong>Admin</strong>
+                        </div>
+                        <div>Công Ty Một Thành Viên</div>
+                        <div>Email: admin@admin.vn</div>
+                        <div>Phone: 18001600</div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <h6 class="mb-3">To:</h6>
+                        <div>
+                            <strong>{{this.transaction.name}}</strong>
+                        </div>
+                        <div>Địa Chỉ : {{this.transaction.tr_address}}</div>
+                        <div>Email: {{this.transaction.tr_user_id.email}}</div>
+                        <div>Phone: {{this.transaction.tr_phone}}</div>
+                    </div>
+                </div>
+
+                <div class="table-responsive-sm">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="center" style="width: 61px;text-align: center;">STT</th>
+                                <th style="text-align: center;">Tên Sản Phẩm</th>
+                                <th style="text-align: center;" class="right">Giá Sản Phẩm</th>
+                                <th style="text-align: center;" class="center">Số Lượng</th>
+                                <th style="text-align: center;">Ngày Đặt Hàng</th>
+                                <th style="text-align: center;" class="right">Tổng Tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of this.orderList;let idx = index">
+                                <td class="center">{{idx+1}}</td>
+                                <td class="left strong">{{item.or_product_id.pr_name}}</td>
+                                <td class="right">{{item.or_price | currency : 'VND'}}</td>
+                                <td class="center">{{item.or_qty}}</td>
+                                <td class="left">{{item.created_at |date : 'dd/MM/yyyy'}}</td>
+                                <td class="right">{{item.or_qty*item.or_price | currency : 'VND'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-5">
+
+                    </div>
+
+                    <div class="col-lg-4 col-sm-5 ml-auto">
+                        <table class="table table-clear">
+                            <tbody>
+                                <tr>
+                                    <td class="left">
+                                        <strong>Tổng Cộng</strong>
+                                    </td>
+                                    <td style="width: 201px;" class="right">
+                                        <strong>{{this.transaction.tr_total | currency : 'VND'}}</strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+      <!-- Cart Items - end -->
+
+  </section>
+</main>
+<!-- Main Content - end -->
