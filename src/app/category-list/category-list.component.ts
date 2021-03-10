@@ -12,6 +12,7 @@ import { CardServiceService } from '../service/card_service/card-service.service
 import { HomeServiceService } from '../service/home_service/home-service.service';
 import { ProductServiceService } from '../service/product_service/product-service.service';
 import { UserServiceService } from '../service/user_service/user-service.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-category-list',
@@ -125,10 +126,21 @@ export class CategoryListComponent implements OnInit {
           this.cardService.getCard(this.user.id).subscribe(data=>{
             this.homecomponent.totalCard = data.length;
           });
-          alert("Thêm Vào Giỏ Hàng Thành Công");
+          Swal.fire({
+             position: 'center',
+             icon: 'success',
+             title: 'Thêm Vào Giỏ Hàng Thành Công',
+             showConfirmButton: false,
+             timer:2000
+          })
         }
       },(error)=>{
-        alert(error.error.message);
+        Swal.fire({
+             position: 'center',
+             icon: 'error',
+             title: error.error.message,
+             showConfirmButton: true,
+        })
       })
     }
     else{

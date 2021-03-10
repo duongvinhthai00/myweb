@@ -2,3 +2,7 @@
 a{
   cursor: pointer;
 }
+
+ul.ngx-pagination {
+    margin-top: 34px;
+}

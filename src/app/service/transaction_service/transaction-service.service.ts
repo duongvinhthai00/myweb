@@ -16,4 +16,8 @@ export class TransactionServiceService {
   getTransactionByUser(userId : number){
     return this.http.get<TransactionModel[]>(`http://localhost:8080/api/v8/transaction/${userId}`);
   }
+
+  deleteTransaction(tr_id : number){
+    return this.http.delete<Boolean>(`http://localhost:8080/api/v8/transaction/${tr_id}`);
+  }
 }

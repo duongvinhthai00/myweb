@@ -1,0 +1,32 @@
+.badge-success1 {
+    color: #fff;
+    background-color: #ab931ed6;
+}
+
+.badge-success2 {
+    color: #fff;
+    background-color: #0fcaebd6;
+}
+
+.badge-success3 {
+    color: #fff;
+    background-color: #0feb51d6;
+}
+
+.badge-success4 {
+    color: #fff;
+    background-color: #eb0f1ad6;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.8em 1.8em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

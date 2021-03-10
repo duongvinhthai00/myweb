@@ -7,7 +7,7 @@ import { CardModel } from '../model/CardModel';
 import { TransactionModel } from '../model/TransactionModel';
 import { CardServiceService } from '../service/card_service/card-service.service';
 import { TransactionServiceService } from '../service/transaction_service/transaction-service.service';
-
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
@@ -59,7 +59,12 @@ export class TransactionComponent implements OnInit {
     }
     this.TransactionService.addTransaction(transaction).subscribe(data=>{
       this.homeComponent.totalCard = 0;
-      alert("Đặt Hàng Thành Công");
+      Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Đặt Hàng Thành Công',
+          showConfirmButton: true,
+      })
       this.router.navigate(['/order']);
     },(error)=>{
       this.error = error.error;

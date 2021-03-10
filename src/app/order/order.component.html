@@ -26,11 +26,13 @@
                       <td class="cart-price" style="font-size: 19px;font-weight: bold;text-align: center;">TỔNG TIỀN</td>
                       <td class="cart-quantity" style="font-size: 19px;font-weight: bold;text-align: center;">TRẠNG THÁI</td>
                       <td class="cart-summ" style="font-size: 19px;font-weight: bold;text-align: center;">NGÀY ĐẶT HÀNG</td>
-                      <td class="cart-summ" style="font-size: 19px;font-weight: bold;text-align: center;">XEM CHI TIẾT</td>
+                      <td class="cart-summ" style="font-size: 19px;font-weight: bold;text-align: center;">HÀNH ĐỘNG</td>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let item of this.transactions">
+                  <tr *ngFor="let item of this.transactions| paginate :{id:'pag1', itemsPerPage: maxPageItems,
+                        currentPage: page,
+                        totalItems: this.transactions?.length}">
                       <td style="text-align: center;" class="cart-image">
                           <b style="font-size: 18px;">{{item.id}}</b>
                       </td>
@@ -41,24 +43,24 @@
                           <b style="font-size: 18px;">{{item.tr_total | currency:"VND"}}</b>
                       </td>
                       <td style="text-align: center;" class="cart-quantity">
-                          <b style="font-size: 18px;">{{item.tr_status}}</b>
+                          <span *ngIf="item.tr_status == 0" class="badge badge-success1">Đang Gửi</span>
+                          <span *ngIf="item.tr_status == 1" class="badge badge-success2">Đang Xử Lý</span>
+                          <span *ngIf="item.tr_status == 2" class="badge badge-success3">Hoàn Thành</span>
+                          <span *ngIf="item.tr_status == 3" class="badge badge-success4">Đã Bị Hủy</span>
                       </td>
                       <td style="text-align: center;" class="cart-summ">
-                          <b style="font-size: 18px;">{{item.created_at | date : 'short'}}</b>
+                          <b style="font-size: 18px;">{{item.created_at | date : 'MM/dd/yyyy - hh:mm'}}</b>
                       </td>
                       <td style="text-align: center;" class="cart-summ">
-                        <b style="font-size: 18px;">Xem</b>
+                        <b style="font-size: 18px;"><a style="padding: 8px;color: white;margin-right: 15px;background-color: rgb(17, 138, 219)"><i class="far fa-eye"></i></a>
+                            <a (click)="deleteOrder(this.item)" *ngIf="item.tr_status == 0" style="padding: 8px;color: white;background-color: red;"><i class="fas fa-trash"></i></a>
+                        </b>
+                        
                     </td>
                   </tr>
                   </tbody>
               </table>
-          </div>
-          <ul class="cart-total">
-              <li class="cart-summ">TOTAL: <b>$815</b></li>
-          </ul>
-          <div class="cart-submit">
-              <a href="#" class="cart-submit-btn">Checkout</a>
-              <a href="#" class="cart-clear">Clear cart</a>
+              <pagination-controls id="pag1" directionLinks="true" (pageChange)="pageChanged($event)" maxSize="1000"></pagination-controls>
           </div>
       </form>
       <!-- Cart Items - end -->

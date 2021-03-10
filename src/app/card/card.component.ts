@@ -5,6 +5,7 @@ import { HomeComponent } from '../home/home.component';
 import { CardModel } from '../model/CardModel';
 import { CardServiceService } from '../service/card_service/card-service.service';
 import { TransactionComponent } from '../transaction/transaction.component';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-card',
@@ -41,7 +42,12 @@ export class CardComponent implements OnInit {
         this.card = data;
       })
     },(error)=>{
-      alert(error.error.message);
+      Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: error.error.message,
+          showConfirmButton: true,
+      })      
       this.cardService.getCard(this.homeComponent.userLogined.id).subscribe(data=>{
         this.card = data;
         this.homeComponent.totalCard = data.length;
@@ -56,7 +62,12 @@ export class CardComponent implements OnInit {
         this.homeComponent.totalCard = data.length;
       })
     },(error)=>{
-      alert('Xoá Không Thành Công');
+      Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Xóa Không Thành Công',
+          showConfirmButton: true,
+      })
     })
   }
 
@@ -75,7 +86,12 @@ export class CardComponent implements OnInit {
       environment.statusTransaction = false;
       this.router.navigate(['/transaction']);
     },(error)=>{
-      alert(error.error.message);
+      Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: error.error.message,
+          showConfirmButton: true,
+      })      
     });
   }
 
