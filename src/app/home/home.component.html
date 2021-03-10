@@ -81,13 +81,25 @@
 
                     <ng-template #user123>
                         <li class="topauth">
-                        <a href="#">
+                        <div class="dropdown">
+                        <a style="background: none;cursor: pointer;">
                             <i class="fa fa-user"></i>
                             <span class="shop-menu-ttl">{{this.userLogined.name}}</span>
                         </a>
-                        <a style="cursor: pointer;" (click) = "Logout()">
-                            <span class="shop-menu-ttl">Logout</span>
-                        </a>
+                        <div class="dropdown-content" style="padding: 0;">
+                          <p style="padding: 10px;border-bottom: 1px solid #ccc;">
+                            <i class="fas fa-user" style="padding-right: 8px;"></i>
+                            <a href="" style="background: none;">Thông Tin Account</a></p>
+                          <p  style="padding: 10px;border-bottom: 1px solid #ccc;">
+                            <i class="fas fa-gifts" style="padding-right: 8px;"></i>
+                            <a [routerLink]="['/order']" style="background: none;">Đơn Hàng Của Tôi</a>
+                          </p>
+                          <p style="padding: 10px;">
+                            <i class="fa fa-sign-out" style="padding-right: 8px;"></i>
+                            <a (click)="Logout()" style="background: none;">Đăng Xuất</a>
+                          </p>
+                        </div>
+                      </div>
                     </li>
                     </ng-template>
                     <li>

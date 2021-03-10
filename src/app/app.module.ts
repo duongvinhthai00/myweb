@@ -14,6 +14,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CardComponent } from './card/card.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TransactionComponent } from './transaction/transaction.component';
     CategoryListComponent,
     ProductDetailComponent,
     CardComponent,
-    TransactionComponent
+    TransactionComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

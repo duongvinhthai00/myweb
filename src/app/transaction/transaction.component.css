@@ -9,3 +9,8 @@
   vertical-align: middle;
   display: inline-block;
 }
+
+.cart-submit input[type=submit]:hover {
+  background: #2eb345;
+}
+

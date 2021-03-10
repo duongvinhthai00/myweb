@@ -60,7 +60,7 @@ export class TransactionComponent implements OnInit {
     this.TransactionService.addTransaction(transaction).subscribe(data=>{
       this.homeComponent.totalCard = 0;
       alert("Đặt Hàng Thành Công");
-      this.router.navigate(['/']);
+      this.router.navigate(['/order']);
     },(error)=>{
       this.error = error.error;
     })

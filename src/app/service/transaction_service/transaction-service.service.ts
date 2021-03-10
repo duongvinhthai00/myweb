@@ -12,4 +12,8 @@ export class TransactionServiceService {
   addTransaction(transactionDTO : TransactionModel){
     return this.http.post<TransactionModel>("http://localhost:8080/api/v8/transaction",transactionDTO);
   }
+
+  getTransactionByUser(userId : number){
+    return this.http.get<TransactionModel[]>(`http://localhost:8080/api/v8/transaction/${userId}`);
+  }
 }

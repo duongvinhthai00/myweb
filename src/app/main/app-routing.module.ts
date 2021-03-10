@@ -5,6 +5,7 @@ import { CardComponent } from '../card/card.component';
 import { CategoryListComponent } from '../category-list/category-list.component';
 import { HomeComponent } from '../home/home.component';
 import { LoginComponent } from '../login/login.component';
+import { OrderComponent } from '../order/order.component';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { RegisterComponent } from '../register/register.component';
 import { TransactionComponent } from '../transaction/transaction.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
     {path:"category/:slug",component:CategoryListComponent},
     {path:"product-detail/:slug",component:ProductDetailComponent},
     {path:"card",component:CardComponent},
-    {path:"transaction",component:TransactionComponent}
+    {path:"transaction",component:TransactionComponent},
+    {path:"order",component:OrderComponent}
   ]},
 
   {
