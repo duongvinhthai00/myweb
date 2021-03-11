@@ -4,7 +4,7 @@
 
 		<ul class="b-crumbs">
 			<li>
-				<a href="index.html">
+				<a [routerLink]="['/']">
 					Trang Chủ
 				</a>
 			</li>
@@ -51,11 +51,11 @@
                   </a>
                   <div class="section-filter-fields">
                     <p class="section-filter-field">
-                      <input  id="section-filter-radio1-1" value="on" type="radio" name="section-filter-radio1">
+                      <input (change)="SortByTimeNew($event)"  id="section-filter-radio1-1" value="on" type="radio" name="section-filter-radio1">
                       <label class="section-filter-radio" for="section-filter-radio1-1">Ngày Mới Nhất</label>
                     </p>
                     <p class="section-filter-field">
-                      <input  id="section-filter-radio1-2" value="on" type="radio" name="section-filter-radio1">
+                      <input (change)="SortByTimeLess($event)"  id="section-filter-radio1-2" value="on" type="radio" name="section-filter-radio1">
                       <label class="section-filter-radio" for="section-filter-radio1-2">Ngày Cũ Nhất</label>
                     </p>
                   </div>
@@ -69,28 +69,25 @@
                   </a>
                   <div class="section-filter-fields">
                     <p class="section-filter-field">
-                      <input id="section-filter-radio1-3" value="on" type="radio" name="section-filter-radio1">
+                      <input id="section-filter-radio1-3" (change)="Locgia(0,500000)" value="on" type="radio" name="section-filter-radio1">
                       <label class="section-filter-radio" for="section-filter-radio1-3">0 - 500k</label>
                     </p>
                     <p class="section-filter-field">
-                      <input id="section-filter-radio1-4"  value="on" type="radio" name="section-filter-radio1">
+                      <input id="section-filter-radio1-4" (change)="Locgia(500000,1000000)"  value="on" type="radio" name="section-filter-radio1">
                       <label class="section-filter-radio" for="section-filter-radio1-4">500k - 1 Triệu</label>
                     </p>
                     <p class="section-filter-field">
-                      <input id="section-filter-radio1-5"  value="on" type="radio" name="section-filter-radio1">
+                      <input id="section-filter-radio1-5" (change)="Locgia(1000000,3000000)" value="on" type="radio" name="section-filter-radio1">
                       <label class="section-filter-radio" for="section-filter-radio1-5">1 Triệu - 3 Triệu</label>
                     </p>
                     <p class="section-filter-field">
-                      <input id="section-filter-radio1-6"  value="on" type="radio" name="section-filter-radio1">
+                      <input id="section-filter-radio1-6" (change)="Locgia(3000000,10000000)" value="on" type="radio" name="section-filter-radio1">
                       <label class="section-filter-radio" for="section-filter-radio1-6">Trên 3 Triệu</label>
                     </p>
                   </div>
                 </div>
-
-
-
                 <div class="section-filter-buttons">
-                    <input class="btn btn-themes" id="set_filter" name="set_filter" value="Reset Lựa Chọn" type="button">
+                    <input class="btn btn-themes" (click)="ResetLuaChon()" id="set_filter" name="set_filter" value="Reset Lựa Chọn" type="button">
                 </div>
             </div>
         </div>
@@ -111,38 +108,41 @@
 				</ul>
 
 				<!-- Sorting -->
-        <select style="padding: 4px;" class="section-sortby">
+        <select (change)="priceSelected($event)" style="padding: 4px;" class="section-sortby">
           <option value="0">Giá</option>
           <option value="1">Giá Từ Thấp Đến Cao</option>
           <option value="2" >Giá Từ Cao Đến Thấp</option>
         </select>
 
 				<!-- Count per page -->
-				<select  class="section-count" style="padding: 4px;">
-          <option selected value="2">2</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="30">30</option>
+				<select  (change) = "logValue($event)" class="section-count" style="padding: 4px;">
+          <option selected value="9">9</option>
+          <option value="18">18</option>
+          <option value="27">27</option>
+          <option value="36">36</option>
         </select>
 			</div>
 			<!-- Catalog Topbar - end -->
 			<div class="prod-items section-items">
-				<div class="prod-i">
+				<div *ngFor="let item of this.ProductList| paginate :{id:'pag1', itemsPerPage: maxPageItems,
+                currentPage: page,
+                totalItems: ProductList?.length} " class="prod-i" style="width: 238px;">
 					<div class="prod-i-top">
-						<a href="product.html" class="prod-i-img"><!-- NO SPACE --><img src="http://placehold.it/300x345" alt="Porro quae quasi"><!-- NO SPACE --></a>
-						<a href="#" class="prod-i-buy">Thêm Vào Giỏ</a>
+						<a [routerLink]="['/product-detail',item.id]" class="prod-i-img"><!-- NO SPACE --><img src="../assets/image/{{this.item.pro_avatar}}"><!-- NO SPACE --></a>
+            <h3>
+						  <a [routerLink]="['/product-detail',item.id]">{{this.item.pr_name}}</a>
+					  </h3>
+					  <p class="prod-i-price">
+              <del style="margin-right: 9px;" *ngIf="this.item.pro_sale > 0">{{this.item.pro_price | currency : 'VND'}}</del>
+						  <b>{{this.item.pro_pay| currency : 'VND'}}</b>
+						  
+					  </p>
 					</div>
-					<h3>
-						<a href="product.html">Porro quae quasi</a>
-					</h3>
-					<p class="prod-i-price">
-						<b>$85</b>
-						<del>$110</del>
-					</p>
 				</div>
 			</div>
 
 			<!-- Pagination - start -->
+      <pagination-controls id="pag1" directionLinks="true" (pageChange)="pageChanged($event)" maxSize="1000"></pagination-controls>
 			<!-- Pagination - end -->
 		</div>
 		<!-- Catalog Items | Gallery V1 - end -->

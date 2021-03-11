@@ -16,7 +16,7 @@ import Swal from 'sweetalert2'
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  maxPageItems = 10;
+  maxPageItems = 9;
   page:number = 1;
   ProductList : ProductModel[];
   ProductListFake : ProductModel[];
@@ -24,6 +24,10 @@ export class ProductsComponent implements OnInit {
     ,private cardService : CardServiceService,private userService : UserServiceService,private homecomponent : HomeComponent) { }
 
   ngOnInit(): void {
+    this.productService.getProductAll().subscribe(data=>{
+      this.ProductList = data;
+      this.ProductListFake = [...data];
+    })
   }
 
 
