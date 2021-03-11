@@ -17,34 +17,37 @@
       <form (ngSubmit)="Submit()" [formGroup] = "transactionForm">
       <div class="auth-wrap">
           <div class="auth-col">
-              <h2 style="color: #0c7dde;">THÔNG TIN NHẬN HÀNG</h2>
+            <div class="card">
+              <div style="padding: 10px 0;background-color: #a0562e;"><b class="test" style="color:#fafafa;padding-left: 23px;">THÔNG TIN NHẬN HÀNG</b></div>
               <div method="post" class="login" style="margin-top: 21px;">
                   <p>
-                      <label for="username" style="font-weight: bold;color: black;">Tên Người Đặt Hàng <span class="required">*</span></label><input formControlName="name" type="text" id="username">
+                      <label for="username" style="font-weight: bold;color: black;padding-left: 5px;">Tên Người Đặt Hàng <span class="required">*</span></label><input formControlName="name" type="text" id="username">
                       <span style="margin-left: 103px;color: red;" *ngIf="this.error?.name">{{this.error.name}}</span>
                   </p>
                   <p>
-                    <label for="username" style="font-weight: bold;color: black;"> Số Điện Thoại <span class="required">*</span></label><input formControlName="tr_phone" type="text" id="username">
+                    <label for="username" style="font-weight: bold;color: black;padding-left: 5px;"> Số Điện Thoại <span class="required">*</span></label><input formControlName="tr_phone" type="text" id="username">
                     <span style="margin-left: 103px;color: red;" *ngIf="this.error?.tr_phone">{{this.error.tr_phone}}</span>
                   </p>
                   <p>
-                    <label for="username" style="font-weight: bold;color: black;"> Địa Chỉ <span class="required">*</span></label><input formControlName="tr_address" type="text" id="username">
+                    <label for="username" style="font-weight: bold;color: black;padding-left: 5px;"> Địa Chỉ <span class="required">*</span></label><input formControlName="tr_address" type="text" id="username">
                     <span style="margin-left: 103px;color: red;" *ngIf="this.error?.tr_address">{{this.error.tr_address}}</span>
                   </p>
-                  <p style="display: flex;">
-                    <label for="username" style="font-weight: bold;color: black;">Note <span class="required">*</span></label><textarea formControlName="tr_note" style="margin-left: 17px;" id="username"></textarea>
+                  <p style="display: flex;margin-bottom: 0;">
+                    <label for="username" style="font-weight: bold;color: black;padding-left: 5px;">Note <span class="required">*</span></label><textarea _ngcontent-ged-c58="" rows="5" cols="50" formcontrolname="tr_note" id="username" style="margin: 0px 0px 0px 16.9886px; width: 498px; height: 110px;" ng-reflect-name="tr_note" class="ng-pristine ng-valid ng-touched"></textarea>
                   </p>
 
                 </div>
+            </div>
           </div>
           <div class="auth-col">
-              <h2 style="margin : 0;color: #40c74a;text-transform: uppercase;">Danh Sách SẢN PHẨM</h2>
+            <div class="card">
+              <div style="padding: 10px 0;background-color: #4a8fc5;"><b class="test" style="color:#fafafa;padding-left: 23px;text-transform: uppercase;">Danh Sách Sản Phẩm</b></div>
               <div>
                 <div class="cart-items-wrap">
                     <table class="cart-items">
                         <thead>
                         <tr>
-                            <td class="cart-image"><b>Photo</b></td>
+                            <td class="cart-image" style="text-align: center;"><b>Ảnh</b></td>
                             <td class="cart-ttl" style="width: 200px;"><b>TÊN Sản Phẩm</b></td>
                             <td class="cart-quantity" style="width: 76px;"><b>Số Lượng</b></td>
                             <td class="cart-summ" style="width: 70px;"><b>Tổng</b></td>
@@ -55,7 +58,7 @@
                         <tr *ngFor="let item of this.card">
                             <td class="cart-image">
                                 <a>
-                                    <img style="margin: 0" src="../assets/image/{{item.c_product_id.pro_avatar}}" alt="Similique delectus totam">
+                                    <img src="../assets/image/{{item.c_product_id.pro_avatar}}" alt="Similique delectus totam">
                                 </a>
                             </td>
                             <td class="cart-ttl">
@@ -66,7 +69,7 @@
                                     <input style="color: blue;" readonly value="{{this.item.c_qty}}" type="text">
                                 </p>
                             </td>
-                            <td class="cart-summ">
+                            <td style="padding-right: 0;" class="cart-summ">
                                 <b>{{this.item.c_qty*this.item.c_product_id.pro_pay | currency : "VND"}}</b>
                                 <p class="cart-forone">unit price <b>{{this.item.c_qty*this.item.c_product_id.pro_pay | currency : "VND"}}</b></p>
                             </td>
@@ -82,6 +85,7 @@
                     <input type="submit" value="Xác Nhận" style="cursor: pointer;" class="cart-submit-btn">
                 </div>
               </div>
+            </div>
           </div>
       </div>
       </form>

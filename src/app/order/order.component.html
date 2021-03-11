@@ -6,27 +6,29 @@
       <ul class="b-crumbs">
           <li>
               <a href="index.html">
-                  Home
+                  Trang Chủ
               </a>
           </li>
           <li>
-              <span>order</span>
+              <span>Đơn Hàng Của Tôi</span>
           </li>
       </ul>
-      <h1 class="main-ttl"><span>MY ORDERS</span></h1>
+      <h1 class="main-ttl"><span>ĐƠN HÀNG CỦA TÔI</span></h1>
       <!-- Cart Items - start -->
+      <div class="card">
+        <div style="padding: 10px 0;background-color: #4a8fc5;"><b class="test" style="color:#fdfdfd;font-size: 22px; padding-left: 20px;">Danh Sách Đơn Hàng</b></div>
       <form action="#">
 
           <div class="cart-items-wrap">
               <table class="cart-items">
                   <thead>
                   <tr>
-                      <td class="cart-image" style="font-size: 19px;font-weight: bold;margin: 0;text-align: center;">ID</td>
-                      <td class="cart-ttl" style="font-size: 19px;font-weight: bold;width: 182px;text-align: center;">TÊN NGƯỜI ĐẶT</td>
-                      <td class="cart-price" style="font-size: 19px;font-weight: bold;text-align: center;">TỔNG TIỀN</td>
-                      <td class="cart-quantity" style="font-size: 19px;font-weight: bold;text-align: center;">TRẠNG THÁI</td>
-                      <td class="cart-summ" style="font-size: 19px;font-weight: bold;text-align: center;">NGÀY ĐẶT HÀNG</td>
-                      <td class="cart-summ" style="font-size: 19px;font-weight: bold;text-align: center;">HÀNH ĐỘNG</td>
+                      <td class="cart-image" style="font-size: 17px;font-weight: bold;margin: 0;text-align: center;">ID</td>
+                      <td class="cart-ttl" style="font-size: 17px;font-weight: bold;width: 182px;text-align: center;">TÊN NGƯỜI ĐẶT</td>
+                      <td class="cart-price" style="font-size: 17px;font-weight: bold;text-align: center;">TỔNG TIỀN</td>
+                      <td class="cart-quantity" style="font-size: 17px;font-weight: bold;text-align: center;">TRẠNG THÁI</td>
+                      <td class="cart-summ" style="font-size: 17px;font-weight: bold;text-align: center;">NGÀY ĐẶT HÀNG</td>
+                      <td class="cart-summ" style="font-size: 17px;font-weight: bold;text-align: center;">HÀNH ĐỘNG</td>
                   </tr>
                   </thead>
                   <tbody>
@@ -34,13 +36,13 @@
                         currentPage: page,
                         totalItems: this.transactions?.length}">
                       <td style="text-align: center;" class="cart-image">
-                          <b style="font-size: 18px;">{{item.id}}</b>
+                          <b style="font-size: 16px;">{{item.id}}</b>
                       </td>
                       <td style="text-align: center;" class="cart-ttl">
-                          <b style="font-size: 18px;">{{item.name}}</b>
+                          <b style="font-size: 16px;">{{item.name}}</b>
                       </td>
                       <td style="text-align: center;" class="cart-price">
-                          <b style="font-size: 18px;">{{item.tr_total | currency:"VND"}}</b>
+                          <b style="font-size: 16px;">{{item.tr_total | currency:"VND"}}</b>
                       </td>
                       <td style="text-align: center;" class="cart-quantity">
                           <span *ngIf="item.tr_status == 0" class="badge badge-success1">Đang Gửi</span>
@@ -49,13 +51,13 @@
                           <span *ngIf="item.tr_status == 3" class="badge badge-success4">Đã Bị Hủy</span>
                       </td>
                       <td style="text-align: center;" class="cart-summ">
-                          <b style="font-size: 18px;">{{item.created_at | date : 'MM/dd/yyyy - hh:mm'}}</b>
+                          <b style="font-size: 16px;">{{item.created_at | date : 'dd/MM/yyyy - hh:mm'}}</b>
                       </td>
                       <td style="text-align: center;" class="cart-summ">
-                        <b style="font-size: 18px;"><a [routerLink]="['/order-detail',item.id]" style="padding: 8px;color: white;margin-right: 15px;background-color: rgb(17, 138, 219)"><i class="far fa-eye"></i></a>
+                        <b style="font-size: 16px;"><a [routerLink]="['/order-detail',item.id]" style="padding: 8px;color: white;margin-right: 15px;background-color: rgb(17, 138, 219)"><i class="far fa-eye"></i></a>
                             <a (click)="deleteOrder(this.item)" *ngIf="item.tr_status == 0" style="padding: 8px;color: white;background-color: red;"><i class="fas fa-trash"></i></a>
                         </b>
-                        
+
                     </td>
                   </tr>
                   </tbody>
@@ -64,7 +66,7 @@
           </div>
       </form>
       <!-- Cart Items - end -->
-
+      </div>
   </section>
 </main>
 <!-- Main Content - end -->

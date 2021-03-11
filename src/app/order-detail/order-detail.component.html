@@ -6,30 +6,31 @@
       <ul class="b-crumbs">
           <li>
               <a href="index.html">
-                  Home
+                  Trang Chủ
               </a>
           </li>
           <li>
-              <span>order</span>
+              <span>Chi Tiết Đơn Hàng</span>
           </li>
       </ul>
       <h1 class="main-ttl" style="font-size: 22px;
     margin: 0 0 35px;
     font-weight: bold;
-    color: black;"><span>MY ORDERS</span></h1>
+    color: black;"><span>CHI TIẾT ĐƠN HÀNG</span></h1>
       <!-- Cart Items - start -->
+
         <div class="container" style="padding: 0;">
         <div class="card">
             <div style="background-color: #4ac598;" class="card-header">
                 <b style="color: aliceblue;">Hóa Đơn Ngày : </b>
                 <strong style="color: white;" >{{this.transaction.created_at | date:'dd/MM/yyyy'}}</strong>
-                <span class="float-right"> <strong>Status:</strong> <span _ngcontent-nhr-c53="" class="badge badge-success1" style="background-color: #bcc712;">Đang Gửi</span></span>
+                <span class="float-right"> <strong style="color: rgb(59, 14, 184);">Trạng Thái:</strong> <span _ngcontent-nhr-c53="" class="badge badge-success1" style="background-color: #bcc712;">Đang Gửi</span></span>
 
             </div>
             <div class="card-body">
                 <div class="row mb-4">
                     <div class="col-sm-6">
-                        <h6 class="mb-3">From:</h6>
+                        <h6 class="mb-3">Người Gửi:</h6>
                         <div>
                             <strong>Admin</strong>
                         </div>
@@ -39,7 +40,7 @@
                     </div>
 
                     <div class="col-sm-6">
-                        <h6 class="mb-3">To:</h6>
+                        <h6 class="mb-3">Người Nhận:</h6>
                         <div>
                             <strong>{{this.transaction.name}}</strong>
                         </div>

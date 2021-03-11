@@ -36,13 +36,16 @@ export class OrderComponent implements OnInit {
 
   deleteOrder(item : TransactionModel){
   Swal.fire({
-  icon:'question',
+  icon:'warning',
   title: 'Bạn Có Thực Sự Muốn Xóa Giao Dịch Này',
   showCancelButton: true,
   confirmButtonText: `Xóa`,
   cancelButtonText : 'Hủy'
   }).then((result) => {
   if (result.isConfirmed) {
+    this.transactionService.updateProductNumber(item.id).subscribe(data=>{
+      console.log(data);
+    })
     this.transactionService.deleteTransaction(item.id).subscribe(data=>{
       this.transactionService.getTransactionByUser(this.homeComponent.userLogined.id).subscribe(data=>{
       this.transactions = this.SortTimeNew(data);
@@ -51,6 +54,6 @@ export class OrderComponent implements OnInit {
     Swal.fire('Xóa Thành Công!', '', 'success')
   }
   });
-  
+
   }
 }

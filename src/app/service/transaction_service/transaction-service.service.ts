@@ -28,4 +28,8 @@ export class TransactionServiceService {
   getOrderByTransactionId(tr_id : number){
     return this.http.get<OrderModel[]>(`http://localhost:8080/api/v8/order-transaction/${tr_id}`);
   }
+
+  updateProductNumber(tr_id : Number){
+    return this.http.put<Boolean>("http://localhost:8080/api/v8/order-transaction",tr_id);
+  }
 }

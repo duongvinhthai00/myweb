@@ -18,7 +18,7 @@ export class ProductServiceService {
   }
 
   getProductById(id:number){
-    return this.http.get<ProductModel>(`http://localhost:8080/api/v5/product/${id}`)
+    return this.http.get<ProductModel>(`http://localhost:8080/api/v5/product/${id}`);
   }
 
 }
