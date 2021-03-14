@@ -16,7 +16,8 @@ export interface ProductModel{
   pro_view:number,
   created_at:Date,
   updated_at:Date,
-  pro_category_id : CategoryModel
+  pro_category_id : CategoryModel,
+  pro_place_sale : string
 }
 
 

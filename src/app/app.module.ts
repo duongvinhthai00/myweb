@@ -18,6 +18,8 @@ import { OrderComponent } from './order/order.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { ProductsComponent } from './products/products.component';
+import { AdminmainpageComponent } from './adminmainpage/adminmainpage.component';
+import { ProductmanagerComponent } from './productmanager/productmanager.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { ProductsComponent } from './products/products.component';
     OrderComponent,
     OrderDetailComponent,
     AdminloginComponent,
-    ProductsComponent
+    ProductsComponent,
+    AdminmainpageComponent,
+    ProductmanagerComponent
   ],
   imports: [
     BrowserModule,

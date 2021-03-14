@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  statusTransaction : true
+  statusTransaction : true,
 };
 
 /*

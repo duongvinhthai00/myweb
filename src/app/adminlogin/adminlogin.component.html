@@ -1,15 +1,20 @@
 <div class="container">
   <div class="wrapper">
     <div class="title"><span>ADMIN</span></div>
-    <form action="#">
+    <form (ngSubmit)="Submit()" [formGroup]="loginForm">
+      <div style="padding: 9px;margin-bottom: 14px;" *ngIf="error?.message" class="alert alert-danger" role="alert">
+          {{error?.message}}
+      </div>
       <div class="row">
         <i class="fas fa-user"></i>
-        <input type="text" placeholder="Email or Phone" required>
+        <input type="text" formControlName="user_name" placeholder="Tên Đăng Nhập" required>
       </div>
+      <span style="margin-left: 48px;color: red;position: relative;top: -10px;" *ngIf="error?.user_name" >{{error?.user_name}}</span>
       <div class="row">
         <i class="fas fa-lock"></i>
-        <input type="password" placeholder="Password" required>
+        <input type="password" formControlName="password" placeholder="Mật Khẩu" required>
       </div>
+      <span style="margin-left: 48px;color: red;position: relative;top: -10px;" *ngIf="error?.password">{{error?.password}}</span>
       <div class="row button">
         <input type="submit" value="Đăng Nhập">
       </div>

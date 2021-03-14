@@ -16,22 +16,22 @@
             <ul class="social-icons nav navbar-nav">
                 <li>
                     <a href="http://facebook.com" rel="nofollow" target="_blank">
-                        <i class="fa fa-facebook"></i>
+                        <i class="fab fa-facebook"></i>
                     </a>
                 </li>
                 <li>
                     <a href="http://google.com" rel="nofollow" target="_blank">
-                        <i class="fa fa-google-plus"></i>
+                        <i class="fab fa-google-plus"></i>
                     </a>
                 </li>
                 <li>
                     <a href="http://twitter.com" rel="nofollow" target="_blank">
-                        <i class="fa fa-twitter"></i>
+                        <i class="fab fa-twitter"></i>
                     </a>
                 </li>
                 <li>
                     <a href="http://vk.com" rel="nofollow" target="_blank">
-                        <i class="fa fa-vk"></i>
+                        <i class="fab fa-vk"></i>
                     </a>
                 </li>
                 <li>
@@ -95,7 +95,7 @@
                             <a [routerLink]="['/order']" style="background: none;">Đơn Hàng Của Tôi</a>
                           </p>
                           <p style="padding: 10px;">
-                            <i class="fa fa-sign-out" style="padding-right: 8px;"></i>
+                            <i class="fas fa-sign-out-alt" style="padding-right: 8px;"></i>
                             <a (click)="Logout()" style="background: none;">Đăng Xuất</a>
                           </p>
                         </div>
@@ -157,7 +157,7 @@
                     </li>
                     <li>
                         <a [routerLink]="['/all-products']">
-                            Sản Phẩm
+                            Tất Cả Sản Phẩm
                         </a>
                     </li>
                     <li class="menu-item-has-children">
@@ -229,8 +229,8 @@
                 <!-- Search - start -->
                 <div class="topsearch">
                     <a id="topsearch-btn" class="topsearch-btn" href="#"><i class="fa fa-search"></i></a>
-                    <form class="topsearch-form" action="#">
-                        <input type="text" placeholder="Search products">
+                    <form (ngSubmit) ="Submit(put)" [formGroup]="SearchForm" class="topsearch-form" action="#">
+                        <input #put type="text" formControlName="searchInput" placeholder="Tìm Kiếm Tên Sản Phẩm">
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
@@ -316,22 +316,22 @@
                 <ul class="social-icons nav navbar-nav">
                     <li>
                         <a href="http://facebook.com/" rel="nofollow" target="_blank">
-                            <i class="fa fa-facebook"></i>
+                            <i class="fab fa-facebook-f"></i>
                         </a>
                     </li>
                     <li>
                         <a href="http://google.com/" rel="nofollow" target="_blank">
-                            <i class="fa fa-google-plus"></i>
+                            <i class="fab fa-google-plus-g"></i>
                         </a>
                     </li>
                     <li>
                         <a href="http://twitter.com/" rel="nofollow" target="_blank">
-                            <i class="fa fa-twitter"></i>
+                            <i class="fab fa-twitter"></i>
                         </a>
                     </li>
                     <li>
                         <a href="http://vk.com/" rel="nofollow" target="_blank">
-                            <i class="fa fa-vk"></i>
+                            <i class="fab fa-vk"></i>
                         </a>
                     </li>
                     <li>

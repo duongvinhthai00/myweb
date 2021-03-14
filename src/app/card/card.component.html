@@ -41,9 +41,9 @@
                       <td class="cart-ttl">
                           <a [routerLink]="['/product-detail/',item.c_product_id.id]" style="font-size: 17px;font-weight: bold;">{{this.item.c_product_id.pr_name}}</a>
                       </td>
-                      <td class="cart-price">
-                          <b style="font-size: 18px;color: #ee4d2d;">{{this.item.c_product_id.pro_pay | currency:"VND"}}</b>
-                          <del style="font-size: 17px;" *ngIf="this.item.c_product_id.pro_sale>0">{{this.item.c_product_id.pro_price | currency:"VND"}}</del>
+                      <td class="cart-price" style="position: relative;bottom: -10px;">
+                          <b style="font-size: 18px;color: #ee4d2d;font-weight: 700;">{{this.item.c_product_id.pro_pay | currency:"VND"}}</b>
+                          <del style="font-size: 15px;" *ngIf="this.item.c_product_id.pro_sale>0">{{this.item.c_product_id.pro_price | currency:"VND"}}</del>
                       </td>
                       <td class="cart-quantity">
                           <p class="cart-qnt">
@@ -53,7 +53,7 @@
                           </p>
                       </td>
                       <td class="cart-summ">
-                          <b style="font-size: 18px;color: #ee4d2d;">{{this.item.c_qty * this.item.c_product_id.pro_pay | currency:"VND" }}</b>
+                          <b style="font-size: 18px;color: #ee4d2d;font-weight: 700;">{{this.item.c_qty * this.item.c_product_id.pro_pay | currency:"VND" }}</b>
                       </td>
 
                       <td class="cart-del-2">

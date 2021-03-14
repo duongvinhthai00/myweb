@@ -6,3 +6,31 @@ a{
 ul.ngx-pagination {
     margin-top: 34px;
 }
+
+div#example1_filter {
+  float: right;
+  padding-bottom: 19px;
+}
+
+div#example1_length {
+  margin-top: 22px;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+  margin: 2px 0;
+  white-space: nowrap;
+  justify-content: flex-end;
+}
+
+.pagination {
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: .25rem;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+  padding-top: 0.85em;
+}
+

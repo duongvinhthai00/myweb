@@ -9,6 +9,7 @@ import { HomeServiceService } from '../service/home_service/home-service.service
 import { ProductServiceService } from '../service/product_service/product-service.service';
 import { UserServiceService } from '../service/user_service/user-service.service';
 import Swal from 'sweetalert2'
+import { pluck } from 'rxjs/operators';
 
 @Component({
   selector: 'app-products',
@@ -20,14 +21,31 @@ export class ProductsComponent implements OnInit {
   page:number = 1;
   ProductList : ProductModel[];
   ProductListFake : ProductModel[];
+  currentUrl:string;
   constructor(private homeService : HomeServiceService,private route :ActivatedRoute,private productService : ProductServiceService,private router : Router
     ,private cardService : CardServiceService,private userService : UserServiceService,private homecomponent : HomeComponent) { }
 
   ngOnInit(): void {
-    this.productService.getProductAll().subscribe(data=>{
-      this.ProductList = data;
-      this.ProductListFake = [...data];
+    this.route.params.pipe(pluck('slug')).subscribe(data=>{
+      if(data != undefined){
+        this.currentUrl = `/keyword/${data}`;
+      }else{
+        this.currentUrl = `/all-products`;
+      }
+      if(data != undefined && data != ""){
+        this.productService.getProductSeach(data).subscribe(data=>{
+          this.ProductList = data;
+          this.ProductListFake = [...data];
+        })
+      }else{
+        console.log("work");
+        this.productService.getProductAll().subscribe(k=>{
+        this.ProductList = k;
+        this.ProductListFake = [...k];
+      })
+      }
     })
+    
   }
 
 

@@ -25,4 +25,8 @@ export class ProductServiceService {
     return this.http.get<ProductModel[]>(`http://localhost:8080/api/v5/products`);
   }
 
+  getProductSeach(searchInput : string){
+    return this.http.post<ProductModel[]>(`http://localhost:8080/api/v5/search-products`,searchInput);
+  }
+
 }

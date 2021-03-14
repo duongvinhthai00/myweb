@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="section-filter-item">
-                  <a>
+                  <a href="{{this.currentUrl}}">
                   <p class="section-filter-ttl"> Tìm Kiếm Theo Ngày <i class="fa fa-angle-down"></i></p>
                   </a>
                   <div class="section-filter-fields">
@@ -64,7 +64,7 @@
 
 
                 <div class="section-filter-item">
-                  <a>
+                  <a href="{{this.currentUrl}}">
                   <p class="section-filter-ttl"> Lựa Chọn Theo Giá <i class="fa fa-angle-down"></i></p>
                   </a>
                   <div class="section-filter-fields">
@@ -134,7 +134,7 @@
 					  </h3>
 					  <p class="prod-i-price">
               <del style="margin-right: 9px;" *ngIf="this.item.pro_sale > 0">{{this.item.pro_price | currency : 'VND'}}</del>
-						  <b>{{this.item.pro_pay| currency : 'VND'}}</b>
+						  <b style="color:#ee4d2d">{{this.item.pro_pay| currency : 'VND'}}</b>
 						  
 					  </p>
 					</div>
