@@ -123,10 +123,11 @@
 
           </div>
           <!-- Catalog Topbar - end -->
+          <ng-container *ngIf="this.ProductList?.length>0">
           <div class="prod-items section-items prod-list2">
               <div *ngFor="let item of ProductList | paginate :{id:'pag1', itemsPerPage: maxPageItems,
                 currentPage: page,
-                totalItems: ProductList?.length} "  class="prodlist-i">
+                totalItems: ProductList.length} "  class="prodlist-i">
                   <a class="list-img-carousel prodlist-i-img"><!-- NO SPACE --><img  src="../assets/image/{{item.pro_avatar}}" alt="Adipisci aperiam commodi"><!-- NO SPACE --></a>
                   <div class="prodlist-i-cont">
                       <h3><a [routerLink]="['/product-detail/',item.id]">{{item.pr_name}}</a>
@@ -161,7 +162,7 @@
               </div>
               <pagination-controls id="pag1" directionLinks="true" (pageChange)="pageChanged($event)" maxSize="1000"></pagination-controls>
           </div>
-
+            </ng-container>
 
       </div>
       <!-- Catalog Items | List V2 - end -->

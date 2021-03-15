@@ -15,7 +15,37 @@ export class ProductAddComponent implements OnInit {
   content : any;
   constructor() { }
 
+  url = "https://placehold.it/150x100";
+  url2 = "https://placehold.it/150x100";
+  url3 : string[] = [];
   ngOnInit(): void {
+  }
+
+  refresh(){
+    this.url3 = [];
+  }
+
+  ShowOneFileUpload(event){
+    if(event.target.files){
+      let render = new FileReader();
+      render.readAsDataURL(event.target.files[0]);
+      render.onload = (e : any)=>{
+        this.url = e.target.result;
+      }
+    }
+  }
+
+  ShowManyFileUpload(event){
+    if(event.target.files){
+      console.log(event.target.files.length);
+      for(let i = 0;i<event.target.files.length;i++){
+        let render = new FileReader();
+        render.readAsDataURL(event.target.files[i]);
+        render.onload = (e : any)=>{
+        this.url3.push(e.target.result);
+      }
+      }
+    }
   }
 
 }
