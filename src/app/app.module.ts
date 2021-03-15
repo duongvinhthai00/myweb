@@ -22,6 +22,7 @@ import { AdminmainpageComponent } from './adminmainpage/adminmainpage.component'
 import { ProductmanagerComponent } from './productmanager/productmanager.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ProductAddComponent } from './product-add/product-add.component';
+import { CKEditorModule } from 'ng2-ckeditor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { ProductAddComponent } from './product-add/product-add.component';
     HttpClientModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    FormsModule
+    FormsModule,
+    CKEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
