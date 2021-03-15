@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './main/app-routing.module';
@@ -20,7 +20,8 @@ import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { ProductsComponent } from './products/products.component';
 import { AdminmainpageComponent } from './adminmainpage/adminmainpage.component';
 import { ProductmanagerComponent } from './productmanager/productmanager.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ProductAddComponent } from './product-add/product-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,14 +38,17 @@ import { ProductmanagerComponent } from './productmanager/productmanager.compone
     AdminloginComponent,
     ProductsComponent,
     AdminmainpageComponent,
-    ProductmanagerComponent
+    ProductmanagerComponent,
+    ProductAddComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

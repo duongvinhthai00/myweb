@@ -135,8 +135,10 @@
 					  <p class="prod-i-price">
               <del style="margin-right: 9px;" *ngIf="this.item.pro_sale > 0">{{this.item.pro_price | currency : 'VND'}}</del>
 						  <b style="color:#ee4d2d">{{this.item.pro_pay| currency : 'VND'}}</b>
-						  
+              <br>
+              <span style="font-weight: bold; font-size: 17px;">{{this.item.pro_place_sale}}</span>
 					  </p>
+            
 					</div>
 				</div>
 			</div>

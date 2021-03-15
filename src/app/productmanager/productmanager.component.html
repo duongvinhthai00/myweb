@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>DataTables</h1>
+            <h1>Sản Phẩm</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -22,31 +22,63 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+              <div class="card-header" style="background-color: cadetblue;color: greenyellow;">
+                <h3 class="card-title">Danh Sách Sản Phẩm</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
+                <form style="width: 33%;float: right;">
+                  <div class="input-group">
+                      <input style="height: 41px;"  type="text" class="form-control form-control-lg" name="search" [(ngModel)]="searchText" placeholder="Tìm Kiếm Sản Phẩm">
+                      <div style="height: 41px;" class="input-group-append">
+                          <button type="submit" class="btn btn-lg btn-default">
+                              <i class="fa fa-search"></i>
+                          </button>
+                      </div>
+                  </div>
+                </form>
+                <select (change)="logValue($event)" style="width: 10%;" class="custom-select">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="40">40</option>
+                </select>
+                <table id="customers">
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser <input type="checkbox"> </th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
+                    <th style="text-align: center;"> <input type="checkbox"> Tất Cả </th>
+                    <th style="text-align: center;">Ảnh</th>
+                    <th style="text-align: center;">Tên Sản Phẩm</th>
+                    <th style="text-align: center;">Giá Sản Phẩm</th>
+                    <th style="text-align: center;">Giảm Giá</th>
+                    <th style="text-align: center;">Giá Bán</th>
+                    <th style="text-align: center;">Số Lượng</th>
+                    <th style="text-align: center;">Ngày Tạo</th>
+                    <th style="text-align: center;">Hành Động</th>
                   </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>Other browsers</td>
-                    <td>All others</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>U</td>
+                  <tr (click)="checkedBox(cb)" *ngFor="let item of this.products | filter:searchText | paginate :{id:'pag1', itemsPerPage: maxPageItems,
+                  currentPage: page,
+                  totalItems: products?.length}">
+                    <td><input #cb type="checkbox"></td>
+                    <td><img width="100px" height="100px" src="../../assets/image/{{item.pro_avatar}}" alt=""></td>
+                    <td>{{item.pr_name}}</td>
+                    <td>{{item.pro_price | currency : "VND"}}</td>
+                    <td>{{item.pro_sale}}%</td>
+                    <td>{{item.pro_pay | currency : "VND"}}</td>
+                    <td>{{item.pro_number}} <br> <span *ngIf="item.pro_number > 0;else hethang" class="badge badge-success">Còn Hàng</span></td>
+                    <td>{{item.created_at | date : "dd-MM-yyyy"}}</td>
+                    <td>
+                      <b style="font-size: 16px;">
+                        <a style="padding: 8px;color: white;margin-right: 10px;background-color: rgb(17, 138, 219)"><i class="far fa-eye"></i></a>
+                        <a style="padding: 8px;color: white;background-color: rgb(15, 199, 86);margin-right: 10px;"><i class="fas fa-edit"></i></a>
+                        <a (click)="DeleteProduct(item)" style="padding: 8px;color: white;background-color: red;"><i class="fas fa-trash"></i></a>
+                      </b>
+                    </td>
                   </tr>
-                  </tbody>
                 </table>
+                <ng-template #hethang>
+                  <span class="badge badge-danger">Hết Hàng</span>
+                </ng-template>
+                <pagination-controls id="pag1" directionLinks="true" (pageChange)="pageChanged($event)" maxSize="1000"></pagination-controls>
               </div>
               <!-- /.card-body -->
             </div>

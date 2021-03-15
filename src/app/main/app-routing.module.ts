@@ -1,3 +1,4 @@
+import { ProductAddComponent } from './../product-add/product-add.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminhomeComponent } from '../adminhome/adminhome.component';
@@ -32,7 +33,8 @@ const routes: Routes = [
   {
     path:"admin",component:AdminhomeComponent,children : [
       {path:"",component:AdminmainpageComponent},
-      {path:"product-manager",component:ProductmanagerComponent}
+      {path:"product-manager",component:ProductmanagerComponent},
+      {path:"add-product",component:ProductAddComponent}
   ]},
 
     {path:"admin/login",component : AdminloginComponent}

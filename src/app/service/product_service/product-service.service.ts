@@ -29,4 +29,8 @@ export class ProductServiceService {
     return this.http.post<ProductModel[]>(`http://localhost:8080/api/v5/search-products`,searchInput);
   }
 
+  DeleteProduct(id : number){
+    return this.http.delete<Boolean>(`http://localhost:8080/api/v5/products/${id}`);
+  }
+
 }

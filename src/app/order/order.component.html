@@ -32,6 +32,7 @@
                   </tr>
                   </thead>
                   <tbody>
+                  <ng-container *ngIf="this.transactions.length>0">
                   <tr *ngFor="let item of this.transactions | paginate :{id:'pag1', itemsPerPage: maxPageItems,
                         currentPage: page,
                         totalItems: this.transactions?.length};let idx = index">
@@ -60,6 +61,7 @@
 
                     </td>
                   </tr>
+                    </ng-container>
                   </tbody>
               </table>
               <pagination-controls id="pag1" directionLinks="true" (pageChange)="pageChanged($event)" maxSize="1000"></pagination-controls>
