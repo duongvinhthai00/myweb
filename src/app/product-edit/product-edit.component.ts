@@ -18,17 +18,7 @@ import Swal from 'sweetalert2';
   ]
 })
 export class ProductEditComponent implements OnInit {
-  formAddProduct = new FormGroup({
-    name: new FormControl(""),
-    price: new FormControl(""),
-    sale: new FormControl(""),
-    hot: new FormControl(""),
-    number: new FormControl(""),
-    place_sale: new FormControl(""),
-    category_id: new FormControl(""),
-    description: new FormControl(""),
-    content: new FormControl("")
-  });
+  formAddProduct : any;
   constructor(private homeService: HomeServiceService, private productService: ProductServiceService
     , private router: Router, private route: ActivatedRoute) { }
 
@@ -44,12 +34,25 @@ export class ProductEditComponent implements OnInit {
         this.ProductDetail = data;
         this.productService.getImagesByProduct(data.id).subscribe(data => {
           this.ImageList = data;
+          if (this.ImageList.length > 0) {
+          for (let i = 0; i < this.ImageList.length; i++) {
+            this.url3.push(`../assets/image/${this.ImageList[i].im_name}`);
+          }
+        }
         });
-        this.formAddProduct.value.name = data.pr_name;
-        console.log("Ten",this.formAddProduct.value.name);
+        
+        this.formAddProduct = new FormGroup({
+        name: new FormControl(this.ProductDetail.pr_name),
+        price: new FormControl(this.ProductDetail.pro_price),
+        sale: new FormControl(this.ProductDetail.pro_sale),
+        hot: new FormControl(this.ProductDetail.pro_hot),
+        number: new FormControl(this.ProductDetail.pro_number),
+        place_sale: new FormControl(this.ProductDetail.pro_place_sale),
+        category_id: new FormControl(this.ProductDetail.pro_category_id),
+        description: new FormControl(this.ProductDetail.pro_description),
+        content: new FormControl(this.ProductDetail.pro_content)
+        });
         this.url = `../assets/image/${this.ProductDetail.pro_avatar}`;
-        this.formAddProduct.value.description = this.ProductDetail.pro_description;
-        this.formAddProduct.value.content = this.ProductDetail.pro_content;
         this.homeService.getCateGory().subscribe(data => {
           this.categoryList = data.filter(x => {
             if (x.id != this.ProductDetail.id) {
@@ -59,12 +62,6 @@ export class ProductEditComponent implements OnInit {
         });
       })
     });
-    if (this.ImageList.length > 0) {
-      for (let i = 0; i < this.ImageList.length; i++) {
-        this.url3.push(`../assets/image/${this.ImageList[i].im_name}`);
-      }
-    }
-
   }
 
   refresh() {
@@ -92,13 +89,15 @@ export class ProductEditComponent implements OnInit {
         render.onload = (e: any) => {
           this.url3.push(e.target.result);
         }
+        this.ManyFile.push(event.target.files[i]);
       }
     }
-    this.ManyFile = event.target.files;
+    
   }
 
   Submit() {
     let product: ProductModel = {
+      id : this.ProductDetail.id,
       pr_name: this.formAddProduct.value.name,
       pro_price: this.formAddProduct.value.price,
       pro_sale: this.formAddProduct.value.sale,
@@ -108,34 +107,41 @@ export class ProductEditComponent implements OnInit {
       pro_category_id: this.formAddProduct.value.category_id,
       pro_description: this.formAddProduct.value.description,
       pro_content: this.formAddProduct.value.content,
+      pro_avatar : this.ProductDetail.pro_avatar,
+      created_at : this.ProductDetail.created_at,
+      updated_at : this.ProductDetail.updated_at
     }
-
     if (this.formAddProduct.value.hot == true) {
       product.pro_hot = 1
     } else {
       product.pro_hot = 0;
     }
     product.pro_pay = product.pro_price - (product.pro_price * (product.pro_sale / 100));
-    if (this.OneFile == null) {
-      Swal.fire({
-        icon: 'error',
-        text: 'File Ảnh Sản Phẩm Không Được Để Trống',
-      });
-    } else {
-      this.productService.addProduct(product).subscribe(data => {
-        this.productService.uploadOneImage(data.id, this.OneFile).subscribe(data => {
+        this.productService.updateProduct(product).subscribe(data => {
+        if(this.OneFile != null){
+          this.productService.uploadOneImage(data.id, this.OneFile).subscribe(data => {
           console.log(data);
         });
+        }
         if (this.ManyFile.length > 0) {
+          this.productService.DeleteImageProduct(data.id).subscribe(data=>{
+            console.log(data);
+          })
           for (let i = 0; i < this.ManyFile.length; i++) {
             this.productService.uploadManyImage(data.id, this.ManyFile[i]).subscribe(data => {
               console.log(data);
             });
           }
+        }else{
+          if(this.url3.length == 0){
+            this.productService.DeleteImageProduct(data.id).subscribe(data=>{
+            console.log(data);
+            })
+          }
         }
         Swal.fire({
           icon: 'success',
-          text: 'Thêm Thành Công Sản Phẩm',
+          text: 'Cập Nhật Thành Công Sản Phẩm',
         });
         this.router.navigate(['/admin/product-manager']);
       }, (error) => {
@@ -153,8 +159,7 @@ export class ProductEditComponent implements OnInit {
           icon: 'error',
           text: s
         });
-      })
-    }
+      });
   }
 
 

@@ -57,4 +57,14 @@ export class ProductServiceService {
     return this.http.post<Boolean>(`http://localhost:8080/api/v6/product-image-upload/${id}`,formData);
   }
 
+  updateProduct(productDTO : ProductModel){
+    return this.http.put<ProductModel>(`http://localhost:8080/api/v5/update-product`,productDTO).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  DeleteImageProduct(pro_id : number){
+    return this.http.delete<Boolean>(`http://localhost:8080/api/v6/delete-product-image/${pro_id}`);
+  }
+
 }
