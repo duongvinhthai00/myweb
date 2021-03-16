@@ -44,7 +44,6 @@ export class ProductmanagerComponent implements OnInit {
       cb.checked = false;
     }
     
-    console.log(cb);
   }
 
   DeleteProduct(item : ProductModel){

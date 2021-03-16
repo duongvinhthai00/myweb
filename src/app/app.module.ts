@@ -23,6 +23,7 @@ import { ProductmanagerComponent } from './productmanager/productmanager.compone
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ProductAddComponent } from './product-add/product-add.component';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { ProductEditComponent } from './product-edit/product-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
     ProductsComponent,
     AdminmainpageComponent,
     ProductmanagerComponent,
-    ProductAddComponent
+    ProductAddComponent,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,

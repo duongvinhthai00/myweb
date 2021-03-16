@@ -59,7 +59,7 @@
                         <select formControlName="category_id" id="inputStatus" class="form-control custom-select">
                           <option selected="" disabled="">Chọn Danh Mục</option>
                           <ng-container *ngFor="let item of this.categoryList">
-                            <option value="{{item}}" >{{this.item.c_name}}</option>
+                            <option [ngValue]="item" >{{this.item.c_name}}</option>
                           </ng-container>
                         </select>
                       </div>
@@ -74,7 +74,7 @@
 
                       <div class="form-group" style="display: inline-grid;">
                         <label for="inputClientCompany">Sản Phẩm HOT</label>
-                        <input formControlName="hot" value="0" type="checkbox" id="inputClientCompany" class="form-control">
+                        <input formControlName="hot" type="checkbox" id="inputClientCompany" class="form-control">
                       </div>
 
                       <div class="form-group">
@@ -122,16 +122,13 @@
                      <div class="card-body" style="display: block;">
                       <div class="form-group">
                         <label for="inputProjectLeader">Mô Tả</label>
-                        <ckeditor>
-                          [(ngModel)]="description"
-                          [readonly]="false"
+                        <ckeditor formControlName="description">
                         </ckeditor>
                       </div>
 
                       <div class="form-group">
                         <label for="inputProjectLeader">Nội Dung</label>
-                        <ckeditor>
-                          [(ngModel)]="content"
+                        <ckeditor formControlName="content">
                         </ckeditor>
                       </div>
                       
@@ -173,7 +170,7 @@
                             id="exampleInputFile">
                           <label class="custom-file-label" for="exampleInputFile">Chọn Ảnh Cho Sản Phẩm</label>
                         </div>
-                        <button type="submit" style="float: right;margin-top: 21px;" class="btn btn-info">Thêm Sản Phẩm</button>
+                        <input type="submit" style="float: right;margin-top: 21px;" class="btn btn-info" value="Thêm Sản Phẩm">
                       </div>
                     </div>
                     <!-- /.card-body -->

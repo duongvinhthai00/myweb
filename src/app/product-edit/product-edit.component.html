@@ -1,0 +1,196 @@
+<ng-container *ngIf="this.ProductDetail">
+<div class="content-wrapper" style="min-height: 1662.75px;margin-left: 250px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>E-commerce</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">E-commerce</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+  
+    <!-- Main content -->
+    <section class="content">
+  
+      <form [formGroup]="formAddProduct" (ngSubmit)="Submit()">
+      <!-- Default box -->
+      <div class="card card-solid">
+        <div class="card-body">
+          <div class="row">
+            <nav class="w-100">
+              <div class="nav nav-tabs" id="product-tab" role="tablist">
+                <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc"
+                  role="tab" aria-controls="product-desc" aria-selected="true">Thông Tin Sản Phẩm</a>
+                <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments"
+                  role="tab" aria-controls="product-comments" aria-selected="false">Nội Dung Sản Phẩm</a>
+                <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab"
+                  aria-controls="product-rating" aria-selected="false">Hình Ảnh Sản Phẩm</a>
+              </div>
+            </nav>
+            <div class="tab-content p-3" id="nav-tabContent" style="width: 100%;">
+              <div class="tab-pane fade active show" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
+                <!--NOi DUng-->
+                <div class="row">
+                  <div class="col-md-9" style="margin: 0 auto;">
+                    <div class="card card-primary">
+                      <div class="card-header" style="background-color: #4a5a69;">
+                        <h3 class="card-title">Thông Tin Sản Phẩm</h3>
+  
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="card-body" style="display: block;">
+                        <div class="form-group">
+                          <label for="inputName">Tên Sản Phẩm</label>
+                          <input  type="text" formControlName="name" id="inputName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label for="inputStatus">Danh Mục Sản Phẩm</label>
+                          <select formControlName="category_id" id="inputStatus" class="form-control custom-select">
+                            <option [ngValue] ="this.ProductDetail.pro_category_id" selected>{{this.ProductDetail.pro_category_id.c_name}}</option>
+                            <ng-container *ngFor="let item of this.categoryList">
+                              <option [ngValue]="item" >{{this.item.c_name}}</option>
+                            </ng-container>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputClientCompany">Giá Sản Phẩm</label>
+                          <input value="{{this.ProductDetail.pro_price}}" formControlName="price" type="number" id="inputClientCompany" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label for="inputProjectLeader">Giảm Giá (%)</label>
+                          <input value="{{this.ProductDetail.pro_sale}}" formControlName="sale" type="number" min="1" max="100" id="inputProjectLeader" class="form-control">
+                        </div>
+  
+                        <div class="form-group" style="display: inline-grid;">
+                          <label for="inputClientCompany">Sản Phẩm HOT</label>
+                          <input *ngIf="this.ProductDetail.pro_hot == 1" checked formControlName="hot" type="checkbox" id="inputClientCompany" class="form-control">
+                          <input *ngIf="this.ProductDetail.pro_hot == 0"  formControlName="hot" type="checkbox" id="inputClientCompany" class="form-control">
+                        </div>
+  
+                        <div class="form-group">
+                          <label for="inputProjectLeader">Số Lượng</label>
+                          <input value="{{this.ProductDetail.pro_number}}" formControlName="number" type="number" id="inputProjectLeader" class="form-control">
+                        </div>
+  
+                        <div class="form-group">
+                          <label for="inputProjectLeader">Nơi Bán</label>
+                          <input value="{{this.ProductDetail.pro_place_sale}}" formControlName="place_sale" type="text" id="inputProjectLeader" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <div class="timeline-body">
+                            <img src="{{this.url}}" width="150" height="100" alt="...">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="custom-file">
+                            <input type="file" (change)="ShowOneFileUpload($event)" class="custom-file-input"
+                              id="exampleInputFile">
+                            <label class="custom-file-label" for="exampleInputFile">Chọn Ảnh Cho Sản Phẩm</label>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                </div>
+                <!--Noi Dung-->
+              </div>
+              <div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab">
+                <!--NOi DUng-->
+                <div class="row">
+                  <div class="col-md-9" style="margin: 0 auto;">
+                    <div class="card card-primary">
+                      <div class="card-header" style="background-color: #4a5a69;">
+                        <h3 class="card-title">Nội Dung Sản Phẩm</h3>
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                          </button>
+                        </div>
+                      </div>
+                       <div class="card-body" style="display: block;">
+                        <div class="form-group">
+                          <label for="inputProjectLeader">Mô Tả</label>
+                          <ckeditor formControlName="description">
+                          </ckeditor>
+                        </div>
+  
+                        <div class="form-group">
+                          <label for="inputProjectLeader">Nội Dung</label>
+                          <ckeditor formControlName="content">
+                          </ckeditor>
+                        </div>
+                        
+                       </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                </div>
+                <!--Noi Dung-->
+              </div>
+              <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab">
+                              <!--NOi DUng-->
+                <div class="row">
+                  <div class="col-md-9" style="margin: 0 auto;">
+                    <div class="card card-primary">
+                      <div class="card-header" style="background-color: #4a5a69;">
+                        <h3 class="card-title">Hình Ảnh Sản Phẩm Kèm Theo</h3>
+  
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="card-body" style="display: block;">
+                        <button *ngIf="this.url3.length>0" (click)="refresh()" type="button"
+                          class="btn btn-info float-right"><i style="padding-right: 8px;" class="fa fa-refresh"
+                            aria-hidden="true"></i>Xóa
+                          Hết</button>
+                        <div class="form-group">
+                          <div class="timeline-body">
+                            <img *ngFor="let item of this.url3" width="150" height="100" src="{{item}}" alt="...">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="custom-file">
+                            <input (change)="ShowManyFileUpload($event)" type="file" multiple class="custom-file-input"
+                              id="exampleInputFile">
+                            <label class="custom-file-label" for="exampleInputFile">Chọn Ảnh Cho Sản Phẩm</label>
+                          </div>
+                          <input type="submit" style="float: right;margin-top: 21px;" class="btn btn-info" value="Thêm Sản Phẩm">
+                        </div>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                </div>
+                <!--Noi Dung-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </form>
+  
+    </section>
+    <!-- /.content -->
+  </div>
+</ng-container>
