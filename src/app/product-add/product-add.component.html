@@ -19,6 +19,7 @@
   <!-- Main content -->
   <section class="content">
 
+    <form [formGroup]="formAddProduct" (ngSubmit)="Submit()">
     <!-- Default box -->
     <div class="card card-solid">
       <div class="card-body">
@@ -51,39 +52,39 @@
                     <div class="card-body" style="display: block;">
                       <div class="form-group">
                         <label for="inputName">Tên Sản Phẩm</label>
-                        <input type="text" id="inputName" class="form-control">
+                        <input type="text" formControlName="name" id="inputName" class="form-control">
                       </div>
                       <div class="form-group">
                         <label for="inputStatus">Danh Mục Sản Phẩm</label>
-                        <select id="inputStatus" class="form-control custom-select">
+                        <select formControlName="category_id" id="inputStatus" class="form-control custom-select">
                           <option selected="" disabled="">Chọn Danh Mục</option>
-                          <option>On Hold</option>
-                          <option>Canceled</option>
-                          <option>Success</option>
+                          <ng-container *ngFor="let item of this.categoryList">
+                            <option value="{{item}}" >{{this.item.c_name}}</option>
+                          </ng-container>
                         </select>
                       </div>
                       <div class="form-group">
                         <label for="inputClientCompany">Giá Sản Phẩm</label>
-                        <input type="number" id="inputClientCompany" class="form-control">
+                        <input formControlName="price" type="number" id="inputClientCompany" class="form-control">
                       </div>
                       <div class="form-group">
                         <label for="inputProjectLeader">Giảm Giá (%)</label>
-                        <input type="number" min="1" max="100" id="inputProjectLeader" class="form-control">
+                        <input formControlName="sale" type="number" min="1" max="100" id="inputProjectLeader" class="form-control">
                       </div>
 
                       <div class="form-group" style="display: inline-grid;">
                         <label for="inputClientCompany">Sản Phẩm HOT</label>
-                        <input type="checkbox" id="inputClientCompany" class="form-control">
+                        <input formControlName="hot" value="0" type="checkbox" id="inputClientCompany" class="form-control">
                       </div>
 
                       <div class="form-group">
                         <label for="inputProjectLeader">Số Lượng</label>
-                        <input type="number" id="inputProjectLeader" class="form-control">
+                        <input formControlName="number" type="number" id="inputProjectLeader" class="form-control">
                       </div>
 
                       <div class="form-group">
                         <label for="inputProjectLeader">Nơi Bán</label>
-                        <input type="text" id="inputProjectLeader" class="form-control">
+                        <input formControlName="place_sale" type="text" id="inputProjectLeader" class="form-control">
                       </div>
                       <div class="form-group">
                         <div class="timeline-body">
@@ -123,6 +124,7 @@
                         <label for="inputProjectLeader">Mô Tả</label>
                         <ckeditor>
                           [(ngModel)]="description"
+                          [readonly]="false"
                         </ckeditor>
                       </div>
 
@@ -187,6 +189,7 @@
       <!-- /.card-body -->
     </div>
     <!-- /.card -->
+  </form>
 
   </section>
   <!-- /.content -->

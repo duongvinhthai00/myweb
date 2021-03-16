@@ -33,4 +33,20 @@ export class ProductServiceService {
     return this.http.delete<Boolean>(`http://localhost:8080/api/v5/products/${id}`);
   }
 
+  addProduct(productDTO : ProductModel){
+    return this.http.post<ProductModel>(`http://localhost:8080/api/v5/add-product`,productDTO)
+  }
+
+  uploadOneImage(id : number,file : File){
+    const formData = new  FormData();
+    formData.append('file',file);
+    return this.http.post<Boolean>(`http://localhost:8080/api/v5/product/upload/${id}`,file);
+  }
+
+  uploadManyImage(id : number,file : File){
+    const formData = new  FormData();
+    formData.append('file',file);
+    return this.http.post<Boolean>(`http://localhost:8080/api/v6/product-image-upload/${id}`,file);
+  }
+
 }
