@@ -1,4 +1,4 @@
-  <div class="content-wrapper" style="margin-left: 250px;">
+<div class="content-wrapper" style="margin-left: 250px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -46,38 +46,37 @@
                 <table id="customers">
                   <tr>
                     <th style="text-align: center;"> <input type="checkbox"> Tất Cả </th>
-                    <th style="text-align: center;">Ảnh</th>
-                    <th style="text-align: center;">Tên Sản Phẩm</th>
-                    <th style="text-align: center;">Giá Sản Phẩm</th>
-                    <th style="text-align: center;">Giảm Giá</th>
-                    <th style="text-align: center;">Giá Bán</th>
-                    <th style="text-align: center;">Số Lượng</th>
-                    <th style="text-align: center;">Ngày Tạo</th>
+                    <th style="text-align: center;">Mã Đơn Hàng</th>
+                    <th style="text-align: center;">Tên Người Đặt</th>
+                    <th style="text-align: center;">Tổng Tiền</th>
+                    <th style="text-align: center;">Trạng Thái</th>
+                    <th style="text-align: center;">Ngày Đặt</th>
                     <th style="text-align: center;">Hành Động</th>
                   </tr>
-                  <tr (click)="checkedBox(cb)" *ngFor="let item of this.products | filter:searchText | paginate :{id:'pag1', itemsPerPage: maxPageItems,
+                  <tr (click)="checkedBox(cb)" *ngFor="let item of this.TransactionList | filter:searchText | paginate :{id:'pag1', itemsPerPage: maxPageItems,
                   currentPage: page,
-                  totalItems: products?.length}">
+                  totalItems: TransactionList?.length}">
                     <td><input #cb type="checkbox"></td>
-                    <td><img style="width: 100px; height: 100px;" src="../../assets/image/{{item.pro_avatar}}" alt=""></td>
-                    <td>{{item.pr_name}}</td>
-                    <td>{{item.pro_price | currency : "VND"}}</td>
-                    <td>{{item.pro_sale}}%</td>
-                    <td>{{item.pro_pay | currency : "VND"}}</td>
-                    <td>{{item.pro_number}} <br> <span *ngIf="item.pro_number > 0;else hethang" class="badge badge-success">Còn Hàng</span></td>
-                    <td>{{item.created_at | date : "dd-MM-yyyy"}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.tr_total | currency : "VND"}}</td>
+                    <td>
+                        <span *ngIf="item.tr_status == 0" class="badge badge-warning">Đang Gửi</span>
+                        <span *ngIf="item.tr_status == 1" class="badge badge-info">Đang Xử Lý</span>
+                        <span *ngIf="item.tr_status == 2" style="background-color: #8408f8d6;" class="badge badge-info">Đang Giao Hàng</span>
+                        <span *ngIf="item.tr_status == 3" class="badge badge-success">Hoàn Thành</span>
+                        <span *ngIf="item.tr_status == 4" class="badge badge-danger">Đã Bị Hủy</span>
+                    </td>
+                    <td>{{item.created_at | date : 'dd-MM-yyyy'}}</td>
                     <td>
                       <b style="font-size: 16px;">
-                        <a style="padding: 8px;color: white;margin-right: 10px;background-color: rgb(17, 138, 219)"><i class="far fa-eye"></i></a>
-                        <a [routerLink]="['/admin/edit-product/',this.item.id]" style="padding: 8px;color: white;background-color: rgb(15, 199, 86);margin-right: 10px;"><i class="fas fa-edit"></i></a>
-                        <a (click)="DeleteProduct(item)" style="padding: 8px;color: white;background-color: red;"><i class="fas fa-trash"></i></a>
+                        <a [routerLink]="['/admin/order-manager-detail/',item.id]" style="padding: 8px;color: white;margin-right: 10px;background-color: rgb(17, 138, 219)"><i class="far fa-eye"></i></a>
+                        <a [routerLink]="['/admin/order-manager-edit/',item.id]" style="padding: 8px;color: white;background-color: rgb(15, 199, 86);margin-right: 10px;"><i class="fas fa-edit"></i></a>
+                        <a (click)="deleteOrder(item)"  style="padding: 8px;color: white;background-color: red;"><i class="fas fa-trash"></i></a>
                       </b>
                     </td>
                   </tr>
                 </table>
-                <ng-template #hethang>
-                  <span class="badge badge-danger">Hết Hàng</span>
-                </ng-template>
                 <pagination-controls id="pag1" directionLinks="true" (pageChange)="pageChanged($event)" maxSize="1000"></pagination-controls>
               </div>
               <!-- /.card-body -->

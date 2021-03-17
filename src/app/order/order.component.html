@@ -32,7 +32,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <ng-container *ngIf="this.transactions.length>0">
+                  <ng-container *ngIf="this.transactions?.length>0">
                   <tr *ngFor="let item of this.transactions | paginate :{id:'pag1', itemsPerPage: maxPageItems,
                         currentPage: page,
                         totalItems: this.transactions?.length};let idx = index">
@@ -48,8 +48,9 @@
                       <td style="text-align: center;" class="cart-quantity">
                           <span *ngIf="item.tr_status == 0" class="badge badge-success1">Đang Gửi</span>
                           <span *ngIf="item.tr_status == 1" class="badge badge-success2">Đang Xử Lý</span>
-                          <span *ngIf="item.tr_status == 2" class="badge badge-success3">Hoàn Thành</span>
-                          <span *ngIf="item.tr_status == 3" class="badge badge-success4">Đã Bị Hủy</span>
+                          <span *ngIf="item.tr_status == 2" class="badge badge-success5">Đang Giao Hàng</span>
+                          <span *ngIf="item.tr_status == 3" class="badge badge-success3">Hoàn Thành</span>
+                          <span *ngIf="item.tr_status == 4" class="badge badge-success4">Đã Bị Hủy</span>
                       </td>
                       <td style="text-align: center;" class="cart-summ">
                           <b style="font-size: 16px;">{{item.created_at | date : 'dd/MM/yyyy - hh:mm'}}</b>

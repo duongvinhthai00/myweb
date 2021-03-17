@@ -5,11 +5,12 @@ import { OrderModel, TransactionModel } from '../model/TransactionModel';
 import { TransactionServiceService } from '../service/transaction_service/transaction-service.service';
 
 @Component({
-  selector: 'app-order-detail',
-  templateUrl: './order-detail.component.html',
-  styleUrls: ['./order-detail.component.css']
+  selector: 'app-order-manager-detail',
+  templateUrl: './order-manager-detail.component.html',
+  styleUrls: ['./order-manager-detail.component.css']
 })
-export class OrderDetailComponent implements OnInit {
+export class OrderManagerDetailComponent implements OnInit {
+
   transaction : TransactionModel;
   constructor(private transactionService : TransactionServiceService,private route : ActivatedRoute) { }
   orderList : OrderModel[];

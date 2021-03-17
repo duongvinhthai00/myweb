@@ -1,0 +1,114 @@
+<div class="content-wrapper" style="margin-left: 250px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Sản Phẩm</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">DataTables</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <!-- /.card -->
+                    <!--Noi dung-->
+                    <div class="card">
+                        <div style="background-color: #4a8fc5;" class="card-header">
+                            <b style="color: aliceblue;">Hóa Đơn Ngày : </b>
+                            <strong style="color: white;">{{this.transaction.created_at | date:'dd/MM/yyyy'}}</strong>
+                            <span class="float-right"> <strong style="color: rgb(247, 247, 247);">Trạng Thái:</strong>
+                                <span _ngcontent-nhr-c53="" class="badge badge-success1"
+                                    style="background-color: #bcc712;">Đang Gửi</span></span>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-4">
+                                <div class="col-sm-6">
+                                    <h6 class="mb-3">Người Gửi:</h6>
+                                    <div>
+                                        <strong>Admin</strong>
+                                    </div>
+                                    <div>Công Ty Một Thành Viên</div>
+                                    <div>Email: admin@admin.vn</div>
+                                    <div>Phone: 18001600</div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <h6 class="mb-3">Người Nhận:</h6>
+                                    <div>
+                                        <strong>{{this.transaction.name}}</strong>
+                                    </div>
+                                    <div>Địa Chỉ : {{this.transaction.tr_address}}</div>
+                                    <div>Email: {{this.transaction.tr_user_id.email}}</div>
+                                    <div>Phone: {{this.transaction.tr_phone}}</div>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive-sm">
+                                <table style="border: 1px solid;" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="center" style="width: 61px;text-align: center;font-weight: bold;">STT</th>
+                                            <th style="text-align: center;font-weight: bold;">Ảnh Sản Phẩm</th>
+                                            <th style="text-align: center;font-weight: bold;">Tên Sản Phẩm</th>
+                                            <th style="text-align: center;font-weight: bold;" class="right">Giá Sản Phẩm</th>
+                                            <th style="text-align: center;font-weight: bold;" class="center">Số Lượng</th>
+                                            <th style="text-align: center;font-weight: bold;">Ngày Đặt Hàng</th>
+                                            <th style="text-align: center;font-weight: bold;" class="right">Tổng Tiền</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of this.orderList;let idx = index">
+                                            <td class="center">{{idx+1}}</td>
+                                            <td class="center"> <img src="../assets/image/{{this.item.or_product_id.pro_avatar}}" style="width: 100px; height: 100px;" alt=""> </td>
+                                            <td class="left strong">{{item.or_product_id.pr_name}}</td>
+                                            <td class="right">{{item.or_price | currency : 'VND'}}</td>
+                                            <td class="center">{{item.or_qty}}</td>
+                                            <td class="left">{{item?.created_at |date : 'dd/MM/yyyy'}}</td>
+                                            <td class="right">{{item.or_qty*item.or_price | currency : 'VND'}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-5">
+
+                                </div>
+
+                                <div class="col-lg-4 col-sm-5 ml-auto">
+                                    <table style="border: 1px solid;" class="table table-clear">
+                                        <tbody>
+                                            <tr>
+                                                <td style="border: 1px solid;" class="left">
+                                                    <strong>Tổng Cộng</strong>
+                                                </td>
+                                                <td style="width: 201px;border: 1px solid;" class="right">
+                                                    <strong style="margin-left: 79px;" >{{this.transaction.tr_total | currency : 'VND'}}</strong>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>

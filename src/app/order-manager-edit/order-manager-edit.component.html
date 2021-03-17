@@ -1,0 +1,108 @@
+<ng-container *ngIf="this.transaciton">
+<div class="content-wrapper" style="min-height: 1662.75px;margin-left: 250px;">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>E-commerce</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">E-commerce</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <form [formGroup]="formTransaction" (ngSubmit)="Submit()">
+      <!-- Default box -->
+      <div class="card card-solid">
+        <div class="card-body">
+          <div class="row">
+            <nav class="w-100">
+              <div class="nav nav-tabs" id="product-tab" role="tablist">
+                <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc"
+                  role="tab" aria-controls="product-desc" aria-selected="true">Thông Tin Giao Dịch</a>
+              </div>
+            </nav>
+            <div class="tab-content p-3" id="nav-tabContent" style="width: 100%;">
+              <div class="tab-pane fade active show" id="product-desc" role="tabpanel"
+                aria-labelledby="product-desc-tab">
+                <!--NOi DUng-->
+                <div class="row">
+                  <div class="col-md-9" style="margin: 0 auto;">
+                    <div class="card card-primary">
+                      <div class="card-header" style="background-color: #4a5a69;">
+                        <h3 class="card-title">Thông Tin Giao Dịch</h3>
+
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="card-body" style="display: block;">
+                        <div class="form-group">
+                          <label for="inputName">Mã Giao Dịch</label>
+                          <input readonly formControlName="id" type="number" id="inputName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label for="inputName">Tổng Số Tiền Của Đơn Hàng</label>
+                          <input readonly formControlName="tr_total" type="number" id="inputName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label for="inputClientCompany">Tên Người Nhận Hàng</label>
+                          <input formControlName="name" type="text" id="inputClientCompany" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label for="inputProjectLeader">Địa Chỉ</label>
+                          <input formControlName="tr_address" type="text" min="1" max="100" id="inputProjectLeader"
+                            class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputProjectLeader">Số Điện Thoại</label>
+                          <input formControlName="tr_phone" type="text" id="inputProjectLeader" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputDescription">Ghi Chú</label>
+                          <textarea formControlName="tr_note" id="inputDescription" class="form-control"
+                            rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputStatus">Trạng Thái</label>
+                          <select formControlName="tr_status" id="inputStatus" class="form-control custom-select">
+                            <option [ngValue]="this.tr_status.number" selected>{{this.tr_status.title}}</option>
+                            <ng-container *ngFor="let item of this.status">
+                            <option [ngValue]="this.item.number">{{this.item.title}}</option>
+                            </ng-container>
+                          </select>
+                        </div>
+                        <input type="submit" class="btn btn-info float-right" value="Cập Nhật">
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                </div>
+                <!--Noi Dung-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </form>
+
+  </section>
+  <!-- /.content -->
+</div>
+</ng-container>

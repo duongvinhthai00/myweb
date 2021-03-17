@@ -1,16 +1,16 @@
 .badge-success1 {
-    color: #fff;
-    background-color: #ab931ed6;
+    color: black;
+    background-color: #ffc107;
 }
 
 .badge-success2 {
     color: #fff;
-    background-color: #0fcaebd6;
+    background-color: #17a2b8;
 }
 
 .badge-success3 {
     color: #fff;
-    background-color: #0feb51d6;
+    background-color: #28a745;
 }
 
 .badge-success4 {
@@ -18,9 +18,14 @@
     background-color: #eb0f1ad6;
 }
 
+.badge-success5 {
+    color: #fff;
+    background-color: #8408f8d6;
+}
+
 .badge {
     display: inline-block;
-    padding: 0.8em 1.8em;
+    padding: 8px;
     font-size: 75%;
     font-weight: 700;
     line-height: 1;

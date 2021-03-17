@@ -129,7 +129,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside style="height: 100%;" class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside style="min-height: 150%;" class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="../../assets/TemplateAdmin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -155,7 +155,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Quản Lý Sản Phẩm
@@ -177,8 +177,26 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Quản Lý Đơn Hàng
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a [routerLink]="['/admin/order-manager']" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh Sách Đơn Hàng</p>
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
+      
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -188,13 +206,6 @@
   <router-outlet></router-outlet>
 
   <!-- /.content-wrapper -->
-  <footer style="margin-left: 250px;" class="main-footer">
-    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.1.0-rc
-    </div>
-  </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

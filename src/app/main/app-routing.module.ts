@@ -1,3 +1,5 @@
+import { OrderManagerEditComponent } from './../order-manager-edit/order-manager-edit.component';
+import { OrderManagerComponent } from './../order-manager/order-manager.component';
 import { ProductEditComponent } from './../product-edit/product-edit.component';
 import { ProductAddComponent } from './../product-add/product-add.component';
 import { NgModule } from '@angular/core';
@@ -16,6 +18,7 @@ import { ProductmanagerComponent } from '../productmanager/productmanager.compon
 import { ProductsComponent } from '../products/products.component';
 import { RegisterComponent } from '../register/register.component';
 import { TransactionComponent } from '../transaction/transaction.component';
+import { OrderManagerDetailComponent } from '../order-manager-detail/order-manager-detail.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent, children:[
@@ -36,7 +39,10 @@ const routes: Routes = [
       {path:"",component:AdminmainpageComponent},
       {path:"product-manager",component:ProductmanagerComponent},
       {path:"add-product",component:ProductAddComponent},
-      {path:"edit-product/:slug",component:ProductEditComponent}
+      {path:"edit-product/:slug",component:ProductEditComponent},
+      {path:"order-manager",component:OrderManagerComponent},
+      {path:"order-manager-detail/:slug",component:OrderManagerDetailComponent},
+      {path:"order-manager-edit/:slug",component:OrderManagerEditComponent}
   ]},
 
     {path:"admin/login",component : AdminloginComponent}

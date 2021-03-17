@@ -44,7 +44,6 @@ export class OrderComponent implements OnInit {
   }).then((result) => {
   if (result.isConfirmed) {
     this.transactionService.updateProductNumber(item.id).subscribe(data=>{
-      console.log(data);
     })
     this.transactionService.deleteTransaction(item.id).subscribe(data=>{
       this.transactionService.getTransactionByUser(this.homeComponent.userLogined.id).subscribe(data=>{

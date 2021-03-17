@@ -24,6 +24,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ProductAddComponent } from './product-add/product-add.component';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import { OrderManagerComponent } from './order-manager/order-manager.component';
+import { OrderManagerDetailComponent } from './order-manager-detail/order-manager-detail.component';
+import { OrderManagerEditComponent } from './order-manager-edit/order-manager-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +45,10 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     AdminmainpageComponent,
     ProductmanagerComponent,
     ProductAddComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    OrderManagerComponent,
+    OrderManagerDetailComponent,
+    OrderManagerEditComponent,
   ],
   imports: [
     BrowserModule,

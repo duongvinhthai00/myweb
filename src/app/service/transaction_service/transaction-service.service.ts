@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OrderModel, TransactionModel } from 'src/app/model/TransactionModel';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,4 +34,19 @@ export class TransactionServiceService {
   updateProductNumber(tr_id : Number){
     return this.http.put<Boolean>("http://localhost:8080/api/v8/order-transaction",tr_id);
   }
+
+  GetAllTransaction(){
+    return this.http.get<TransactionModel[]>(`http://localhost:8080/api/v8/transaction-all`);
+  }
+
+  updateTransaction(transactionDTO : TransactionModel){
+    return this.http.put<TransactionModel>(`http://localhost:8080/api/v8/transaction-update`,transactionDTO).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  handleError(error){
+    return throwError(error);
+  }
+  
 }
