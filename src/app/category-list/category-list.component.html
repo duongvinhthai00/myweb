@@ -127,7 +127,7 @@
           <div class="prod-items section-items prod-list2">
               <div *ngFor="let item of ProductList | paginate :{id:'pag1', itemsPerPage: maxPageItems,
                 currentPage: page,
-                totalItems: ProductList.length} "  class="prodlist-i">
+                totalItems: ProductList.length} " [routerLink]="['/product-detail/',item.id]" class="prodlist-i">
                   <a class="list-img-carousel prodlist-i-img"><!-- NO SPACE --><img  src="../assets/image/{{item.pro_avatar}}" alt="Adipisci aperiam commodi"><!-- NO SPACE --></a>
                   <div class="prodlist-i-cont">
                       <h3><a [routerLink]="['/product-detail/',item.id]">{{item.pr_name}}</a>
@@ -135,9 +135,6 @@
                       <p class="prodlist-i-info">
                           <a href="#" class="prodlist-i-favorites"><i class="fa fa-heart"></i> Add to wishlist</a>
                       </p>
-                      <div class="prodlist-i-txt">
-                          {{item.pro_description}}
-                      </div>
                       <div class="prodlist-i-action">
                       <span class="prodlist-i-price">
                           <b style="color: #ee4d2d;font-weight: 700;">{{item.pro_pay |currency: "VND" }}</b>
@@ -151,7 +148,7 @@
                           <p style="font-weight: bold;color: cadetblue">
                             Số Lượng Còn : {{item.pro_number}}
                           </p>
-                          <p style="font-weight: bold;color: cadetblue">
+                          <p *ngIf="item.pro_place_sale" style="font-weight: bold;color: cadetblue">
                             Nơi Bán : {{item.pro_place_sale}}
                           </p>
                           <p class="prodlist-i-addwrap">

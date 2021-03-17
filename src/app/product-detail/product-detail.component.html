@@ -60,7 +60,7 @@
 			<!-- Product Description/Info -->
 			<div class="prod-cont">
 				<div class="prod-cont-txt">
-					{{productDetail?.pro_description}}
+					<h2 style="text-transform: uppercase;padding-bottom: 0px;">{{this.productDetail?.pr_name}}</h2>
 				</div>
 				<p class="prod-actions">
 					<a href="#" class="prod-favorites"><i class="fa fa-heart"></i> Wishlist</a>
@@ -84,23 +84,12 @@
 							<img src="../assets/TemplateProduct/img/color/purple.jpg" alt="">
 						</li>
 					</ul>
-					<p class="prod-skuttl">CLOTHING SIZES</p>
-					<div class="offer-props-select">
-						<p>XL</p>
-						<ul>
-							<li><a href="#">XS</a></li>
-							<li><a href="#">S</a></li>
-							<li><a href="#">M</a></li>
-							<li class="active"><a href="#">XL</a></li>
-							<li><a href="#">L</a></li>
-							<li><a href="#">4XL</a></li>
-							<li><a href="#">XXL</a></li>
-						</ul>
-					</div>
+					<p style="font-size: 16px;font-weight: 700;color: black;" class="prod-skuttl">SẢN PHẨM CHÍNH HÃNG 100%</p>
+					<img src="../assets/image/sp.png" style="width: 108px;height: 76px;" alt="">
 				</div>
 				<div class="prod-info">
 					<p class="prod-price">
-						<b class="item_current_price">{{productDetail?.pro_pay | currency : "VND"}}</b>
+						<b class="item_current_price" style="color: #ee4d2d; font-weight: 700;font-size: 24px;">{{productDetail?.pro_pay | currency : "VND"}}</b>
             <del *ngIf="productDetail?.pro_sale>0" style="font-size: 16px;">{{productDetail?.pro_price | currency : "VND"}}</del>
 					</p>
 					<p class="prod-qnt">
@@ -113,32 +102,24 @@
 					</p>
 				</div>
         <div style="border-bottom: 1px solid #ccc;padding-bottom: 10px;">
-          <b style="font-size: 17px;color: cadetblue;">Số Lượng Còn : {{productDetail?.pro_number}}</b>
+          <b style="font-size: 22px;color: cadetblue;">Số Lượng Còn : {{productDetail?.pro_number}}</b>
         </div>
-				<div style="margin-top: 10px;">
-            Nội Dung
+		<div style="margin-top: 10px;">
+			<h3 style="font-size: 20px;">MÔ TẢ :</h3>
+			<div style="font-size: 15px;" [innerHTML]="this.productDetail?.pro_description"></div>
         </div>
-        <p>
-          {{productDetail?.pro_content}}
-        </p>
 			</div>
 
 			<!-- Product Tabs -->
 			<div class="prod-tabs-wrap">
 				<ul class="prod-tabs">
-					<li><a data-prodtab-num="1" class="active" href="/product-detail/{{productDetail?.id}}" data-prodtab="#prod-tab-1">Description</a></li>
-					<li><a data-prodtab-num="2" id="prod-props" href="/product-detail/{{productDetail?.id}}" data-prodtab="#prod-tab-2">Features</a></li>
+					<li><a data-prodtab-num="2" class="active" id="prod-props" href="/product-detail/{{productDetail?.id}}"
+					    data-prodtab="#prod-tab-2">Chi Tiết</a></li>
 					<li><a data-prodtab-num="4" href="/product-detail/{{productDetail?.id}}"  data-prodtab="#prod-tab-4">Articles (6)</a></li>
 				</ul>
 				<div class="prod-tab-cont">
-
-					<p data-prodtab-num="1" class="prod-tab-mob active" data-prodtab="#prod-tab-1">Description</p>
-					<div class="prod-tab stylization" id="prod-tab-1">
-						{{productDetail?.pro_description}}
-					</div>
-					<p data-prodtab-num="2" class="prod-tab-mob" data-prodtab="#prod-tab-2">Features</p>
-					<div class="prod-tab prod-props" id="prod-tab-2">
-              {{productDetail?.pro_content}}
+					<p data-prodtab-num="2" class="prod-tab-mob" data-prodtab="#prod-tab-2">CHI TIẾT</p>
+					<div [innerHTML]="productDetail?.pro_content" class="prod-tab prod-props" id="prod-tab-2">
 					</div>
 					<p data-prodtab-num="4" class="prod-tab-mob" data-prodtab="#prod-tab-4">Articles (6)</p>
 					<div class="prod-tab prod-tab-articles" id="prod-tab-4">
