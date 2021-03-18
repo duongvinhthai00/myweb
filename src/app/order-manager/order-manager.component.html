@@ -4,13 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Sản Phẩm</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">DataTables</li>
-            </ol>
+            <h1>Đơn Hàng</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -23,7 +17,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header" style="background-color: cadetblue;color: greenyellow;">
-                <h3 class="card-title">Danh Sách Sản Phẩm</h3>
+                <h3 class="card-title">Danh Sách Đơn Hàng</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -43,6 +37,15 @@
                   <option value="20">20</option>
                   <option value="40">40</option>
                 </select>
+
+                <select (change)="FilterByStatus($event)" style="width: 15%; margin-left: 10px;" class="custom-select">
+                  <option selected value="10">Tất Cả</option>
+                  <option value="0">Đang Gửi</option>
+                  <option value="1">Đang Xử Lý</option>
+                  <option value="2">Đang Giao Hàng</option>
+                  <option value="3">Hoàn Thành</option>
+                  <option value="4">Đã Bị Hủy</option>
+                </select>
                 <table id="customers">
                   <tr>
                     <th style="text-align: center;"> <input type="checkbox"> Tất Cả </th>
@@ -51,6 +54,7 @@
                     <th style="text-align: center;">Tổng Tiền</th>
                     <th style="text-align: center;">Trạng Thái</th>
                     <th style="text-align: center;">Ngày Đặt</th>
+                    <th style="text-align: center;">Ngày Cập Nhật</th>
                     <th style="text-align: center;">Hành Động</th>
                   </tr>
                   <tr (click)="checkedBox(cb)" *ngFor="let item of this.TransactionList | filter:searchText | paginate :{id:'pag1', itemsPerPage: maxPageItems,
@@ -68,6 +72,7 @@
                         <span *ngIf="item.tr_status == 4" class="badge badge-danger">Đã Bị Hủy</span>
                     </td>
                     <td>{{item.created_at | date : 'dd-MM-yyyy'}}</td>
+                    <td>{{item.updated_at | date : 'dd-MM-yyyy - h:mm'}}</td>
                     <td>
                       <b style="font-size: 16px;">
                         <a [routerLink]="['/admin/order-manager-detail/',item.id]" style="padding: 8px;color: white;margin-right: 10px;background-color: rgb(17, 138, 219)"><i class="far fa-eye"></i></a>

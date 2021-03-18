@@ -17,12 +17,14 @@ export class OrderManagerComponent implements OnInit {
   maxPageItems = 5;
   page:number = 1;
   searchText;
+  TransactionListFake : TransactionModel[];
   constructor(private transactionService : TransactionServiceService) {
    }
 
   ngOnInit(): void {
     this.transactionService.GetAllTransaction().subscribe(data=>{
       this.TransactionList = this.SortTimeNew(data);
+      this.TransactionListFake = [...data];
     })
   }
 
@@ -33,6 +35,19 @@ export class OrderManagerComponent implements OnInit {
       }
       });
     return data;
+  }
+
+  FilterByStatus(event){
+    if(event.currentTarget.value == 10){
+      this.TransactionList = this.TransactionListFake
+    }else{
+      console.log(event.currentTarget.value);
+      this.TransactionList = this.TransactionListFake.filter(x=>{
+        if(x.tr_status == event.currentTarget.value){
+          return true;
+        }
+      })
+    }
   }
 
   pageChanged(event){
