@@ -1,6 +1,6 @@
 import { TransactionServiceService } from './../service/transaction_service/transaction-service.service';
 import { TransactionModel } from 'src/app/model/TransactionModel';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import Swal from 'sweetalert2'
 @Component({
   selector: 'app-order-manager',
@@ -17,6 +17,7 @@ export class OrderManagerComponent implements OnInit {
   maxPageItems = 5;
   page:number = 1;
   searchText;
+  TransactionListDel : number[] = [];
   TransactionListFake : TransactionModel[];
   constructor(private transactionService : TransactionServiceService) {
    }
@@ -61,10 +62,18 @@ export class OrderManagerComponent implements OnInit {
   checkedBox(cb){
     if(cb.checked == false){
       cb.checked = true;
+      this.TransactionListDel.push(JSON.parse(cb.value).id);
+      console.log(this.TransactionListDel);
     }else{
       cb.checked = false;
+      this.TransactionListDel = this.TransactionListDel.filter(x=>{
+        if(x != JSON.parse(cb.value).id){
+          return true;
+        }
+      });
     }
   }
+
 
   deleteOrder(item : TransactionModel){
     Swal.fire({
@@ -86,7 +95,28 @@ export class OrderManagerComponent implements OnInit {
       Swal.fire('Xóa Thành Công!', '', 'success')
     }
     });
+  }
 
-  
+
+  deleteAllTransaction(){
+    Swal.fire({
+    icon:'warning',
+    title: `Bạn Có Thực Sự Muốn Xóa ${this.TransactionListDel.length} Giao Dịch Này`,
+    showCancelButton: true,
+    confirmButtonText: `Xóa`,
+    cancelButtonText : 'Hủy'
+    }).then((result) => {
+    if (result.isConfirmed) {
+      for(let i = 0;i<this.TransactionListDel.length;i++){
+        this.transactionService.deleteTransaction(this.TransactionListDel[i]).subscribe(data=>{
+          this.transactionService.GetAllTransaction().subscribe(data=>{
+          this.TransactionList = this.SortTimeNew(data);
+        });
+        });
+      }
+      Swal.fire('Xóa Thành Công!', '', 'success')
+      this.TransactionListDel = [];
+    }
+    });
   }
 }

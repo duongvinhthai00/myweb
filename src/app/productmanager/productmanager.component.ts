@@ -15,7 +15,7 @@ import Swal from 'sweetalert2'
 })
 
 export class ProductmanagerComponent implements OnInit {
-
+  ProductListDel : number[] = [];
   products : ProductModel[];
   maxPageItems = 5;
   page:number = 1;
@@ -40,8 +40,16 @@ export class ProductmanagerComponent implements OnInit {
   checkedBox(cb){
     if(cb.checked == false){
       cb.checked = true;
+      this.ProductListDel.push(JSON.parse(cb.value).id);
+      console.log(this.ProductListDel);
     }else{
       cb.checked = false;
+      this.ProductListDel = this.ProductListDel.filter(x=>{
+        if(x != JSON.parse(cb.value).id){
+          return true;
+        }
+      });
+      console.log(this.ProductListDel);
     }
     
   }
@@ -65,5 +73,27 @@ export class ProductmanagerComponent implements OnInit {
         })  
       }
       });
+  }
+
+  deleteAllProduct(){
+    Swal.fire({
+    icon:'warning',
+    title: `Bạn Có Thực Sự Muốn Xóa ${this.ProductListDel.length} Sản Phẩm Này`,
+    showCancelButton: true,
+    confirmButtonText: `Xóa`,
+    cancelButtonText : 'Hủy'
+    }).then((result) => {
+    if (result.isConfirmed) {
+      for(let i = 0;i<this.ProductListDel.length;i++){
+        this.productService.DeleteProduct(this.ProductListDel[i]).subscribe(data=>{
+          this.productService.getProductAll().subscribe(data=>{
+            this.products = data;
+          });
+        });
+      }
+      Swal.fire('Xóa Thành Công!', '', 'success');
+      this.ProductListDel = [];
+    }
+    });
   }
 }

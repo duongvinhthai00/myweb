@@ -37,9 +37,12 @@
                   <option value="20">20</option>
                   <option value="40">40</option>
                 </select>
+                <button (click)="deleteAllProduct()" *ngIf="this.ProductListDel.length>0" type="button"
+                  class="btn btn-info"><i class="fa fa-trash" style="padding-right: 5px;"
+                    aria-hidden="true"></i>Xóa</button>
                 <table id="customers">
                   <tr>
-                    <th style="text-align: center;"> <input type="checkbox"> Tất Cả </th>
+                    <th style="text-align: center;"> Tất Cả </th>
                     <th style="text-align: center;">Ảnh</th>
                     <th style="text-align: center;">Tên Sản Phẩm</th>
                     <th style="text-align: center;">Giá Sản Phẩm</th>
@@ -52,7 +55,7 @@
                   <tr (click)="checkedBox(cb)" *ngFor="let item of this.products | filter:searchText | paginate :{id:'pag1', itemsPerPage: maxPageItems,
                   currentPage: page,
                   totalItems: products?.length}">
-                    <td><input #cb type="checkbox"></td>
+                    <td><input value="{{this.item | json}}" #cb type="checkbox"></td>
                     <td><img style="width: 100px; height: 100px;" src="../../assets/image/{{item.pro_avatar}}" alt=""></td>
                     <td>{{item.pr_name}}</td>
                     <td>{{item.pro_price | currency : "VND"}}</td>

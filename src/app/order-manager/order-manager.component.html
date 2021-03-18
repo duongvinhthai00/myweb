@@ -46,9 +46,10 @@
                   <option value="3">Hoàn Thành</option>
                   <option value="4">Đã Bị Hủy</option>
                 </select>
+                <button (click)="deleteAllTransaction()" *ngIf="this.TransactionListDel.length>0" type="button" class="btn btn-info"><i class="fa fa-trash" style="padding-right: 5px;"  aria-hidden="true"></i>Xóa</button>
                 <table id="customers">
                   <tr>
-                    <th style="text-align: center;"> <input type="checkbox"> Tất Cả </th>
+                    <th style="text-align: center;"> Tất Cả </th>
                     <th style="text-align: center;">Mã Đơn Hàng</th>
                     <th style="text-align: center;">Tên Người Đặt</th>
                     <th style="text-align: center;">Tổng Tiền</th>
@@ -57,10 +58,11 @@
                     <th style="text-align: center;">Ngày Cập Nhật</th>
                     <th style="text-align: center;">Hành Động</th>
                   </tr>
-                  <tr (click)="checkedBox(cb)" *ngFor="let item of this.TransactionList | filter:searchText | paginate :{id:'pag1', itemsPerPage: maxPageItems,
+                  <tbody>
+                  <tr (click)="this.checkedBox(cb)" *ngFor="let item of this.TransactionList | filter:searchText | paginate :{id:'pag1', itemsPerPage: maxPageItems,
                   currentPage: page,
                   totalItems: TransactionList?.length}">
-                    <td><input #cb type="checkbox"></td>
+                    <td><input value="{{this.item | json}}" #cb type="checkbox"></td>
                     <td>{{item.id}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.tr_total | currency : "VND"}}</td>
@@ -81,6 +83,7 @@
                       </b>
                     </td>
                   </tr>
+                  </tbody>
                 </table>
                 <pagination-controls id="pag1" directionLinks="true" (pageChange)="pageChanged($event)" maxSize="1000"></pagination-controls>
               </div>
