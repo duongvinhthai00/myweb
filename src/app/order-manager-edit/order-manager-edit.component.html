@@ -53,16 +53,87 @@
                         <div class="form-group">
                           <label for="inputClientCompany">Tên Người Nhận Hàng</label>
                           <input formControlName="name" type="text" id="inputClientCompany" class="form-control">
+                          <span style="color: red;text-transform:capitalize;"
+                            *ngIf="this.error?.name">{{this.error.name}}</span>
                         </div>
                         <div class="form-group">
                           <label for="inputProjectLeader">Địa Chỉ</label>
                           <input formControlName="tr_address" type="text" min="1" max="100" id="inputProjectLeader"
                             class="form-control">
+                          <span style="color: red;text-transform:capitalize;"
+                              *ngIf="this.error?.tr_address">{{this.error.tr_address}}</span>
                         </div>
 
                         <div class="form-group">
                           <label for="inputProjectLeader">Số Điện Thoại</label>
                           <input formControlName="tr_phone" type="text" id="inputProjectLeader" class="form-control">
+                          <span style="color: red;text-transform:capitalize;"
+                            *ngIf="this.error?.tr_phone">{{this.error.tr_phone}}</span>
+                        </div>
+                        <div *ngIf="this.transaciton.tr_transport_id" class="form-group">
+                          <label for="inputStatus">Phương Thức Vận Chuyển</label>
+                          <select formControlName="tr_transport_id" id="inputStatus" class="form-control custom-select">
+                            <option [ngValue]="this.transaciton.tr_transport_id" selected>{{this.transaciton.tr_transport_id.name}} - Thời Gian : {{this.transaciton.tr_transport_id.time}} - Phí :{{this.transaciton.tr_transport_id.fee | currency:"VND"}}</option>
+                            <ng-container *ngFor="let item of this.transport_list">
+                              <option [ngValue]="this.item">{{this.item.name}} - Thời Gian : {{this.item.time}} - Phí :{{this.item.fee | currency:"VND"}}</option>
+                            </ng-container>
+                          </select>
+                          <span style="color: red;text-transform:capitalize;"
+                            *ngIf="this.error?.tr_transport_id">{{this.error.tr_transport_id}}</span>
+                        </div>
+
+                        <div *ngIf="this.transaciton.tr_transport_id == null" class="form-group">
+                          <label for="inputStatus">Phương Thức Vận Chuyển</label>
+                          <select formControlName="tr_transport_id" id="inputStatus" class="form-control custom-select">
+                            <ng-container *ngFor="let item of this.transport_list">
+                              <option [ngValue]="this.item">{{this.item.name}} - Thời Gian : {{this.item.time}} - Phí :{{this.item.fee | currency:"VND"}}</option>
+                            </ng-container>
+                          </select>
+                          <span style="color: red;text-transform:capitalize;"
+                            *ngIf="this.error?.tr_transport_id">{{this.error.tr_transport_id}}</span>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputStatus">Hình Thức Thanh Toán</label>
+                          <select formControlName="payment" id="inputStatus" class="form-control custom-select">
+                            <ng-container *ngIf="this.transaciton.payment == 0">
+                                <option selected [ngValue]="this.transaciton.payment">Thanh Toán Sau Khi Nhận Hàng</option>
+                                <option selected [ngValue]="1">Thanh Toán Bằng Thẻ Ngân Hàng
+                                </option>
+                                <span style="color: red;text-transform:capitalize;"
+                                  *ngIf="this.error?.payment">{{this.error.payment}}</span>
+                            </ng-container>  
+
+                            <ng-container *ngIf="this.transaciton.payment == 1">
+                              <option selected [ngValue]="this.transaciton.payment">Thanh Toán Bằng Thẻ Ngân Hàng
+                              </option>
+                              <option selected [ngValue]="0">Thanh Toán Sau Khi Nhận Hàng
+                              </option>
+                              <span style="color: red;text-transform:capitalize;"
+                                *ngIf="this.error?.payment">{{this.error.payment}}</span>
+                            </ng-container>
+                            
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputStatus">Trạng Thái Thanh Toán</label>
+                          <select formControlName="payment_status" id="inputStatus" class="form-control custom-select">
+                            <ng-container *ngIf="this.transaciton.payment_status == 0">
+                              <option selected [ngValue]="this.transaciton.payment_status">Chưa Thanh Toán
+                              </option>
+                              <option selected [ngValue]="1">Đã Thanh Toán
+                              </option>
+                            </ng-container>
+
+                            <ng-container *ngIf="this.transaciton.payment_status == 1">
+                              <option selected [ngValue]="this.transaciton.payment_status">Đã Thanh Toán
+                              </option>
+                              <option selected [ngValue]="0">Chưa Thanh Toán
+                              </option>
+                            </ng-container>
+
+                          </select>
                         </div>
 
                         <div class="form-group">

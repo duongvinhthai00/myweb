@@ -6,16 +6,16 @@
       <ul class="b-crumbs">
           <li>
               <a [routerLink]="['/']">
-                  Home
+                  Trang Chủ
               </a>
           </li>
           <li>
-              <span>TRANSACTION</span>
+              <span>Thông Tin Giao Dịch</span>
           </li>
       </ul>
-      <h1 class="main-ttl"><span>TRANSACTION</span></h1>
+      <h1 class="main-ttl"><span>Thông Tin Giao Dịch</span></h1>
       <form (ngSubmit)="Submit()" [formGroup] = "transactionForm">
-      <div class="auth-wrap">
+      <div class="auth-wrap" style="color: black;">
           <div class="auth-col">
             <div class="card">
               <div style="padding: 10px 0;background-color: #0c0c0cc7;"><b class="test" style="color:#fafafa;padding-left: 23px;">THÔNG TIN NHẬN HÀNG</b></div>
@@ -32,8 +32,31 @@
                     <label for="username" style="font-weight: bold;color: black;padding-left: 5px;"> Địa Chỉ <span class="required">*</span></label><input formControlName="tr_address" type="text" id="username">
                     <span style="margin-left: 103px;color: red;" *ngIf="this.error?.tr_address">{{this.error.tr_address}}</span>
                   </p>
+                  <p>
+                    <label for="username" style="font-weight: bold;color: black;padding-left: 5px;"> Vận Chuyển <span
+                        class="required">*</span></label>
+                        <select style="width: 80%;height: 30px;" formControlName="tr_transport_id">
+                            <option selected disabled [ngValue]="null">Chọn Phương Thức Vận Chuyển</option>
+                            <ng-container *ngFor="let item of  this.transport">
+                                <option [ngValue]="item">{{this.item.name}} - Thời Gian : {{this.item.time}} - Phí : {{this.item.fee | currency:"VND"}}</option>
+                            </ng-container>
+                        </select>
+                    <span style="margin-left: 103px;color: red;"
+                      *ngIf="this.error?.tr_transport_id">{{this.error.tr_transport_id}}</span>
+                  </p>
+                  <p>
+                    <label for="username" style="font-weight: bold;color: black;padding-left: 5px;"> Thanh Toán <span
+                        class="required">*</span></label>
+                    <select style="width: 80%;height: 30px;" formControlName="payment">
+                      <option selected disabled [ngValue]="null">Chọn Phương Thức Thanh Toán</option>
+                      <option [ngValue]="0">Thanh Toán Sau Khi Nhận Hàng</option>
+                      <option [ngValue]="1">Thanh Toán Bằng Chuyển Thẻ Ngân Hàng</option>
+                    </select>
+                    <span style="margin-left: 103px;color: red;"
+                      *ngIf="this.error?.payment">{{this.error.payment}}</span>
+                  </p>
                   <p style="display: flex;margin-bottom: 0;">
-                    <label for="username" style="font-weight: bold;color: black;padding-left: 5px;">Note <span class="required">*</span></label><textarea _ngcontent-ged-c58="" rows="5" cols="50" formcontrolname="tr_note" id="username" style="margin: 0px 0px 0px 16.9886px; width: 498px; height: 110px;" ng-reflect-name="tr_note" class="ng-pristine ng-valid ng-touched"></textarea>
+                    <label for="username" style="font-weight: bold;color: black;padding-left: 5px;">Ghi Chú <span class="required">*</span></label><textarea _ngcontent-ged-c58="" rows="5" cols="50" formcontrolname="tr_note" id="username" style="margin: 0px 0px 0px 16.9886px; width: 498px; height: 110px;" ng-reflect-name="tr_note" class="ng-pristine ng-valid ng-touched"></textarea>
                   </p>
 
                 </div>

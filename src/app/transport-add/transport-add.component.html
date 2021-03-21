@@ -1,0 +1,84 @@
+<div class="content-wrapper" style="min-height: 1662.75px;margin-left: 250px;">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Phương Thức Giao Hàng</h1>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <form [formGroup]="this.transportForm" (ngSubmit)="Submit()">
+      <!-- Default box -->
+      <div class="card card-solid">
+        <div class="card-body">
+          <div class="row">
+            <nav class="w-100">
+              <div class="nav nav-tabs" id="product-tab" role="tablist">
+                <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc"
+                  role="tab" aria-controls="product-desc" aria-selected="true">Thêm Phương Thức</a>
+              </div>
+            </nav>
+            <div class="tab-content p-3" id="nav-tabContent" style="width: 100%;">
+              <div class="tab-pane fade active show" id="product-desc" role="tabpanel"
+                aria-labelledby="product-desc-tab">
+                <!--NOi DUng-->
+                <div class="row">
+                  <div class="col-md-9" style="margin: 0 auto;">
+                    <div class="card card-primary">
+                      <div class="card-header" style="background-color: #4a5a69;">
+                        <h3 class="card-title">Thêm Phương Thức Giao Hàng</h3>
+
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="card-body" style="display: block;">
+                        <div class="form-group">
+                          <label for="inputName">Tên Phương Thức Giao Hàng</label>
+                          <input formControlName="name" type="text" id="inputName" class="form-control">
+                          <span style="color: red;text-transform:capitalize;"
+                            *ngIf="this.error?.name">{{this.error.name}}</span>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputName">Thời Gian Giao Hàng</label>
+                          <input formControlName="time" type="text" id="inputName" class="form-control">
+                          <span style="color: red;text-transform:capitalize;"
+                            *ngIf="this.error?.time">{{this.error.time}}</span>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputName">Phí Giao Hàng</label>
+                          <input formControlName="fee" type="number" id="inputName" class="form-control">
+                          <span style="color: red;text-transform:capitalize;"
+                            *ngIf="this.error?.fee">{{this.error.fee}}</span>
+                        </div>
+
+                        <input type="submit" class="btn btn-info float-right" value="Thêm Phương Thức">
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                </div>
+                <!--Noi Dung-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </form>
+
+  </section>
+  <!-- /.content -->
+</div>

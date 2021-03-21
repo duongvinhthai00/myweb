@@ -1,5 +1,5 @@
 import { FormGroup, FormControl } from '@angular/forms';
-import { TransactionModel } from 'src/app/model/TransactionModel';
+import { TransactionModel, TransportModel } from 'src/app/model/TransactionModel';
 import { pluck } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionServiceService } from './../service/transaction_service/transaction-service.service';
@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
   '../../assets/TemplateAdmin/plugins/fontawesome-free/css/all.min.css',]
 })
 export class OrderManagerEditComponent implements OnInit {
-
+  transport_list : TransportModel[];
   formTransaction : any;
   status = [
     {number : 0, title : "Đang Gửi"},
@@ -42,21 +42,39 @@ export class OrderManagerEditComponent implements OnInit {
           tr_user_id : new FormControl(this.transaciton.tr_user_id),
           name : new FormControl(this.transaciton.name),
           tr_status : new FormControl(this.transaciton.tr_status),
-          created_at : new FormControl(this.transaciton.created_at)
+          created_at : new FormControl(this.transaciton.created_at),
+          tr_transport_id : new FormControl(this.transaciton.tr_transport_id),
+          payment : new FormControl(this.transaciton.payment),
+          payment_status : new FormControl(this.transaciton.payment_status)
         });
         
         this.tr_status = this.status.find(x=>{
           return x.number == this.transaciton.tr_status
-        })
+        });
+
         this.status = this.status.filter(x=>{
           if(x.number != this.transaciton.tr_status){
             return true;
           }
         });
+
+        this.transactionService.GetAllTransport().subscribe(data=>{
+          if(this.transaciton.tr_transport_id?.id != null){
+            this.transport_list = data.filter(x=>{
+            if(x.id != this.transaciton.tr_transport_id.id){
+              return true;
+            }
+            });
+          }else{
+            this.transport_list = data;
+          }
+        });
+
       });
     });
+    
   }
-
+  error : any
   Submit(){
     this.transactionService.updateTransaction(this.formTransaction.value).subscribe(data=>{
     Swal.fire({
@@ -65,10 +83,7 @@ export class OrderManagerEditComponent implements OnInit {
       });
     this.router.navigate(['/admin/order-manager']);
     },(error)=>{
-      Swal.fire({
-        icon: 'error',
-        text: error.error.value,
-      });
+      this.error = error.error;
     });
   }
 

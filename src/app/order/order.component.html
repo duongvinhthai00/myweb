@@ -3,73 +3,91 @@
   <section class="container stylization maincont">
 
 
-      <ul class="b-crumbs">
-          <li>
-              <a href="index.html">
-                  Trang Chủ
-              </a>
-          </li>
-          <li>
-              <span>Đơn Hàng Của Tôi</span>
-          </li>
-      </ul>
-      <h1 class="main-ttl"><span>ĐƠN HÀNG CỦA TÔI</span></h1>
-      <!-- Cart Items - start -->
-      <div class="card">
-        <div style="padding: 10px 0;background-color: #4a8fc5;"><b class="test" style="color:#fdfdfd;font-size: 22px; padding-left: 20px;">Danh Sách Đơn Hàng</b></div>
+    <ul class="b-crumbs">
+      <li>
+        <a [routerLink]="['/']">
+          Trang Chủ
+        </a>
+      </li>
+      <li>
+        <span>Đơn Hàng Của Tôi</span>
+      </li>
+    </ul>
+    <h1 class="main-ttl"><span>ĐƠN HÀNG CỦA TÔI</span></h1>
+    <!-- Cart Items - start -->
+    <div class="card">
+      <div style="padding: 10px 0;background-color: #4a8fc5;"><b class="test"
+          style="color:#fdfdfd;font-size: 22px; padding-left: 20px;">Danh Sách Đơn Hàng</b></div>
       <form action="#">
 
-          <div class="cart-items-wrap">
-              <table class="cart-items">
-                  <thead>
-                  <tr>
-                      <td class="cart-image" style="font-size: 17px;font-weight: bold;margin: 0;text-align: center;">STT</td>
-                      <td class="cart-ttl" style="font-size: 17px;font-weight: bold;width: 182px;text-align: center;">TÊN NGƯỜI ĐẶT</td>
-                      <td class="cart-price" style="font-size: 17px;font-weight: bold;text-align: center;">TỔNG TIỀN</td>
-                      <td class="cart-quantity" style="font-size: 17px;font-weight: bold;text-align: center;">TRẠNG THÁI</td>
-                      <td class="cart-summ" style="font-size: 17px;font-weight: bold;text-align: center;">NGÀY ĐẶT HÀNG</td>
-                      <td class="cart-summ" style="font-size: 17px;font-weight: bold;text-align: center;">HÀNH ĐỘNG</td>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <ng-container *ngIf="this.transactions?.length>0">
-                  <tr *ngFor="let item of this.transactions | paginate :{id:'pag1', itemsPerPage: maxPageItems,
+        <div class="cart-items-wrap">
+          <table class="cart-items">
+            <thead>
+              <tr>
+                <td class="cart-image" style="font-size: 17px;font-weight: bold;margin: 0;text-align: center;">STT</td>
+                <td class="cart-ttl" style="font-size: 17px;font-weight: bold;width: 182px;text-align: center;">Tên
+                  Người Đặt</td>
+                <td class="cart-price" style="font-size: 17px;font-weight: bold;text-align: center;">Tổng Tiền</td>
+                <td class="cart-quantity" style="font-size: 17px;font-weight: bold;text-align: center;">Trạng Thái</td>
+                <td class="cart-quantity" style="font-size: 17px;font-weight: bold;text-align: center;">Thanh Toán</td>
+                <td class="cart-summ" style="font-size: 17px;font-weight: bold;text-align: center;">Ngày Đặt Hàng</td>
+                <td class="cart-summ" style="font-size: 17px;font-weight: bold;text-align: center;">Hành Động</td>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngIf="this.transactions?.length>0">
+                <tr *ngFor="let item of this.transactions | paginate :{id:'pag1', itemsPerPage: maxPageItems,
                         currentPage: page,
                         totalItems: this.transactions?.length};let idx = index">
-                      <td style="text-align: center;" class="cart-image">
-                          <b style="font-size: 16px;">{{idx + 1}}</b>
-                      </td>
-                      <td style="text-align: center;" class="cart-ttl">
-                          <b style="font-size: 16px;">{{item.name}}</b>
-                      </td>
-                      <td style="text-align: center;" class="cart-price">
-                          <b style="font-size: 16px;">{{item.tr_total | currency:"VND"}}</b>
-                      </td>
-                      <td style="text-align: center;" class="cart-quantity">
-                          <span *ngIf="item.tr_status == 0" class="badge badge-success1">Đang Gửi</span>
-                          <span *ngIf="item.tr_status == 1" class="badge badge-success2">Đang Xử Lý</span>
-                          <span *ngIf="item.tr_status == 2" class="badge badge-success5">Đang Giao Hàng</span>
-                          <span *ngIf="item.tr_status == 3" class="badge badge-success3">Hoàn Thành</span>
-                          <span *ngIf="item.tr_status == 4" class="badge badge-success4">Đã Bị Hủy</span>
-                      </td>
-                      <td style="text-align: center;" class="cart-summ">
-                          <b style="font-size: 16px;">{{item.created_at | date : 'dd/MM/yyyy - hh:mm'}}</b>
-                      </td>
-                      <td style="text-align: center;" class="cart-summ">
-                        <b style="font-size: 16px;"><a [routerLink]="['/order-detail',item.id]" style="padding: 8px;color: white;;background-color: rgb(17, 138, 219)"><i class="far fa-eye"></i></a>
-                            <a (click)="deleteOrder(this.item)" *ngIf="item.tr_status == 0" style="padding: 8px;color: white;background-color: red;margin-left: 15px"><i class="fas fa-trash"></i></a>
-                        </b>
+                  <td style="text-align: center;" class="cart-image">
+                    <b style="font-size: 16px;">{{idx + 1}}</b>
+                  </td>
+                  <td style="text-align: center;" class="cart-ttl">
+                    <b style="font-size: 16px;">{{item.name}}</b>
+                  </td>
+                  <td style="text-align: center;" class="cart-price">
+                    <b style="font-size: 16px;">{{item.tr_total | currency:"VND"}}</b>
+                  </td>
+                  <td style="text-align: center;" class="cart-quantity">
+                    <span *ngIf="item.tr_status == 0" class="badge badge-success1">Đang Gửi</span>
+                    <span *ngIf="item.tr_status == 1" class="badge badge-success2">Đang Xử Lý</span>
+                    <span *ngIf="item.tr_status == 2" class="badge badge-success5">Đang Giao Hàng</span>
+                    <span *ngIf="item.tr_status == 3" class="badge badge-success3">Hoàn Thành</span>
+                    <span *ngIf="item.tr_status == 4" class="badge badge-success4">Đã Bị Hủy</span>
+                  </td>
+                  <td style="text-align: center;" class="cart-quantity">
+                    <span *ngIf="item.payment_status == 0" style="padding:8px 6px;background-color: rgb(236 11 11);" class="badge badge-success6">Chưa Thanh Toán</span>
+                    <span *ngIf="item.payment_status == 1" style="background-color: #28a745;" class="badge">Đã Thanh
+                      Toán</span>
+                  </td>
+                  <td style="text-align: center;" class="cart-summ">
+                    <b style="font-size: 16px;">{{item.created_at | date : 'dd/MM/yyyy - hh:mm'}}</b>
+                  </td>
+                  <td style="text-align: center;" class="cart-summ">
+                    <b style="font-size: 16px;">
+                      <a [routerLink]="['/order-detail',item.id]"
+                        style="padding: 8px;color: white;;background-color: rgb(17, 138, 219)"><i
+                          class="far fa-eye"></i></a>
+                      <a (click)="deleteOrder(this.item)" *ngIf="item.tr_status == 0"
+                        style="padding: 8px;color: white;background-color: red;margin-left: 15px"><i
+                          class="fas fa-trash"></i></a>
+                      <a  *ngIf="item.payment == 1" [routerLink]="['/payment-info',item.id]"
+                        style="padding: 8px;color: white;background-color: rgb(10, 151, 46);margin-left: 15px"><i
+                          class="far fa-credit-card"></i>
+                      </a>
+                    </b>
 
-                    </td>
-                  </tr>
-                    </ng-container>
-                  </tbody>
-              </table>
-              <pagination-controls id="pag1" directionLinks="true" (pageChange)="pageChanged($event)" maxSize="1000"></pagination-controls>
-          </div>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+          <pagination-controls id="pag1" directionLinks="true" (pageChange)="pageChanged($event)" maxSize="1000">
+          </pagination-controls>
+        </div>
       </form>
       <!-- Cart Items - end -->
-      </div>
+    </div>
   </section>
 </main>
 <!-- Main Content - end -->

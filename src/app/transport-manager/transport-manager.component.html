@@ -1,0 +1,64 @@
+  <div class="content-wrapper" style="margin-left: 250px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Phương Thức Giao Hàng</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header" style="background-color: cadetblue;color: greenyellow;">
+                <h3 class="card-title">Phương Thức Giao Hàng</h3>
+              </div>
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <button (click)="deleteAllTransport()" *ngIf="this.transportListDel.length>0" style="float: right;"
+                  type="button" class="btn btn-info"><i class="fa fa-trash" style="padding-right: 5px;"
+                    aria-hidden="true"></i>Xóa</button>
+                <table id="customers">
+                  <tr>
+                    <th style="text-align: center;"> Tất Cả </th>
+                    <th style="text-align: center;">Phương Thức Giao Hàng</th>
+                    <th style="text-align: center;">Thời Gian Giao Hàng</th>
+                    <th style="text-align: center;">Phí Giao Hàng</th>
+                    <th style="text-align: center;">Hành Động</th>
+                  </tr>
+                  <tr (click)="checkedBox(cb)" *ngFor="let item of this.transportList">
+                      <td><input value="{{this.item | json}}" #cb type="checkbox"></td>
+                      <td>{{this.item.name}}</td>
+                      <td>{{this.item.time}}</td>
+                      <td>{{this.item.fee | currency : "VND"}}</td>
+                      <td>
+                        <b style="font-size: 16px;">
+                          <a [routerLink]="['/admin/transport-edit/',this.item.id]"
+                            style="padding: 8px;color: white;background-color: rgb(17, 138, 219);margin-right: 10px;"><i
+                              class="fas fa-edit"></i></a>
+                          <a (click)="DeleteTransport(item)"
+                            style="padding: 8px;color: white;background-color: red;"><i class="fas fa-trash"></i></a>
+                        </b>
+                      </td>
+                  </tr>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>

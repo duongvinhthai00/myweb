@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { OrderModel, TransactionModel } from 'src/app/model/TransactionModel';
+import { OrderModel, RevenueModel, TransactionModel, TransportModel } from 'src/app/model/TransactionModel';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
@@ -48,5 +48,28 @@ export class TransactionServiceService {
   handleError(error){
     return throwError(error);
   }
+
+  GetAllTransport(){
+    return this.http.get<TransportModel[]>(`http://localhost:8080/api/v9/transport-all`);
+  }
   
+  DeleteTransport(id : number){
+    return this.http.delete<Boolean>(`http://localhost:8080/api/v9/transport-del/${id}`);
+  }
+
+  AddTransport(transportDTO : TransportModel){
+    return this.http.post<TransportModel>(`http://localhost:8080/api/v9/transport-add`,transportDTO).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  GetTransportById(id : number){
+    return this.http.get<TransportModel>(`http://localhost:8080/api/v9/get-transport/${id}`);
+  }
+
+  GetRevenue(fromDay:string,toDay:string){
+    console.log(fromDay,toDay);
+    return this.http.get<RevenueModel>(`http://localhost:8080/api/v8/get-revenue/${fromDay}/${toDay}`);
+  }
+
 }

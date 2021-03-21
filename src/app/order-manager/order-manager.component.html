@@ -23,7 +23,7 @@
               <div class="card-body">
                 <form style="width: 33%;float: right;">
                   <div class="input-group">
-                      <input style="height: 41px;"  type="text" class="form-control form-control-lg" name="search" [(ngModel)]="searchText" placeholder="Tìm Kiếm Sản Phẩm">
+                      <input style="height: 41px;"  type="text" class="form-control form-control-lg" name="search" [(ngModel)]="searchText" placeholder="Tìm Kiếm Đơn Hàng">
                       <div style="height: 41px;" class="input-group-append">
                           <button type="submit" class="btn btn-lg btn-default">
                               <i class="fa fa-search"></i>
@@ -55,7 +55,7 @@
                     <th style="text-align: center;">Tổng Tiền</th>
                     <th style="text-align: center;">Trạng Thái</th>
                     <th style="text-align: center;">Ngày Đặt</th>
-                    <th style="text-align: center;">Ngày Cập Nhật</th>
+                    <th style="text-align: center;">Thanh Toán</th>
                     <th style="text-align: center;">Hành Động</th>
                   </tr>
                   <tbody>
@@ -73,8 +73,12 @@
                         <span *ngIf="item.tr_status == 3" class="badge badge-success">Hoàn Thành</span>
                         <span *ngIf="item.tr_status == 4" class="badge badge-danger">Đã Bị Hủy</span>
                     </td>
-                    <td>{{item.created_at | date : 'dd-MM-yyyy'}}</td>
-                    <td>{{item.updated_at | date : 'dd-MM-yyyy - h:mm'}}</td>
+                    <td>{{item.created_at | date : 'dd-MM-yyyy - h:mm'}}</td>
+                    <td>
+                      <span *ngIf="item.payment_status == 1" class="badge badge-success">Đã Thanh Toán</span>
+                      <span *ngIf="item.payment_status == 0" style="background-color: rgb(236 11 11);"
+                        class="badge">Chưa Thanh Toán</span>
+                    </td>
                     <td>
                       <b style="font-size: 16px;">
                         <a [routerLink]="['/admin/order-manager-detail/',item.id]" style="padding: 8px;color: white;margin-right: 10px;background-color: rgb(17, 138, 219)"><i class="far fa-eye"></i></a>

@@ -19,6 +19,14 @@ import { ProductsComponent } from '../products/products.component';
 import { RegisterComponent } from '../register/register.component';
 import { TransactionComponent } from '../transaction/transaction.component';
 import { OrderManagerDetailComponent } from '../order-manager-detail/order-manager-detail.component';
+import { PaymentComponent } from '../payment/payment.component';
+import { PaymentManagerComponent } from '../payment-manager/payment-manager.component';
+import { PaymentAddComponent } from '../payment-add/payment-add.component';
+import { PaymentEditComponent } from '../payment-edit/payment-edit.component';
+import { TransportManagerComponent } from '../transport-manager/transport-manager.component';
+import { TransportAddComponent } from '../transport-add/transport-add.component';
+import { TransportEditComponent } from '../transport-edit/transport-edit.component';
+import { RevenueComponent } from '../revenue/revenue.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent, children:[
@@ -31,7 +39,8 @@ const routes: Routes = [
     {path:"order",component:OrderComponent},
     {path:"order-detail/:slug",component:OrderDetailComponent},
     {path:"all-products",component:ProductsComponent},
-    {path:"keyword/:slug",component : ProductsComponent}
+    {path:"keyword/:slug",component : ProductsComponent},
+    {path:"payment-info/:slug",component:PaymentComponent}
   ]},
 
   {
@@ -42,7 +51,14 @@ const routes: Routes = [
       {path:"edit-product/:slug",component:ProductEditComponent},
       {path:"order-manager",component:OrderManagerComponent},
       {path:"order-manager-detail/:slug",component:OrderManagerDetailComponent},
-      {path:"order-manager-edit/:slug",component:OrderManagerEditComponent}
+      {path:"order-manager-edit/:slug",component:OrderManagerEditComponent},
+      {path:"payment-manager",component:PaymentManagerComponent},
+      {path:"payment-add",component:PaymentAddComponent},
+      {path:"payment-edit/:slug",component:PaymentEditComponent},
+      {path:"transport-manager",component:TransportManagerComponent},
+      {path:"transport-add",component:TransportAddComponent},
+      {path:"transport-edit/:slug",component:TransportEditComponent},
+      {path:"revenue",component:RevenueComponent}
   ]},
 
     {path:"admin/login",component : AdminloginComponent}

@@ -6,12 +6,6 @@
         <div class="col-sm-6">
           <h1>Sản Phẩm</h1>
         </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">DataTables</li>
-          </ol>
-        </div>
       </div>
     </div><!-- /.container-fluid -->
   </section>
@@ -40,7 +34,7 @@
             </div>
             <div class="card-body">
               <div class="row mb-4">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <h6 class="mb-3">Người Gửi:</h6>
                   <div>
                     <strong>Admin</strong>
@@ -50,7 +44,7 @@
                   <div>Phone: 18001600</div>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <h6 class="mb-3">Người Nhận:</h6>
                   <div>
                     <strong>{{this.transaction.name}}</strong>
@@ -59,6 +53,18 @@
                   <div>Email: {{this.transaction.tr_user_id.email}}</div>
                   <div>Phone: {{this.transaction.tr_phone}}</div>
                 </div>
+
+                <div *ngIf="this.transaction.tr_transport_id" class="col-sm-4">
+                  <h6 class="mb-3">Hình Thức Giao Dịch :</h6>
+                  <div>Hình Thức Vận Chuyển : {{this.transaction.tr_transport_id.name}}</div>
+                  <div>Thời Gian Vận Chuyển : {{this.transaction.tr_transport_id.time}}</div>
+                  <div>Phí Vận Chuyển : {{this.transaction.tr_transport_id.fee | currency : "VND"}}</div>
+                  <div *ngIf="this.transaction.payment == 0">Hình Thức Chuyển Khoảng : Thanh Toán Sau Khi Nhận Hàng
+                  </div>
+                  <div *ngIf="this.transaction.payment == 1">Hình Thức Chuyển Khoảng : Thanh Toán Bằng Thẻ Ngân Hàng
+                  </div>
+                </div>
+
               </div>
 
               <div class="table-responsive-sm">
@@ -101,7 +107,7 @@
                           <strong>Tổng Cộng</strong>
                         </td>
                         <td style="width: 201px;border: 1px solid;" class="right">
-                          <strong style="margin-left: 79px;">{{this.transaction.tr_total | currency : 'VND'}}</strong>
+                          <strong style="margin-left: 43px;">{{this.transaction.tr_total | currency : 'VND'}}</strong>
                         </td>
                       </tr>
                     </tbody>

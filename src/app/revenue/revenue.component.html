@@ -1,0 +1,70 @@
+<div class="content-wrapper" style="margin-left: 250px;">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Thông Kê Doanh Thu</h1>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row" style="display: flex;
+    flex-direction: inherit;
+    justify-content: space-between;padding-bottom: 11px;">
+        <div style="    margin-left: -15px;
+    font-size: 22px;">
+          <b style="color: red;text-transform: uppercase;">Tổng Doanh Thu : {{this.total | currency : "VND"}}</b>
+        </div>
+        <form (ngSubmit)="Submit()" [formGroup]="this.formDayPicker">
+        <div class="date-picker" style="display: inline-block;
+    margin-right: -15px;">
+          Từ Ngày : <input formControlName="fromDay" style="height: 33px;" type="date">
+          Đến Ngày : <input formControlName="toDay" style="height: 33px;" type="date">
+        </div>
+        <input type="submit" hidden value="Submit">
+        </form>
+      </div>
+      <div class="row">
+        <div class="card card-info" style="width: 80%;margin: 0 auto;">
+          <div class="card-header">
+            <h3 class="card-title">Thông Kê Doanh Thu</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body" aria-disabled="true">
+            <div class="chart">
+              <div class="chartjs-size-monitor">
+                <div class="chartjs-size-monitor-expand">
+                  <div class=""></div>
+                </div>
+                <div class="chartjs-size-monitor-shrink">
+                  <div class=""></div>
+                </div>
+              </div>
+              <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType"
+                style="min-height: 250px; height: 416px; max-width: 100%; display: block;"
+                ></canvas>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.col (RIGHT) -->
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>

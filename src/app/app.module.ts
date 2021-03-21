@@ -27,6 +27,15 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
 import { OrderManagerComponent } from './order-manager/order-manager.component';
 import { OrderManagerDetailComponent } from './order-manager-detail/order-manager-detail.component';
 import { OrderManagerEditComponent } from './order-manager-edit/order-manager-edit.component';
+import { PaymentComponent } from './payment/payment.component';
+import { PaymentManagerComponent } from './payment-manager/payment-manager.component';
+import { PaymentAddComponent } from './payment-add/payment-add.component';
+import { PaymentEditComponent } from './payment-edit/payment-edit.component';
+import { TransportManagerComponent } from './transport-manager/transport-manager.component';
+import { TransportAddComponent } from './transport-add/transport-add.component';
+import { TransportEditComponent } from './transport-edit/transport-edit.component';
+import { RevenueComponent } from './revenue/revenue.component';
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +58,14 @@ import { OrderManagerEditComponent } from './order-manager-edit/order-manager-ed
     OrderManagerComponent,
     OrderManagerDetailComponent,
     OrderManagerEditComponent,
+    PaymentComponent,
+    PaymentManagerComponent,
+    PaymentAddComponent,
+    PaymentEditComponent,
+    TransportManagerComponent,
+    TransportAddComponent,
+    TransportEditComponent,
+    RevenueComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +75,8 @@ import { OrderManagerEditComponent } from './order-manager-edit/order-manager-ed
     NgxPaginationModule,
     Ng2SearchPipeModule,
     FormsModule,
-    CKEditorModule
+    CKEditorModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

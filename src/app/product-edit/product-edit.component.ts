@@ -55,7 +55,7 @@ export class ProductEditComponent implements OnInit {
         this.url = `../assets/image/${this.ProductDetail.pro_avatar}`;
         this.homeService.getCateGory().subscribe(data => {
           this.categoryList = data.filter(x => {
-            if (x.id != this.ProductDetail.id) {
+            if (x.id != this.ProductDetail.pro_category_id.id) {
               return true;
             }
           });
@@ -126,7 +126,7 @@ export class ProductEditComponent implements OnInit {
         if (this.ManyFile.length > 0) {
           this.productService.DeleteImageProduct(data.id).subscribe(data=>{
             console.log(data);
-          })
+          });
           for (let i = 0; i < this.ManyFile.length; i++) {
             this.productService.uploadManyImage(data.id, this.ManyFile[i]).subscribe(data => {
               console.log(data);

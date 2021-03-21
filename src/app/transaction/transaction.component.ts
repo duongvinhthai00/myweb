@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { HomeComponent } from '../home/home.component';
 import { CardModel } from '../model/CardModel';
-import { TransactionModel } from '../model/TransactionModel';
+import { TransactionModel, TransportModel } from '../model/TransactionModel';
 import { CardServiceService } from '../service/card_service/card-service.service';
 import { TransactionServiceService } from '../service/transaction_service/transaction-service.service';
 import Swal from 'sweetalert2'
@@ -15,11 +15,14 @@ import Swal from 'sweetalert2'
 })
 export class TransactionComponent implements OnInit {
   card : CardModel[];
+  transport : TransportModel[] = [];
   transactionForm = new FormGroup({
     name : new FormControl(this.homeComponent.userLogined?.name),
     tr_address :new FormControl(this.homeComponent.userLogined?.address),
     tr_phone : new FormControl(this.homeComponent.userLogined?.phone),
     tr_note : new FormControl(""),
+    tr_transport_id : new FormControl(null),
+    payment : new FormControl(null)
   });
   constructor(private homeComponent : HomeComponent,private router : Router,private cardService : CardServiceService,
     private TransactionService : TransactionServiceService) { }
@@ -32,6 +35,9 @@ export class TransactionComponent implements OnInit {
       }else{
         this.cardService.getCard(this.homeComponent.userLogined.id).subscribe(data=>{
           this.card = data;
+        });
+        this.TransactionService.GetAllTransport().subscribe(data=>{
+          this.transport = data;
         });
       }
     }
@@ -55,8 +61,12 @@ export class TransactionComponent implements OnInit {
       tr_phone : this.transactionForm.value.tr_phone,
       tr_note : this.transactionForm.value.tr_note,
       name : this.transactionForm.value.name,
-      tr_user_id : this.homeComponent.userLogined
+      tr_user_id : this.homeComponent.userLogined,
+      tr_transport_id : this.transactionForm.value.tr_transport_id,
+      payment : this.transactionForm.value.payment,
+      payment_status : 0
     }
+    console.log(transaction);
     this.TransactionService.addTransaction(transaction).subscribe(data=>{
       this.homeComponent.totalCard = 0;
       Swal.fire({
@@ -64,6 +74,18 @@ export class TransactionComponent implements OnInit {
           icon: 'success',
           title: 'Đặt Hàng Thành Công',
           showConfirmButton: true,
+      }).then(result=>{
+        if(result.isConfirmed){
+          if(transaction.payment == 1){
+            Swal.fire({
+              position: 'center',
+              icon : 'info',
+              title : 'Vui Lòng Thanh Toán Để Đơn Hàng Được Xử Lý',
+              showConfirmButton: true,
+            });
+            this.router.navigate(['/payment-info/',data.id]);
+          }
+        } 
       })
       this.router.navigate(['/order']);
     },(error)=>{

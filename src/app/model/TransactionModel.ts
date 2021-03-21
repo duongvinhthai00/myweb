@@ -11,7 +11,17 @@ export interface TransactionModel{
   created_at?:Date,
   updated_at?:Date,
   name:string,
-  tr_user_id:UserModel
+  tr_user_id:UserModel,
+  tr_transport_id : TransportModel,
+  payment : number,
+  payment_status : number
+}
+
+export interface TransportModel{
+  id ?: number,
+  name : string, 
+  time : string,
+  fee ?: number
 }
 
 
@@ -25,4 +35,20 @@ export interface OrderModel{
     update_at : Date,
     or_transaction_id:TransactionModel,
     or_product_id: ProductModel
+}
+
+export interface RevenueModel{
+    th1 : number,
+    th2 : number,
+    th3 : number,
+    th4 : number,
+    th5 : number,
+    th6 : number,
+    th7 : number,
+    th8 : number,
+    th9 : number,
+    th10 : number,
+    th11: number,
+    th12 : number,
+    total : number,
 }
