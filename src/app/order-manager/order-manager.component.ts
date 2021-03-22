@@ -109,6 +109,7 @@ export class OrderManagerComponent implements OnInit {
     if (result.isConfirmed) {
       for(let i = 0;i<this.TransactionListDel.length;i++){
         this.transactionService.deleteTransaction(this.TransactionListDel[i]).subscribe(data=>{
+          console.log(data);
           this.transactionService.GetAllTransaction().subscribe(data=>{
           this.TransactionList = this.SortTimeNew(data);
         });

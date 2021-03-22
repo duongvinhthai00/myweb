@@ -33,10 +33,10 @@
                     <span style="margin-left: 103px;color: red;" *ngIf="this.error?.tr_address">{{this.error.tr_address}}</span>
                   </p>
                   <p>
-                    <label for="username" style="font-weight: bold;color: black;padding-left: 5px;"> Vận Chuyển <span
+                    <label for="username" style="font-weight: bold;color: black;padding-left: 5px;"> Giao Hàng <span
                         class="required">*</span></label>
                         <select style="width: 80%;height: 30px;" formControlName="tr_transport_id">
-                            <option selected disabled [ngValue]="null">Chọn Phương Thức Vận Chuyển</option>
+                            <option selected disabled [ngValue]="null">Chọn Phương Thức Giao Hàng</option>
                             <ng-container *ngFor="let item of  this.transport">
                                 <option [ngValue]="item">{{this.item.name}} - Thời Gian : {{this.item.time}} - Phí : {{this.item.fee | currency:"VND"}}</option>
                             </ng-container>

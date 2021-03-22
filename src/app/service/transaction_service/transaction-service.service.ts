@@ -20,7 +20,7 @@ export class TransactionServiceService {
   }
 
   deleteTransaction(tr_id : number){
-    return this.http.delete<Boolean>(`http://localhost:8080/api/v8/transaction/${tr_id}`);
+    return this.http.delete(`http://localhost:8080/api/v8/transaction/${tr_id}`);
   }
 
   getTransactionByID(tr_id : number){

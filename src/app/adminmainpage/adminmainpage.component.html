@@ -20,14 +20,14 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{this.newOrderNumber}}</h3>
 
-                <p>New Orders</p>
+                <p>Đơn Hàng Mới</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a  [routerLink]="['/admin/order-manager']" class="small-box-footer">Thêm Thông Tin <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -35,14 +35,14 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>{{this.ProductNumber}}</h3>
 
-                <p>Bounce Rate</p>
+                <p>Tổng Số Sản Phẩm </p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a [routerLink]="['/admin/product-manager']" class="small-box-footer">Thêm Thông Tin <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -50,14 +50,14 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3 style="color: white;">{{this.paymentNumber}}</h3>
 
-                <p>User Registrations</p>
+                <p style="color: white;">Thẻ Ngân Hàng</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="ion ion-card"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a [routerLink]="['/admin/payment-manager']" style="color: white;"  class="small-box-footer"><span style="color: white;">Thêm Thông Tin </span> <i style="color: white;" class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -65,8 +65,10 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>{{this.totalMoney | currency : "VND"}}</h3>
-
+                <h3 *ngIf="this.totalMoney;else no123">{{this.totalMoney | currency : "VND"}}</h3>
+                <ng-template #no123>
+                  <h3>0</h3>
+                </ng-template>
                 <p>Tổng Doanh Thu</p>
               </div>
               <div class="icon">

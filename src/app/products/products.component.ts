@@ -87,7 +87,7 @@ export class ProductsComponent implements OnInit {
 
   Locgia(a:number,b:number){
     this.ProductList = this.ProductListFake.filter(x=>{
-      if(x.pro_price > a && x.pro_price < b){
+      if(x.pro_pay >= a && x.pro_pay <= b){
         return true;
       }
       return false;

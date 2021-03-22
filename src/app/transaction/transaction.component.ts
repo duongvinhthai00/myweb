@@ -44,8 +44,8 @@ export class TransactionComponent implements OnInit {
   }
 
   SumCard() : number{
+    let tong = 0;
     if(this.card != null){
-      let tong = 0;
       for(let i = 0;i<this.card.length;i++){
       tong = tong + this.card[i].c_product_id.pro_pay*this.card[i].c_qty;
       }

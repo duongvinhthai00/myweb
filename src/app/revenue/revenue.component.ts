@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
-import {Chart} from 'node_modules/chart.js'
 import { TransactionServiceService } from '../service/transaction_service/transaction-service.service';
 @Component({
   selector: 'app-revenue',
