@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { pluck } from 'rxjs/operators';
 import { HomeComponent } from '../home/home.component';
@@ -9,6 +9,8 @@ import { CardServiceService } from '../service/card_service/card-service.service
 import { ProductServiceService } from '../service/product_service/product-service.service';
 import { UserServiceService } from '../service/user_service/user-service.service';
 import Swal from 'sweetalert2'
+import { ViewServiceService } from '../service/view-service/view-service.service';
+import { ViewModel } from '../model/ViewModel';
 
 @Component({
   selector: 'app-product-detail',
@@ -19,21 +21,40 @@ import Swal from 'sweetalert2'
 export class ProductDetailComponent implements OnInit  {
   productDetail : ProductModel;
   imageList : ImageModel[];
+  checkRating : Boolean =false;
   constructor(private productService : ProductServiceService,private route :ActivatedRoute,private cardService : CardServiceService,
-    private userService : UserServiceService,private router : Router,private homecomponent : HomeComponent) { }
+    private userService : UserServiceService,private router : Router,private homecomponent : HomeComponent,
+    private viewSer : ViewServiceService) { }
 
   ngOnInit(): void {
+    const user = JSON.parse(localStorage.getItem(this.userService.keyLogin));
     this.route.params.pipe(
       pluck('slug')
     ).subscribe(slug=>{
         this.productService.getProductById(slug).subscribe(data=>{
           this.productDetail = data;
+          let viewDTO : ViewModel ={
+            user_id  : user,
+            pro_id : this.productDetail
+          }
+          setTimeout(()=>{
+            this.viewSer.SaveView(viewDTO).subscribe(data=>{
+              console.log(data);
+            });
+          },20000);
+          this.viewSer.CheckRating(viewDTO).subscribe(data=>{
+            console.log(data);
+            this.checkRating = data;
+          });
         });
+        
         this.productService.getImagesByProduct(slug).subscribe(data=>{
           this.imageList = data;
         });
     })
   }
+
+
 
 
   XuLyInputUp(input){
