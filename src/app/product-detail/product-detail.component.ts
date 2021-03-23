@@ -51,9 +51,11 @@ export class ProductDetailComponent implements OnInit  {
             user_id  : user,
             pro_id : this.productDetail
           }
+          this.viewSer.GetListProductByUser(user.id,data.id,data.pro_category_id.c_group_id.id).subscribe(data=>{
+            console.log(data);
+          });
           setTimeout(()=>{
             this.viewSer.SaveView(viewDTO).subscribe(data=>{
-              console.log(data);
             });
           },20000);
           this.viewSer.CheckRating(viewDTO).subscribe(data=>{
