@@ -132,9 +132,50 @@
                   <div class="prodlist-i-cont">
                       <h3><a [routerLink]="['/product-detail/',item.id]">{{item.pr_name}}</a>
                       </h3>
-                      <p class="prodlist-i-info">
-                          <a href="#" class="prodlist-i-favorites"><i class="fa fa-heart"></i> Add to wishlist</a>
-                      </p>
+                      <div class="prodlist-i-info">
+                        <div class="productMargin"  *ngIf="this.item.pro_rate_number == null">
+                          <span class="fa fa-star"></span>
+                          <span  class="fa fa-star"></span>
+                          <span  class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                        </div>
+                        <div  class="productMargin" *ngIf="this.item.pro_rate_number == 1">
+                          <span class="fa fa-star checked"></span>
+                          <span  class="fa fa-star"></span>
+                          <span  class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                        </div>
+                        <div class="productMargin"  *ngIf="this.item.pro_rate_number == 2">
+                          <span class="fa fa-star checked"></span>
+                          <span  class="fa fa-star checked"></span>
+                          <span  class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                        </div>
+                        <div class="productMargin" *ngIf="this.item.pro_rate_number == 3">
+                          <span class="fa fa-star checked"></span>
+                          <span  class="fa fa-star checked"></span>
+                          <span  class="fa fa-star checked"></span>
+                          <span class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                        </div>
+                        <div class="productMargin" *ngIf="this.item.pro_rate_number == 4">
+                          <span class="fa fa-star checked"></span>
+                          <span  class="fa fa-star checked"></span>
+                          <span  class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star"></span>
+                        </div>
+                        <div class="productMargin"  *ngIf="this.item.pro_rate_number == 5">
+                          <span class="fa fa-star checked"></span>
+                          <span  class="fa fa-star checked"></span>
+                          <span  class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                        </div>
+                      </div>
                       <div class="prodlist-i-action">
                       <span class="prodlist-i-price">
                           <b style="color: #ee4d2d;font-weight: 700;">{{item.pro_pay |currency: "VND" }}</b>

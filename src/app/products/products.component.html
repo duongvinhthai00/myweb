@@ -21,12 +21,7 @@
             <h3><a href="catalog-list.html">Sản Phẩm<span id="section-sb-toggle" class="section-sb-toggle"><span class="section-sb-ico"></span></span></a></h3>
             <ul class="section-sb-list" id="section-sb-list">
               <li>
-                <a>
-                  <span class="categ-1-label">Sản Phẩm Bán Chạy</span>
-                </a>
-              </li>
-              <li>
-                <a>
+                <a (click)="HOT()">
                   <span class="categ-1-label">Sản Phẩm HOT</span>
                 </a>
               </li>
@@ -129,6 +124,48 @@
                 totalItems: ProductList?.length} " class="prod-i" style="width: 238px;">
 					<div class="prod-i-top">
 						<a [routerLink]="['/product-detail',item.id]" class="prod-i-img"><!-- NO SPACE --><img src="../assets/image/{{this.item.pro_avatar}}"><!-- NO SPACE --></a>
+            <div style="text-align: center;" *ngIf="this.item.pro_rate_number == null">
+              <span class="fa fa-star"></span>
+					    <span  class="fa fa-star"></span>
+					    <span  class="fa fa-star"></span>
+					    <span class="fa fa-star"></span>
+					    <span class="fa fa-star"></span>
+            </div>
+            <div style="text-align: center;" *ngIf="this.item.pro_rate_number == 1">
+              <span class="fa fa-star checked"></span>
+					    <span  class="fa fa-star"></span>
+					    <span  class="fa fa-star"></span>
+					    <span class="fa fa-star"></span>
+					    <span class="fa fa-star"></span>
+            </div>
+            <div style="text-align: center;" *ngIf="this.item.pro_rate_number == 2">
+              <span class="fa fa-star checked"></span>
+					    <span  class="fa fa-star checked"></span>
+					    <span  class="fa fa-star"></span>
+					    <span class="fa fa-star"></span>
+					    <span class="fa fa-star"></span>
+            </div>
+            <div style="text-align: center;" *ngIf="this.item.pro_rate_number == 3">
+              <span class="fa fa-star checked"></span>
+					    <span  class="fa fa-star checked"></span>
+					    <span  class="fa fa-star checked"></span>
+					    <span class="fa fa-star"></span>
+					    <span class="fa fa-star"></span>
+            </div>
+            <div style="text-align: center;" *ngIf="this.item.pro_rate_number == 4">
+              <span class="fa fa-star checked"></span>
+					    <span  class="fa fa-star checked"></span>
+					    <span  class="fa fa-star checked"></span>
+					    <span class="fa fa-star checked"></span>
+					    <span class="fa fa-star"></span>
+            </div>
+            <div style="text-align: center;" *ngIf="this.item.pro_rate_number == 5">
+              <span class="fa fa-star checked"></span>
+					    <span  class="fa fa-star checked"></span>
+					    <span  class="fa fa-star checked"></span>
+					    <span class="fa fa-star checked"></span>
+					    <span class="fa fa-star checked"></span>
+            </div>
             <h3>
 						  <a [routerLink]="['/product-detail',item.id]">{{this.item.pr_name}}</a>
 					  </h3>

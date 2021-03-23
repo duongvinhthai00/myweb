@@ -24,6 +24,13 @@ export class ProductDetailComponent implements OnInit  {
   @ViewChild('rd3',{static:true}) radio3 : ElementRef<HTMLInputElement>
   @ViewChild('rd4',{static:true}) radio4 : ElementRef<HTMLInputElement>
   @ViewChild('rd5',{static:true}) radio5 : ElementRef<HTMLInputElement>
+
+  isChecked1 = false;
+  isChecked2 = false;
+  isChecked3 = false;
+  isChecked4 = false;
+  isChecked5 = false;
+
   productDetail : ProductModel;
   imageList : ImageModel[];
   checkRating : Boolean =false;
@@ -68,6 +75,19 @@ export class ProductDetailComponent implements OnInit  {
               break;
             }
           });
+
+          switch(this.productDetail.pro_rate_number){
+            case 1 : this.isChecked1 = true;
+              break;
+              case 2 : this.isChecked1 = true;this.isChecked2 = true;
+              break;
+              case 3 : this.isChecked1 = true;this.isChecked2 = true;this.isChecked3 = true;
+              break;
+              case 4 : this.isChecked1 = true;this.isChecked2 = true;this.isChecked3 = true;this.isChecked4 = true;
+              break;
+              case 5 : this.isChecked1 = true;this.isChecked2 = true;this.isChecked3 = true;this.isChecked4 = true;this.isChecked5 = true;
+              break;
+          }
         });
         
         this.productService.getImagesByProduct(slug).subscribe(data=>{
@@ -85,11 +105,13 @@ export class ProductDetailComponent implements OnInit  {
       rating_number : this.rattingNumber
     }
     this.viewSer.SaveRating(viewDTO).subscribe(data=>{
+      this.viewSer.UpdateProductRate().subscribe(data=>{})
+      Swal.fire({
+        icon : "success",
+        title : "Đánh Giá Thành Công"
+      });
     })
-    Swal.fire({
-      icon : "success",
-      title : "Đánh Giá Thành Công"
-    })
+    
   }
 
   XuLyInputUp(input){

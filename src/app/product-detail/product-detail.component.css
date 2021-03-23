@@ -12,6 +12,14 @@
     user-select: none;
   }
   
+  .checked {
+    color: orange;
+  }
+
+
+  .fa{
+    font-size: 18px;
+  }
   /* Hide the browser's default radio button */
   .container1 input {
     position: absolute;

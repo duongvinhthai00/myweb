@@ -24,5 +24,9 @@ export class ViewServiceService {
   GetView(pro_id,user_id){
     return this.http.get<ViewModel>(`http://localhost:8080/api/v11/get-view/${pro_id}/${user_id}`);
   }
+
+  UpdateProductRate(){
+    return this.http.get(`http://localhost:8080/api/v11/update-prouduct-rating`);
+  }
   
 }

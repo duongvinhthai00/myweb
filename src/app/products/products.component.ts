@@ -48,6 +48,13 @@ export class ProductsComponent implements OnInit {
     
   }
 
+  HOT(){
+    this.ProductList = this.ProductListFake.filter(x=>{
+      if(x.pro_hot == 1){
+        return true;
+      }
+    })
+  }
 
   pageChanged(event){
     this.page = event;
