@@ -16,5 +16,9 @@ export class ViewServiceService {
   CheckRating(viewDTO : ViewModel){
     return this.http.post<Boolean>(`http://localhost:8080/api/v11/check-rating`,viewDTO);
   }
+
+  SaveRating(viewDTO : ViewModel){
+    return this.http.post<ViewModel>(`http://localhost:8080/api/v11/save-rating`,viewDTO);
+  }
   
 }

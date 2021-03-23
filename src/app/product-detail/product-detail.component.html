@@ -109,13 +109,14 @@
 			<div style="font-size: 15px;" [innerHTML]="this.productDetail?.pro_description"></div>
         </div>
 			</div>
-
+			<form (ngSubmit)="Submit()">
 			<!-- Product Tabs -->
 			<div class="prod-tabs-wrap">
 				<ul class="prod-tabs">
 					<li><a data-prodtab-num="2" class="active" id="prod-props" href="/product-detail/{{productDetail?.id}}"
 					    data-prodtab="#prod-tab-2">Chi Tiết</a></li>
 					<li><a data-prodtab-num="4" href="/product-detail/{{productDetail?.id}}"  data-prodtab="#prod-tab-4">Articles (6)</a></li>
+					<li><a *ngIf="this.checkRating" data-prodtab-num="5"  data-prodtab="#prod-tab-5">Đánh Giá Sản Phẩm</a></li>
 				</ul>
 				<div class="prod-tab-cont">
 					<p data-prodtab-num="2" class="prod-tab-mob" data-prodtab="#prod-tab-2">CHI TIẾT</p>
@@ -176,9 +177,39 @@
 							</ul>
 						</div>
 					</div>
+					<p data-prodtab-num="5" class="prod-tab-mob" data-prodtab="#prod-tab-5">Đánh Giá</p>
+					<div class="prod-tab prod-props" id="prod-tab-5">
+						<div  style="display: flex;justify-content: space-around;">
+							<label class="container1">1 Sao
+								<input (change)="RadioChecked(rd1)" #rd1 value="1" name="rating" type="radio" checked="checked">
+								<span class="checkmark"></span>
+							  </label>
+							  
+							  <label  class="container1">2 Sao
+								<input (change)="RadioChecked(rd2)"  #rd2 value="2" name="rating" type="radio">
+								<span class="checkmark"></span>
+							  </label>
+							  
+							  <label class="container1">3 Sao
+								<input (change)="RadioChecked(rd3)"  #rd3 value="3" name="rating" type="radio">
+								<span class="checkmark"></span>
+							  </label>
+							  
+							  <label class="container1">4 Sao
+								<input (change)="RadioChecked(rd4)"  #rd4 value="4" name="rating" type="radio">
+								<span class="checkmark"></span>
+							  </label>
+							  <label class="container1">5 Sao
+								<input (change)="RadioChecked(rd5)"  #rd5 value="5" name="rating" type="radio">
+								<span class="checkmark"></span>
+							  </label>
+						</div>
+						<input style="float: right;margin-right: 43px;
+						margin-top: 29px;" class="btn btn-info" type="submit" value="Xác Nhận">
+					</div>
 				</div>
 			</div>
-
+			</form>
 		</div>
 		<!-- Single Product - end -->
 

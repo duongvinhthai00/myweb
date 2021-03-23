@@ -22,6 +22,7 @@ export class ProductDetailComponent implements OnInit  {
   productDetail : ProductModel;
   imageList : ImageModel[];
   checkRating : Boolean =false;
+  rattingNumber :number = 0;
   constructor(private productService : ProductServiceService,private route :ActivatedRoute,private cardService : CardServiceService,
     private userService : UserServiceService,private router : Router,private homecomponent : HomeComponent,
     private viewSer : ViewServiceService) { }
@@ -54,8 +55,17 @@ export class ProductDetailComponent implements OnInit  {
     })
   }
 
-
-
+  Submit(){
+    const user = JSON.parse(localStorage.getItem(this.userService.keyLogin));
+    let viewDTO : ViewModel ={
+      user_id  : user,
+      pro_id : this.productDetail,
+      rating_number : this.rattingNumber
+    }
+    this.viewSer.SaveRating(viewDTO).subscribe(data=>{
+      alert("Thành Công");
+    })
+  }
 
   XuLyInputUp(input){
     input.value = parseInt(input.value) + 1;
@@ -64,6 +74,12 @@ export class ProductDetailComponent implements OnInit  {
  XuLyInputDown(input){
    if(parseInt(input.value)>1){
      input.value = parseInt(input.value) - 1;
+   }
+ }
+
+ RadioChecked(rd){
+   if(rd.checked == true){
+      this.rattingNumber = rd.value;
    }
  }
 
