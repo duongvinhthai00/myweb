@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { pluck } from 'rxjs/operators';
 import { HomeComponent } from '../home/home.component';
@@ -19,10 +19,16 @@ import { ViewModel } from '../model/ViewModel';
 
 })
 export class ProductDetailComponent implements OnInit  {
+  @ViewChild('rd1',{static:true}) radio1 : ElementRef<HTMLInputElement>
+  @ViewChild('rd2',{static:true}) radio2 : ElementRef<HTMLInputElement>
+  @ViewChild('rd3',{static:true}) radio3 : ElementRef<HTMLInputElement>
+  @ViewChild('rd4',{static:true}) radio4 : ElementRef<HTMLInputElement>
+  @ViewChild('rd5',{static:true}) radio5 : ElementRef<HTMLInputElement>
   productDetail : ProductModel;
   imageList : ImageModel[];
   checkRating : Boolean =false;
   rattingNumber :number = 0;
+  View : ViewModel;
   constructor(private productService : ProductServiceService,private route :ActivatedRoute,private cardService : CardServiceService,
     private userService : UserServiceService,private router : Router,private homecomponent : HomeComponent,
     private viewSer : ViewServiceService) { }
@@ -44,15 +50,31 @@ export class ProductDetailComponent implements OnInit  {
             });
           },20000);
           this.viewSer.CheckRating(viewDTO).subscribe(data=>{
-            console.log(data);
             this.checkRating = data;
+          });
+
+          this.viewSer.GetView(data.id,user.id).subscribe(data=>{
+            this.View = data;
+            switch(data.rating_number){
+              case 1 : this.radio1.nativeElement.checked = true;
+              break;
+              case 2 : this.radio2.nativeElement.checked = true;
+              break;
+              case 3 : this.radio3.nativeElement.checked = true;
+              break;
+              case 4 : this.radio4.nativeElement.checked = true;
+              break;
+              case 5 : this.radio5.nativeElement.checked = true;
+              break;
+            }
           });
         });
         
         this.productService.getImagesByProduct(slug).subscribe(data=>{
           this.imageList = data;
         });
-    })
+    });
+    
   }
 
   Submit(){
@@ -63,7 +85,10 @@ export class ProductDetailComponent implements OnInit  {
       rating_number : this.rattingNumber
     }
     this.viewSer.SaveRating(viewDTO).subscribe(data=>{
-      alert("Thành Công");
+    })
+    Swal.fire({
+      icon : "success",
+      title : "Đánh Giá Thành Công"
     })
   }
 

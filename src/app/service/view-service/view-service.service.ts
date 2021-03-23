@@ -20,5 +20,9 @@ export class ViewServiceService {
   SaveRating(viewDTO : ViewModel){
     return this.http.post<ViewModel>(`http://localhost:8080/api/v11/save-rating`,viewDTO);
   }
+
+  GetView(pro_id,user_id){
+    return this.http.get<ViewModel>(`http://localhost:8080/api/v11/get-view/${pro_id}/${user_id}`);
+  }
   
 }
