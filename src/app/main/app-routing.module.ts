@@ -27,6 +27,7 @@ import { TransportManagerComponent } from '../transport-manager/transport-manage
 import { TransportAddComponent } from '../transport-add/transport-add.component';
 import { TransportEditComponent } from '../transport-edit/transport-edit.component';
 import { RevenueComponent } from '../revenue/revenue.component';
+import { UserAccountComponent } from '../user-account/user-account.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent, children:[
@@ -40,7 +41,8 @@ const routes: Routes = [
     {path:"order-detail/:slug",component:OrderDetailComponent},
     {path:"all-products",component:ProductsComponent},
     {path:"keyword/:slug",component : ProductsComponent},
-    {path:"payment-info/:slug",component:PaymentComponent}
+    {path:"payment-info/:slug",component:PaymentComponent},
+    {path:"user-account",component:UserAccountComponent}
   ]},
 
   {

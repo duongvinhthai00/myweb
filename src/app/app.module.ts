@@ -36,6 +36,7 @@ import { TransportAddComponent } from './transport-add/transport-add.component';
 import { TransportEditComponent } from './transport-edit/transport-edit.component';
 import { RevenueComponent } from './revenue/revenue.component';
 import { ChartsModule } from 'ng2-charts';
+import { UserAccountComponent } from './user-account/user-account.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +67,7 @@ import { ChartsModule } from 'ng2-charts';
     TransportAddComponent,
     TransportEditComponent,
     RevenueComponent,
+    UserAccountComponent,
   ],
   imports: [
     BrowserModule,

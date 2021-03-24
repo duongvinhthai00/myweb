@@ -43,4 +43,14 @@ export class UserServiceService implements OnInit{
     )
   }
 
+  GetUserById(id : number){
+    return this.http.get<UserModel>(`http://localhost:8080/api/v1/users/${id}`);
+  }
+
+  UpdateUser(userDTO : UserModel){
+    return this.http.put<UserModel>(`http://localhost:8080/api/v1/users`,userDTO).pipe(
+      catchError(this.handleError)
+    );
+  }
+
 }
