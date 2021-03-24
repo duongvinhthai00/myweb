@@ -55,6 +55,7 @@ export class ProductDetailComponent implements OnInit  {
           this.viewSer.SaveView(viewDTO).subscribe(data=>{
             this.viewSer.GetListProductByUser(user.id,this.productDetail.id,this.productDetail.pro_category_id.c_group_id.id).subscribe(data=>{
               this.ProductSuggest = data;
+              console.log(data);
             });
           })
           this.viewSer.CheckRating(viewDTO).subscribe(data=>{
