@@ -27,7 +27,7 @@
 				<div class="prod-slider">
 					<ul class="prod-slider-car">
 						<li>
-							<a href="/product-detail/{{productDetail?.id}}">
+							<a >
 								<img src="../assets/image/{{productDetail?.pro_avatar}}" alt="">
 							</a>
 						</li>
@@ -90,7 +90,7 @@
 					</p>
 					<p class="prod-addwrap">
 						<a style="cursor: pointer;" (click)="addToCard(this.productDetail,input.value)" class="prod-add"
-							rel="nofollow">Add to cart</a>
+							rel="nofollow">Thêm Vào Giỏ</a>
 					</p>
 				</div>
 				<div style="border-bottom: 1px solid #ccc;padding-bottom: 10px;">
@@ -106,9 +106,9 @@
 				<div class="prod-tabs-wrap">
 					<ul class="prod-tabs">
 						<li><a data-prodtab-num="2" class="active" id="prod-props"
-								href="/product-detail/{{productDetail?.id}}" data-prodtab="#prod-tab-2">Chi Tiết</a>
+								 data-prodtab="#prod-tab-2">Chi Tiết</a>
 						</li>
-						<li><a data-prodtab-num="4" href="/product-detail/{{productDetail?.id}}"
+						<li><a data-prodtab-num="4"
 								data-prodtab="#prod-tab-4">Articles (6)</a></li>
 						<li><a *ngIf="this.checkRating" data-prodtab-num="5" data-prodtab="#prod-tab-5">Đánh Giá Sản
 								Phẩm</a></li>
@@ -227,28 +227,62 @@
 
 		<!-- Related Products - start -->
 		<div class="prod-related">
-			<h2><span>Related products</span></h2>
+			<h3 class="h3s">Đề Xuất Cho Bạn</h3>
 			<div class="prod-related-car" id="prod-related-car">
-				<ul class="slides">
+				<ul>
 					<li class="prod-rel-wrap">
 						<div *ngFor="let item of this.ProductSuggest" class="prod-rel">
 							<a href="product.html" class="prod-rel-img">
 								<img style="width: 300px;height: 331px;" src="../assets/image/{{this.item.pro_avatar}}">
 							</a>
 							<div class="prod-rel-cont">
-								<h3><a [routerLink]="['/product-detail/',item.id]">{{this.item.pr_name}}</a></h3>
+								<h3><a href="/product-detail/{{item.id}}" >{{this.item.pr_name}}</a></h3>
 								<p class="prod-rel-price">
 									<b>{{this.item.pro_pay | currency : "VND"}}</b>
 								</p>
 								<div class="prod-rel-actions">
-									<a title="Wishlist" href="#" class="prod-rel-favorites"><i
-											class="fa fa-heart"></i></a>
-									<a title="Compare" href="#" class="prod-rel-compare"><i
-											class="fa fa-bar-chart"></i></a>
-									<p class="prod-i-addwrap">
-										<a title="Add to cart" href="#" class="prod-i-add"><i
-												class="fa fa-shopping-cart"></i></a>
-									</p>
+									<div  *ngIf="this.item.pro_rate_number == 0">
+										<span class="fa fa2 fa-star"></span>
+												  <span  class="fa fa2 fa-star"></span>
+												  <span  class="fa fa2 fa-star"></span>
+												  <span class="fa fa2 fa-star"></span>
+												  <span class="fa fa2 fa-star"></span>
+									  </div>
+									  <div  *ngIf="this.item.pro_rate_number == 1">
+										<span class="fa fa2 fa-star checked"></span>
+												  <span  class="fa fa-star"></span>
+												  <span  class="fa fa-star"></span>
+												  <span class="fa fa-star"></span>
+												  <span class="fa fa-star"></span>
+									  </div>
+									  <div  *ngIf="this.item.pro_rate_number == 2">
+										<span class="fa fa2 fa-star checked"></span>
+												  <span  class="fa fa2 fa-star checked"></span>
+												  <span  class="fa fa2 fa-star"></span>
+												  <span class="fa fa2 fa-star"></span>
+												  <span class="fa fa2 fa-star"></span>
+									  </div>
+									  <div  *ngIf="this.item.pro_rate_number == 3">
+										<span class="fa fa2 fa-star checked"></span>
+												  <span  class="fa fa2 fa-star checked"></span>
+												  <span  class="fa fa2 fa-star checked"></span>
+												  <span class="fa fa2 fa-star"></span>
+												  <span class="fa fa2 fa-star"></span>
+									  </div>
+									  <div  *ngIf="this.item.pro_rate_number == 4">
+										<span class="fa fa2 fa-star checked"></span>
+												  <span  class="fa fa2 fa-star checked"></span>
+												  <span  class="fa fa2 fa-star checked"></span>
+												  <span class="fa fa2 fa-star checked"></span>
+												  <span class="fa fa2 fa-star"></span>
+									  </div>
+									  <div *ngIf="this.item.pro_rate_number == 5">
+										<span class="fa fa2 fa-star checked"></span>
+												  <span  class="fa fa2 fa-star checked"></span>
+												  <span  class="fa fa2 fa-star checked"></span>
+												  <span class="fa fa2 fa-star checked"></span>
+												  <span class="fa fa2 fa-star checked"></span>
+									  </div>
 								</div>
 							</div>
 						</div>

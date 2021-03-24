@@ -130,7 +130,7 @@
                 totalItems: ProductList.length} " class="prodlist-i">
                   <a class="list-img-carousel prodlist-i-img"><!-- NO SPACE --><img  src="../assets/image/{{item.pro_avatar}}" alt="Adipisci aperiam commodi"><!-- NO SPACE --></a>
                   <div class="prodlist-i-cont">
-                      <h3><a [routerLink]="['/product-detail/',item.id]">{{item.pr_name}}</a>
+                      <h3><a href="/product-detail/{{item.id}}">{{item.pr_name}}</a>
                       </h3>
                       <div class="prodlist-i-info">
                         <div class="productMargin"  *ngIf="this.item.pro_rate_number == 0">

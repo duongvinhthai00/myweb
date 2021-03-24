@@ -123,7 +123,7 @@
                 currentPage: page,
                 totalItems: ProductList?.length} " class="prod-i" style="width: 238px;">
 					<div class="prod-i-top">
-						<a [routerLink]="['/product-detail',item.id]" class="prod-i-img"><!-- NO SPACE --><img src="../assets/image/{{this.item.pro_avatar}}"><!-- NO SPACE --></a>
+						<a href="/product-detail/{{item.id}}" class="prod-i-img"><!-- NO SPACE --><img src="../assets/image/{{this.item.pro_avatar}}"><!-- NO SPACE --></a>
             <div style="text-align: center;" *ngIf="this.item.pro_rate_number == 0">
               <span class="fa fa-star"></span>
 					    <span  class="fa fa-star"></span>
@@ -167,7 +167,7 @@
 					    <span class="fa fa-star checked"></span>
             </div>
             <h3>
-						  <a [routerLink]="['/product-detail',item.id]">{{this.item.pr_name}}</a>
+						  <a href="/product-detail/{{item.id}}">{{this.item.pr_name}}</a>
 					  </h3>
 					  <p class="prod-i-price">
               <del style="margin-right: 9px;" *ngIf="this.item.pro_sale > 0">{{this.item.pro_price | currency : 'VND'}}</del>

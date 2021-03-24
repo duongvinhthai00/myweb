@@ -71,7 +71,7 @@
                       <a (click)="deleteOrder(this.item)" *ngIf="item.tr_status == 0"
                         style="padding: 8px;color: white;background-color: red;margin-left: 15px"><i
                           class="fas fa-trash"></i></a>
-                      <a  *ngIf="item.payment == 1" [routerLink]="['/payment-info',item.id]"
+                      <a  *ngIf="item.payment == 1 && item.payment_status != 1" [routerLink]="['/payment-info',item.id]"
                         style="padding: 8px;color: white;background-color: rgb(10, 151, 46);margin-left: 15px"><i
                           class="far fa-credit-card"></i>
                       </a>

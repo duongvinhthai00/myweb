@@ -16,9 +16,19 @@
     color: orange;
   }
 
+  .h3s{
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 9px;
+    color: darkgreen;
+  }
 
   .fa{
     font-size: 18px;
+  }
+
+  .fa2{
+    font-size: 15px;
   }
   /* Hide the browser's default radio button */
   .container1 input {
