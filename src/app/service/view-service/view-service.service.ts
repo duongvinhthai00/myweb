@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { ProductModel } from 'src/app/model/ProductModel';
 import { ViewModel } from 'src/app/model/ViewModel';
 
@@ -23,7 +25,12 @@ export class ViewServiceService {
   }
 
   GetView(pro_id,user_id){
-    return this.http.get<ViewModel>(`http://localhost:8080/api/v11/get-view/${pro_id}/${user_id}`);
+    return this.http.get<ViewModel>(`http://localhost:8080/api/v11/get-view/${pro_id}/${user_id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+  handleError(error){
+    return throwError(error);
   }
 
   UpdateProductRate(){
@@ -31,7 +38,7 @@ export class ViewServiceService {
   }
   
   GetListProductByUser(user_id : number,pro_id : number,group_id : number){
-    return this.http.get<ProductModel>(`http://localhost:8080/api/v11/get-product-user/${user_id}/${pro_id}/${group_id}`)
+    return this.http.get<ProductModel[]>(`http://localhost:8080/api/v11/get-product-user/${user_id}/${pro_id}/${group_id}`)
   }
 
 }

@@ -133,7 +133,7 @@
                       <h3><a [routerLink]="['/product-detail/',item.id]">{{item.pr_name}}</a>
                       </h3>
                       <div class="prodlist-i-info">
-                        <div class="productMargin"  *ngIf="this.item.pro_rate_number == null">
+                        <div class="productMargin"  *ngIf="this.item.pro_rate_number == 0">
                           <span class="fa fa-star"></span>
                           <span  class="fa fa-star"></span>
                           <span  class="fa fa-star"></span>

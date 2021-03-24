@@ -36,6 +36,7 @@ export class ProductDetailComponent implements OnInit  {
   checkRating : Boolean =false;
   rattingNumber :number = 0;
   View : ViewModel;
+  ProductSuggest : ProductModel[] = [];
   constructor(private productService : ProductServiceService,private route :ActivatedRoute,private cardService : CardServiceService,
     private userService : UserServiceService,private router : Router,private homecomponent : HomeComponent,
     private viewSer : ViewServiceService) { }
@@ -51,13 +52,11 @@ export class ProductDetailComponent implements OnInit  {
             user_id  : user,
             pro_id : this.productDetail
           }
-          this.viewSer.GetListProductByUser(user.id,data.id,data.pro_category_id.c_group_id.id).subscribe(data=>{
-            console.log(data);
-          });
-          setTimeout(()=>{
-            this.viewSer.SaveView(viewDTO).subscribe(data=>{
+          this.viewSer.SaveView(viewDTO).subscribe(data=>{
+            this.viewSer.GetListProductByUser(user.id,this.productDetail.id,this.productDetail.pro_category_id.c_group_id.id).subscribe(data=>{
+              this.ProductSuggest = data;
             });
-          },20000);
+          })
           this.viewSer.CheckRating(viewDTO).subscribe(data=>{
             this.checkRating = data;
           });
@@ -76,6 +75,8 @@ export class ProductDetailComponent implements OnInit  {
               case 5 : this.radio5.nativeElement.checked = true;
               break;
             }
+          },(error)=>{
+            console.log(error.error.message);
           });
 
           switch(this.productDetail.pro_rate_number){

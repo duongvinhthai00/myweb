@@ -124,7 +124,7 @@
                 totalItems: ProductList?.length} " class="prod-i" style="width: 238px;">
 					<div class="prod-i-top">
 						<a [routerLink]="['/product-detail',item.id]" class="prod-i-img"><!-- NO SPACE --><img src="../assets/image/{{this.item.pro_avatar}}"><!-- NO SPACE --></a>
-            <div style="text-align: center;" *ngIf="this.item.pro_rate_number == null">
+            <div style="text-align: center;" *ngIf="this.item.pro_rate_number == 0">
               <span class="fa fa-star"></span>
 					    <span  class="fa fa-star"></span>
 					    <span  class="fa fa-star"></span>
