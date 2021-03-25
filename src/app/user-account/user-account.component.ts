@@ -27,6 +27,7 @@ export class UserAccountComponent implements OnInit {
   ngOnInit(): void {
     let userJson = JSON.parse(localStorage.getItem(this.userService.keyLogin));
     this.userService.GetUserById(userJson.id).subscribe(data=>{
+      console.log(data);
       this.user = data;
       this.userForm = new FormGroup({
       id : new FormControl(this.user.id),
@@ -38,7 +39,9 @@ export class UserAccountComponent implements OnInit {
       user_name : new FormControl(this.user.user_name),
       avatar : new FormControl(this.user.avatar)
       });
-      this.url = `../assets/image/${this.user.avatar}`;
+      if(this.user.avatar != null){
+        this.url = `../assets/image/${this.user.avatar}`;
+      }
     });
     
     

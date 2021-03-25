@@ -163,6 +163,30 @@
             <a class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
+                Quản Lý Danh Mục
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a [routerLink]="['/admin/category-group-manager']" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh Mục Cha</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a  class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh Mục Con</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
                 Quản Lý Sản Phẩm
                 <i class="right fas fa-angle-left"></i>
               </p>

@@ -1,6 +1,6 @@
 export interface CategoryGroupModel{
-  id : number,
-  name : string
+  id ?: number,
+  name ?: string
 }
 
 
