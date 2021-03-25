@@ -121,6 +121,9 @@ export class CategoryGroupComponent implements OnInit {
   error2 : any;
   SubmitEdit(){
     this.group.EditCateGroup(this.categoryGroupEdit.value).subscribe(data=>{
+      this.group.AllCateGroup().subscribe(data=>{
+        this.categoryGroup = data;
+      });
       Swal.fire({
         title : "Chỉnh Sửa Thành Công",
         icon : "success"

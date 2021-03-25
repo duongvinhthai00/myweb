@@ -123,7 +123,7 @@
 
   <!-- Modal -->
   <ng-container *ngIf="this.categoryGroupEdit">
-  <div class="modal fade" id="myModal" [class.displaynone]="this.displaynone" role="dialog">
+  <div  class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
       <form [formGroup]="this.categoryGroupEdit" (ngSubmit)="SubmitEdit()">
       <!-- Modal content-->
@@ -144,7 +144,7 @@
             
         </div>
         <div class="modal-footer">
-          <input type="submit" class="btn btn-info float-right" value="Chỉnh Sửa">
+          <input type="submit"  class="btn btn-info float-right" value="Chỉnh Sửa">
           <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
         </div>
       </div>

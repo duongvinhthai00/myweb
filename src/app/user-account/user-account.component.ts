@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserModel } from '../model/UserModel';
@@ -22,7 +23,7 @@ export class UserAccountComponent implements OnInit {
     repeatPass : new FormControl("")
   })
   user : UserModel;
-  constructor(private userService : UserServiceService,private home : HomeComponent) { }
+  constructor(private userService : UserServiceService,private home : HomeComponent,private router : Router) { }
 
   ngOnInit(): void {
     let userJson = JSON.parse(localStorage.getItem(this.userService.keyLogin));
@@ -73,7 +74,10 @@ export class UserAccountComponent implements OnInit {
       Swal.fire({
         title: "Cập Nhật Thông Tin Thành Công",
         icon: "success"
-      })
+      });
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this. router. onSameUrlNavigation = 'reload';
+      this.router.navigate(['/user-account']);
     },(error)=>{
       this.error = error.error;
     });
@@ -119,10 +123,14 @@ export class UserAccountComponent implements OnInit {
     if(ktra == 1){
       this.userForm.value.password = this.CheckSavePass.value.newPass;
       this.userService.UpdateUser(this.userForm.value).subscribe(data=>{
+        localStorage.setItem(this.userService.keyLogin,JSON.stringify(data));
         Swal.fire({
         title: "Cập Nhật Mật Khẩu Thành Công",
         icon: "success"
         });
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this. router. onSameUrlNavigation = 'reload';
+        this.router.navigate(['/user-account']);
       })
     }
 

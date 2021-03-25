@@ -38,6 +38,7 @@ import { RevenueComponent } from './revenue/revenue.component';
 import { ChartsModule } from 'ng2-charts';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { CategoryGroupComponent } from './category-group/category-group.component';
+import { CategorySubComponent } from './category-sub/category-sub.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +71,7 @@ import { CategoryGroupComponent } from './category-group/category-group.componen
     RevenueComponent,
     UserAccountComponent,
     CategoryGroupComponent,
+    CategorySubComponent,
   ],
   imports: [
     BrowserModule,

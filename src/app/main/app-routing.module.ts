@@ -1,3 +1,4 @@
+import { CategorySubComponent } from './../category-sub/category-sub.component';
 import { CategoryGroupComponent } from './../category-group/category-group.component';
 import { OrderManagerEditComponent } from './../order-manager-edit/order-manager-edit.component';
 import { OrderManagerComponent } from './../order-manager/order-manager.component';
@@ -62,7 +63,8 @@ const routes: Routes = [
       {path:"transport-add",component:TransportAddComponent},
       {path:"transport-edit/:slug",component:TransportEditComponent},
       {path:"revenue",component:RevenueComponent},
-      {path:"category-group-manager",component : CategoryGroupComponent}
+      {path:"category-group-manager",component : CategoryGroupComponent},
+      {path:"category-manager",component : CategorySubComponent}
   ]},
 
     {path:"admin/login",component : AdminloginComponent}
