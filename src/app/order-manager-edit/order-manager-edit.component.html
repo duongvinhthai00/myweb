@@ -52,13 +52,15 @@
                         </div>
                         <div class="form-group">
                           <label for="inputClientCompany">Tên Người Nhận Hàng</label>
-                          <input formControlName="name" type="text" id="inputClientCompany" class="form-control">
+                          <input readonly formControlName="name" type="text" id="inputClientCompany"
+                            class="form-control">
                           <span style="color: red;text-transform:capitalize;"
                             *ngIf="this.error?.name">{{this.error.name}}</span>
                         </div>
                         <div class="form-group">
                           <label for="inputProjectLeader">Địa Chỉ</label>
-                          <input formControlName="tr_address" type="text" min="1" max="100" id="inputProjectLeader"
+                          <input readonly formControlName="tr_address" type="text" min="1" max="100"
+                            id="inputProjectLeader"
                             class="form-control">
                           <span style="color: red;text-transform:capitalize;"
                               *ngIf="this.error?.tr_address">{{this.error.tr_address}}</span>
@@ -66,7 +68,8 @@
 
                         <div class="form-group">
                           <label for="inputProjectLeader">Số Điện Thoại</label>
-                          <input formControlName="tr_phone" type="text" id="inputProjectLeader" class="form-control">
+                          <input readonly formControlName="tr_phone" type="text" id="inputProjectLeader"
+                            class="form-control">
                           <span style="color: red;text-transform:capitalize;"
                             *ngIf="this.error?.tr_phone">{{this.error.tr_phone}}</span>
                         </div>

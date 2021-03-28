@@ -35,12 +35,21 @@
                     <div class="card-header" style="background-color: cadetblue;color: greenyellow;">
                       <h3 class="card-title">Danh Sách Danh Mục Con</h3>
                     </div>
-
+                    
                     <!-- /.card-header -->
                     <div class="card-body">
+                      <select (change)="FilterByCateGroup($event)" style="width: 15%; float: right;"
+                        class="custom-select">
+                        <option selected value="-999">Tất Cả</option>
+                        <ng-container *ngFor="let item of this.caGroup">
+                          <option value="{{this.item.id}}">{{this.item.name}}</option>
+                        </ng-container>
+                      </select>
+
                       <button (click)="deleteAllCateGory()" [class.display123]="this.display" style="float: right;"
                         type="button" class="btn btn-info"><i class="fa fa-trash" style="padding-right: 5px;"
                           aria-hidden="true"></i>Xóa</button>
+                      
                       <table id="customers">
                         <tr>
                           <th style="text-align: center;"> Tất Cả </th>

@@ -37,8 +37,8 @@ export class ViewServiceService {
     return this.http.get(`http://localhost:8080/api/v11/update-prouduct-rating`);
   }
   
-  GetListProductByUser(user_id : number,pro_id : number,group_id : number){
-    return this.http.get<ProductModel[]>(`http://localhost:8080/api/v11/get-product-user/${user_id}/${pro_id}/${group_id}`)
+  GetListProductByUser(pro_id : number,group_id : number){
+    return this.http.get<ProductModel[]>(`http://localhost:8080/api/v11/get-product-user/${pro_id}/${group_id}`)
   }
 
 }

@@ -22,13 +22,14 @@ export class ProductAddComponent implements OnInit {
   formAddProduct = new FormGroup({
     name : new FormControl(),
     price : new FormControl(),
-    sale : new FormControl(),
+    sale : new FormControl(0),
     hot  : new FormControl(),
     number : new FormControl(),
     place_sale : new FormControl(),
     category_id : new FormControl(),
     description : new FormControl(),
-    content : new FormControl()
+    content : new FormControl(),
+
   });
   constructor(private homeService : HomeServiceService,private productService : ProductServiceService
     ,private router : Router) { }
@@ -73,6 +74,7 @@ export class ProductAddComponent implements OnInit {
     this.ManyFile = event.target.files;
   }
 
+  keyAdmin = "adminLogined";
   Submit(){
     let product : ProductModel = {
       pr_name : this.formAddProduct.value.name,
@@ -84,6 +86,8 @@ export class ProductAddComponent implements OnInit {
       pro_category_id : this.formAddProduct.value.category_id,
       pro_description :  this.formAddProduct.value.description,
       pro_content :  this.formAddProduct.value.content,
+      pro_rate_number : 0,
+      pro_author_id : JSON.parse(localStorage.getItem(this.keyAdmin))
     }
   
     if(this.formAddProduct.value.hot == true){

@@ -17,12 +17,14 @@ import Swal from 'sweetalert2';
 })
 export class CategoryGroupComponent implements OnInit {
   categoryGroup : CategoryGroupModel[] = [];
+  keyAdmin = "adminLogined";
   displaynone = false;
   display = true;
   categoryGroupEdit : any;
   categoryGroupDel : number[] = [];
   categoryGroupForm = new FormGroup({
-    name : new FormControl("")
+    name : new FormControl(""),
+    group_author_id : new FormControl(JSON.parse(localStorage.getItem(this.keyAdmin)))
   })
   constructor(private group : CategoryServiceService,private router : Router) { }
 
@@ -115,7 +117,8 @@ export class CategoryGroupComponent implements OnInit {
   ShowCateGroyGroup(item : CategoryGroupModel){
     this.categoryGroupEdit = new FormGroup({
       id : new FormControl(item.id),
-      name : new FormControl(item.name)
+      name : new FormControl(item.name),
+      group_author_id : new FormControl(JSON.parse(localStorage.getItem(this.keyAdmin)))
     })
   }
   error2 : any;

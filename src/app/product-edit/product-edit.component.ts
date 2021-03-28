@@ -19,6 +19,7 @@ import Swal from 'sweetalert2';
 })
 export class ProductEditComponent implements OnInit {
   formAddProduct : any;
+  keyAdmin = "adminLogined";
   constructor(private homeService: HomeServiceService, private productService: ProductServiceService
     , private router: Router, private route: ActivatedRoute) { }
 
@@ -109,7 +110,9 @@ export class ProductEditComponent implements OnInit {
       pro_content: this.formAddProduct.value.content,
       pro_avatar : this.ProductDetail.pro_avatar,
       created_at : this.ProductDetail.created_at,
-      updated_at : this.ProductDetail.updated_at
+      updated_at : this.ProductDetail.updated_at,
+      pro_author_id : JSON.parse(localStorage.getItem(this.keyAdmin)),
+      pro_rate_number : this.ProductDetail.pro_rate_number
     }
     if (this.formAddProduct.value.hot == true) {
       product.pro_hot = 1

@@ -30,6 +30,8 @@ import { TransportAddComponent } from '../transport-add/transport-add.component'
 import { TransportEditComponent } from '../transport-edit/transport-edit.component';
 import { RevenueComponent } from '../revenue/revenue.component';
 import { UserAccountComponent } from '../user-account/user-account.component';
+import { AdminGuardGuard } from '../guard/admin-guard.guard';
+import { UserGuardGuard } from '../guard/user-guard.guard';
 
 const routes: Routes = [
   {path:"",component:HomeComponent, children:[
@@ -37,18 +39,18 @@ const routes: Routes = [
     {path:"register",component:RegisterComponent},
     {path:"category/:slug",component:CategoryListComponent},
     {path:"product-detail/:slug",component:ProductDetailComponent},
-    {path:"card",component:CardComponent},
-    {path:"transaction",component:TransactionComponent},
-    {path:"order",component:OrderComponent},
-    {path:"order-detail/:slug",component:OrderDetailComponent},
+    {path:"card",canActivate:[UserGuardGuard],component:CardComponent},
+    {path:"transaction",canActivate:[UserGuardGuard],component:TransactionComponent},
+    {path:"order",canActivate:[UserGuardGuard],component:OrderComponent},
+    {path:"order-detail/:slug",canActivate:[UserGuardGuard],component:OrderDetailComponent},
     {path:"all-products",component:ProductsComponent},
     {path:"keyword/:slug",component : ProductsComponent},
-    {path:"payment-info/:slug",component:PaymentComponent},
-    {path:"user-account",component:UserAccountComponent}
+    {path:"payment-info/:slug",canActivate:[UserGuardGuard],component:PaymentComponent},
+    {path:"user-account",canActivate:[UserGuardGuard],component:UserAccountComponent}
   ]},
 
   {
-    path:"admin",component:AdminhomeComponent,children : [
+    path:"admin",component:AdminhomeComponent,canActivate : [AdminGuardGuard],canActivateChild:[AdminGuardGuard],children : [
       {path:"",component:AdminmainpageComponent},
       {path:"product-manager",component:ProductmanagerComponent},
       {path:"add-product",component:ProductAddComponent},

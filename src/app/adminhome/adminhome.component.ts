@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TransactionServiceService } from '../service/transaction_service/transaction-service.service';
 @Component({
   selector: 'app-adminhome',
@@ -9,11 +10,15 @@ import { TransactionServiceService } from '../service/transaction_service/transa
 })
 
 export class AdminhomeComponent implements OnInit {
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
-    
+  }
 
+  keyAdmin = "adminLogined";
+  Logout(){
+    localStorage.removeItem(this.keyAdmin);
+    this.router.navigate(['/admin/login']);
   }
 
 }

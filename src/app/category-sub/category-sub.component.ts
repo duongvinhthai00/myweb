@@ -17,7 +17,9 @@ import Swal from 'sweetalert2';
 ]
 })
 export class CategorySubComponent implements OnInit {
+  keyAdmin = "adminLogined";
   category : CategoryModel[] = [];
+  categoryFake : CategoryModel[] = [];
   displaynone = false;
   display = true;
   categoryEdit : any;
@@ -26,7 +28,8 @@ export class CategorySubComponent implements OnInit {
   caGroupFake : CategoryGroupModel[] = [];
   categoryForm = new FormGroup({
     c_name : new FormControl(""),
-    c_group_id : new FormControl(null)
+    c_group_id : new FormControl(null),
+    c_author_id : new FormControl(JSON.parse(localStorage.getItem(this.keyAdmin)))
   })
   constructor(private categorySub : CategorySubServiceService,private router : Router,
     private categoryGroup : CategoryServiceService) { }
@@ -34,6 +37,7 @@ export class CategorySubComponent implements OnInit {
   ngOnInit(): void {
     this.categorySub.AllCateGory().subscribe(data=>{
       this.category = data;
+      this.categoryFake = [...data];
     });
     this.categoryGroup.AllCateGroup().subscribe(data=>{
       this.caGroup = data;
@@ -101,7 +105,7 @@ export class CategorySubComponent implements OnInit {
   deleteAllCateGory(){
     Swal.fire({
     icon:'warning',
-    title: `Bạn Có Thực Sự Muốn Xóa ${this.categoryDel.length} Danh Mục Con Này Này`,
+    title: `Bạn Có Thực Sự Muốn Xóa ${this.categoryDel.length} Danh Mục Con Này`,
     showCancelButton: true,
     confirmButtonText: `Xóa`,
     cancelButtonText : 'Hủy'
@@ -131,7 +135,8 @@ export class CategorySubComponent implements OnInit {
     this.categoryEdit = new FormGroup({
       id : new FormControl(item.id),
       c_name : new FormControl(item.c_name),
-      c_group_id : new FormControl(item.c_group_id)
+      c_group_id : new FormControl(item.c_group_id),
+      c_author_id : new FormControl(JSON.parse(localStorage.getItem(this.keyAdmin)))
     })
   }
   error2 : any;
@@ -147,5 +152,18 @@ export class CategorySubComponent implements OnInit {
     },(error)=>{
       this.error2 = error.error;
     })
+  }
+
+  FilterByCateGroup(event){
+    let k = event.currentTarget.value;
+    if(k > 0){
+      this.category = this.categoryFake.filter(x=>{
+        if(x.c_group_id.id == k){
+          return true;
+        }
+      });
+    }else{
+      this.category = this.categoryFake;
+    }
   }
 }

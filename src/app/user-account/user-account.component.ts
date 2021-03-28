@@ -75,9 +75,6 @@ export class UserAccountComponent implements OnInit {
         title: "Cập Nhật Thông Tin Thành Công",
         icon: "success"
       });
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      this. router. onSameUrlNavigation = 'reload';
-      this.router.navigate(['/user-account']);
     },(error)=>{
       this.error = error.error;
     });

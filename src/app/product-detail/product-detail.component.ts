@@ -43,17 +43,19 @@ export class ProductDetailComponent implements OnInit  {
 
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem(this.userService.keyLogin));
+    
     this.route.params.pipe(
       pluck('slug')
     ).subscribe(slug=>{
         this.productService.getProductById(slug).subscribe(data=>{
           this.productDetail = data;
+          if(user != null){
           let viewDTO : ViewModel ={
             user_id  : user,
             pro_id : this.productDetail
           }
           this.viewSer.SaveView(viewDTO).subscribe(data=>{
-            this.viewSer.GetListProductByUser(user.id,this.productDetail.id,this.productDetail.pro_category_id.c_group_id.id).subscribe(data=>{
+            this.viewSer.GetListProductByUser(this.productDetail.id,this.productDetail.pro_category_id.c_group_id.id).subscribe(data=>{
               this.ProductSuggest = data;
               console.log(data);
             });
@@ -91,6 +93,12 @@ export class ProductDetailComponent implements OnInit  {
               break;
               case 5 : this.isChecked1 = true;this.isChecked2 = true;this.isChecked3 = true;this.isChecked4 = true;this.isChecked5 = true;
               break;
+          }
+          }else{
+            this.viewSer.GetListProductByUser(this.productDetail.id,this.productDetail.pro_category_id.c_group_id.id).subscribe(data=>{
+              this.ProductSuggest = data;
+              console.log(data);
+            });
           }
         });
         

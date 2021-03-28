@@ -22,6 +22,7 @@ export class PaymentEditComponent implements OnInit {
   paymentDetail : PaymentInfoModel;
   url = "https://placehold.it/150x100";
   error : any;
+  keyAdmin = "adminLogined";
   paymentForm : any; 
   ngOnInit(): void {
     this.route.params.pipe(pluck('slug')).subscribe(slug=>{
@@ -33,7 +34,8 @@ export class PaymentEditComponent implements OnInit {
         account_name : new FormControl(this.paymentDetail.account_name),
         account_number : new FormControl(this.paymentDetail.account_number),
         account_seri : new FormControl(this.paymentDetail.account_seri),
-        image : new FormControl(this.paymentDetail.image)
+        image : new FormControl(this.paymentDetail.image),
+        pay_author_id : new FormControl(JSON.parse(localStorage.getItem(this.keyAdmin)))
         });
         this.url = `../assets/image/${this.paymentDetail.image}`;
       });

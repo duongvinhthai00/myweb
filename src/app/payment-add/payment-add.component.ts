@@ -14,11 +14,13 @@ import { PaymentServiceService } from '../service/payment_service/payment-servic
 ]
 })
 export class PaymentAddComponent implements OnInit {
+  keyAdmin = "adminLogined";
   paymentForm = new FormGroup({
     account_name : new FormControl(""),
     account_number : new FormControl(""),
     account_seri: new FormControl(""),
     bank_name : new FormControl(""),
+    pay_author_id : new FormControl(JSON.parse(localStorage.getItem(this.keyAdmin)))
   })
 
   url = "https://placehold.it/150x100";

@@ -1,3 +1,4 @@
+import { AdminModel } from "./AdminModel";
 import { CategoryModel } from "./CategoryModel";
 
 export interface ProductModel{
@@ -18,7 +19,8 @@ export interface ProductModel{
   updated_at?:Date,
   pro_category_id : CategoryModel,
   pro_place_sale : string,
-  pro_rate_number ?: number
+  pro_rate_number ?: number,
+  pro_author_id ?: AdminModel
 }
 
 
