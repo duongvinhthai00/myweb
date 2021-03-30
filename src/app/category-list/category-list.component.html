@@ -93,6 +93,14 @@
           <!-- Filter - end -->
 
       </div>
+      <form style="width: 30%;float: right;padding-bottom: 4px;">
+        <div class="input-group" style="display: flex;">
+            <input style="height: 41px;"  type="text" class="form-control form-control-lg" name="search" [(ngModel)]="searchText"  placeholder="Tìm Kiếm Sản Phẩm">
+            <button style="padding-bottom: 5px;border-radius: 0;" type="submit" class="btn btn-lg btn-default">
+              <i class="fa fa-search"></i>
+            </button>
+        </div>
+      </form>
       <!-- Catalog Sidebar - end -->
       <!-- Catalog Items | List V2 - start -->
       <div class="section-cont">
@@ -125,7 +133,7 @@
           <!-- Catalog Topbar - end -->
           <ng-container *ngIf="this.ProductList?.length>0">
           <div class="prod-items section-items prod-list2">
-              <div *ngFor="let item of ProductList | paginate :{id:'pag1', itemsPerPage: maxPageItems,
+              <div *ngFor="let item of ProductList | filter:searchText | paginate :{id:'pag1', itemsPerPage: maxPageItems,
                 currentPage: page,
                 totalItems: ProductList.length} " class="prodlist-i">
                   <a class="list-img-carousel prodlist-i-img"><!-- NO SPACE --><img  src="../assets/image/{{item.pro_avatar}}" alt="Adipisci aperiam commodi"><!-- NO SPACE --></a>

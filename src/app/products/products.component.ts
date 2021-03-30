@@ -22,6 +22,7 @@ export class ProductsComponent implements OnInit {
   ProductList : ProductModel[];
   ProductListFake : ProductModel[];
   currentUrl:string;
+  searchText;
   constructor(private homeService : HomeServiceService,private route :ActivatedRoute,private productService : ProductServiceService,private router : Router
     ,private cardService : CardServiceService,private userService : UserServiceService,private homecomponent : HomeComponent) { }
 

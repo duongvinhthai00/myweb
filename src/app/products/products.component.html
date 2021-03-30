@@ -89,6 +89,14 @@
         <!-- Filter - end -->
 
 		</div>
+    <form style="width: 30%;float: right;padding-bottom: 4px;">
+      <div class="input-group" style="display: flex;">
+          <input style="height: 41px;"  type="text" class="form-control form-control-lg" name="search" [(ngModel)]="searchText"  placeholder="Tìm Kiếm Sản Phẩm">
+          <button style="padding-bottom: 5px;border-radius: 0;" type="submit" class="btn btn-lg btn-default">
+            <i class="fa fa-search"></i>
+          </button>
+      </div>
+    </form>
 		<!-- Catalog Sidebar - end -->
 		<!-- Catalog Items | Gallery V1 - start -->
 		<div class="section-cont">
@@ -103,7 +111,7 @@
 				</ul>
 
 				<!-- Sorting -->
-        <select (change)="priceSelected($event)" style="padding: 4px;" class="section-sortby">
+        <select class="custom-select" (change)="priceSelected($event)" style="padding: 4px;" class="section-sortby">
           <option value="0">Giá</option>
           <option value="1">Giá Từ Thấp Đến Cao</option>
           <option value="2" >Giá Từ Cao Đến Thấp</option>
@@ -119,7 +127,7 @@
 			</div>
 			<!-- Catalog Topbar - end -->
 			<div class="prod-items section-items">
-				<div *ngFor="let item of this.ProductList| paginate :{id:'pag1', itemsPerPage: maxPageItems,
+				<div *ngFor="let item of this.ProductList | filter:searchText | paginate :{id:'pag1', itemsPerPage: maxPageItems,
                 currentPage: page,
                 totalItems: ProductList?.length} " class="prod-i" style="width: 238px;">
 					<div class="prod-i-top">
