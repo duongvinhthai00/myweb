@@ -39,6 +39,7 @@ import { ChartsModule } from 'ng2-charts';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { CategoryGroupComponent } from './category-group/category-group.component';
 import { CategorySubComponent } from './category-sub/category-sub.component';
+import { SafeHtmlPipe } from './guard/SafeHtmlPipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +73,7 @@ import { CategorySubComponent } from './category-sub/category-sub.component';
     UserAccountComponent,
     CategoryGroupComponent,
     CategorySubComponent,
+    SafeHtmlPipe  
   ],
   imports: [
     BrowserModule,

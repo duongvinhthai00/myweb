@@ -60,11 +60,11 @@
 
                     <div class="col-sm-4">
                       <h6 class="mb-3">Hình Thức Giao Dịch :</h6>
-                      <div>Hình Thức Vận Chuyển : {{this.transaction.tr_transport_id.name}}</div>
-                      <div>Thời Gian Vận Chuyển : {{this.transaction.tr_transport_id.time}}</div>
+                      <div>Hình Thức Giao Hàng : {{this.transaction.tr_transport_id.name}}</div>
+                      <div>Thời Gian Giao Hàng : {{this.transaction.tr_transport_id.time}}</div>
                       <div>Phí Vận Chuyển : {{this.transaction.tr_transport_id.fee | currency : "VND"}}</div>
-                      <div *ngIf="this.transaction.payment == 0">Hình Thức Chuyển Khoảng : Thanh Toán Sau Khi Nhận Hàng</div>
-                      <div *ngIf="this.transaction.payment == 1">Hình Thức Chuyển Khoảng : Thanh Toán Bằng Thẻ Ngân Hàng
+                      <div *ngIf="this.transaction.payment == 0">Hình Thức Thanh Toán : Thanh Toán Sau Khi Nhận Hàng</div>
+                      <div *ngIf="this.transaction.payment == 1">Hình Thức Thanh Toán : Thanh Toán Bằng Thẻ Ngân Hàng
                       </div>
                     </div>
 

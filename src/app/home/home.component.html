@@ -140,7 +140,7 @@
                         </a>
                     </li> -->
                     <li>
-                        <a [routerLink]="['/all-products']">
+                        <a href="/all-products">
                             Tất Cả Sản Phẩm
                         </a>
                     </li>
@@ -152,16 +152,10 @@
                 <!-- Main menu - end -->
 
                 <!-- Search - start -->
-                <div class="topsearch">
-                    <a id="topsearch-btn" class="topsearch-btn" href="#"><i class="fa fa-search"></i></a>
-                    <form (ngSubmit) ="Submit(put)" [formGroup]="SearchForm" class="topsearch-form" action="#">
-                        <input #put type="text" formControlName="searchInput" placeholder="Tìm Kiếm Tên Sản Phẩm">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
                 <!-- Search - end -->
 
-            </nav>		</div>
+            </nav>		
+        </div>
     </div>
     <!-- Topmenu - end -->
 
