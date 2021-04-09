@@ -34,8 +34,8 @@ export class ProductAddComponent implements OnInit {
   constructor(private homeService : HomeServiceService,private productService : ProductServiceService
     ,private router : Router) { }
 
-  url = "https://placehold.it/150x100";
-  url2 = "https://placehold.it/150x100";
+  url = "https://via.placeholder.com/150x100";
+  url2 = "https://via.placeholder.com/150x100";
   url3 : string[] = [];
   categoryList : CategoryModel[] = [];
   ngOnInit(): void {

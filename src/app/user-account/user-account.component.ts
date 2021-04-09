@@ -29,6 +29,8 @@ export class UserAccountComponent implements OnInit {
     let userJson = JSON.parse(localStorage.getItem(this.userService.keyLogin));
     this.userService.GetUserById(userJson.id).subscribe(data=>{
       console.log(data);
+      this.home.userLogined = data;
+      localStorage.setItem(this.userService.keyLogin,JSON.stringify(data));
       this.user = data;
       this.userForm = new FormGroup({
       id : new FormControl(this.user.id),

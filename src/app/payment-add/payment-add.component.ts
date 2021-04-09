@@ -23,7 +23,7 @@ export class PaymentAddComponent implements OnInit {
     pay_author_id : new FormControl(JSON.parse(localStorage.getItem(this.keyAdmin)))
   })
 
-  url = "https://placehold.it/150x100";
+  url = "https://via.placeholder.com/150x100";
   constructor(private paymenService :PaymentServiceService,private router :Router) { }
 
   ngOnInit(): void {

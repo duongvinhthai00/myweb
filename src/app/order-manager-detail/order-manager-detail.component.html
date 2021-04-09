@@ -61,7 +61,7 @@
                   <div>Hình Thức Giao Hàng : {{this.transaction.tr_transport_id.name}}</div>
                   <div>Thời Gian Giao Hàng : {{this.transaction.tr_transport_id.time}}</div>
                   <div>Phí Vận Chuyển : {{this.transaction.tr_transport_id.fee | currency : "VND"}}</div>
-                  <div *ngIf="this.transaction.payment == 0">Hình Thức Chuyển Khoảng : Thanh Toán Sau Khi Nhận Hàng
+                  <div *ngIf="this.transaction.payment == 0">Thanh Toán : Thanh Toán Sau Khi Nhận Hàng
                   </div>
                   <div *ngIf="this.transaction.payment == 1">Thanh Toán : Bằng Thẻ Ngân Hàng
                   </div>
@@ -111,7 +111,7 @@
                           <strong>Tổng Cộng</strong>
                         </td>
                         <td style="width: 201px;border: 1px solid;" class="right">
-                          <strong style="margin-left: 66px;">{{this.transaction.tr_total | currency : 'VND'}}</strong>
+                          <strong style="margin-left: 55px;">{{this.transaction.tr_total | currency : 'VND'}}</strong>
                         </td>
                       </tr>
                     </tbody>
