@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.homeComponent.userLogined != null){
-      this.route.navigate(["/"]);
+      this.route.navigate(["/all-products"]);
     }
   }
 
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         this.cardService.getCard(this.homeComponent.userLogined.id).subscribe(data=>{
           this.homeComponent.totalCard = data.length;
         });
-      this.route.navigate(["/"]);
+      this.route.navigate(["/all-products"]);
     },(error)=>{
       this.error = error.error
       console.log(this.error);
