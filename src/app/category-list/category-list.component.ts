@@ -20,7 +20,7 @@ import Swal from 'sweetalert2'
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
-  maxPageItems = 2;
+  maxPageItems = 4;
   page:number = 1;
   ProductList : ProductModel[];
   ProductListFake : ProductModel[];
