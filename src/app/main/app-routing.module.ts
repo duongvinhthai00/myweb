@@ -32,6 +32,10 @@ import { RevenueComponent } from '../revenue/revenue.component';
 import { UserAccountComponent } from '../user-account/user-account.component';
 import { AdminGuardGuard } from '../guard/admin-guard.guard';
 import { UserGuardGuard } from '../guard/user-guard.guard';
+import { UserManagerComponent } from '../user-manager/user-manager.component';
+import { UserEditComponent } from '../user-edit/user-edit.component';
+import { CommentManagerComponent } from '../comment-manager/comment-manager.component';
+import { AdminEditComponent } from '../admin-edit/admin-edit.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent, children:[
@@ -66,7 +70,11 @@ const routes: Routes = [
       {path:"transport-edit/:slug",component:TransportEditComponent},
       {path:"revenue",component:RevenueComponent},
       {path:"category-group-manager",component : CategoryGroupComponent},
-      {path:"category-manager",component : CategorySubComponent}
+      {path:"category-manager",component : CategorySubComponent},
+      {path:"user-manager",component : UserManagerComponent},
+      {path:"user-edit/:slug",component : UserEditComponent},
+      {path:"comment-manager",component : CommentManagerComponent},
+      {path:"admin-edit",component:AdminEditComponent}
   ]},
 
     {path:"admin/login",component : AdminloginComponent}

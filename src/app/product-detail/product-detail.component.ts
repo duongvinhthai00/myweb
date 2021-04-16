@@ -11,6 +11,9 @@ import { UserServiceService } from '../service/user_service/user-service.service
 import Swal from 'sweetalert2'
 import { ViewServiceService } from '../service/view-service/view-service.service';
 import { ViewModel } from '../model/ViewModel';
+import { FormControl, FormGroup } from '@angular/forms';
+import { CommentModel } from '../model/CommentModel';
+import { CommentServiceService } from '../service/comment_service/comment-service.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -24,7 +27,7 @@ export class ProductDetailComponent implements OnInit  {
   @ViewChild('rd3',{static:true}) radio3 : ElementRef<HTMLInputElement>
   @ViewChild('rd4',{static:true}) radio4 : ElementRef<HTMLInputElement>
   @ViewChild('rd5',{static:true}) radio5 : ElementRef<HTMLInputElement>
-
+  isComment = false;
   isChecked1 = false;
   isChecked2 = false;
   isChecked3 = false;
@@ -37,19 +40,26 @@ export class ProductDetailComponent implements OnInit  {
   rattingNumber :number = 0;
   View : ViewModel;
   ProductSuggest : ProductModel[] = [];
+  user_comment : UserModel;
+  comment_list : CommentModel[] = [];
   constructor(private productService : ProductServiceService,private route :ActivatedRoute,private cardService : CardServiceService,
     private userService : UserServiceService,private router : Router,private homecomponent : HomeComponent,
-    private viewSer : ViewServiceService) { }
+    private viewSer : ViewServiceService,private CommentSer : CommentServiceService) { }
 
   ngOnInit(): void {
+    
     const user = JSON.parse(localStorage.getItem(this.userService.keyLogin));
     
     this.route.params.pipe(
       pluck('slug')
     ).subscribe(slug=>{
+        this.CommentSer.getAllCommentByProduct(slug).subscribe(data=>{
+           this.comment_list = data;
+        })
         this.productService.getProductById(slug).subscribe(data=>{
           this.productDetail = data;
           if(user != null){
+          this.user_comment = user;
           let viewDTO : ViewModel ={
             user_id  : user,
             pro_id : this.productDetail
@@ -107,6 +117,42 @@ export class ProductDetailComponent implements OnInit  {
         });
     });
     
+  }
+
+  commentForm = new FormGroup({
+    content : new FormControl(""),
+  })
+
+  offArea(textarea){
+    this.isComment =false;
+    textarea.value = ""
+  }
+
+  Comment(){
+    this.isComment = true;
+  }
+
+
+  deleteCommentById(id : number,pro_id:number){
+    this.CommentSer.deleteCommentById(id).subscribe(data=>{
+      this.CommentSer.getAllCommentByProduct(pro_id).subscribe(data=>{
+           this.comment_list = data;
+      })
+    })
+  }
+
+  CommentSubmit(textarea){
+    let commentDTO : CommentModel = {
+      content : this.commentForm.value.content,
+      user_id : this.user_comment,
+      pro_id : this.productDetail,
+    }
+    this.CommentSer.addComment(commentDTO).subscribe(data=>{
+      this.CommentSer.getAllCommentByProduct(data.pro_id.id).subscribe(data=>{
+           this.comment_list = data;
+      })
+    })
+    this.offArea(textarea)
   }
 
   Submit(){

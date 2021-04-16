@@ -40,6 +40,10 @@ import { UserAccountComponent } from './user-account/user-account.component';
 import { CategoryGroupComponent } from './category-group/category-group.component';
 import { CategorySubComponent } from './category-sub/category-sub.component';
 import { SafeHtmlPipe } from './guard/SafeHtmlPipe';
+import { UserManagerComponent } from './user-manager/user-manager.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { CommentManagerComponent } from './comment-manager/comment-manager.component';
+import { AdminEditComponent } from './admin-edit/admin-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +77,11 @@ import { SafeHtmlPipe } from './guard/SafeHtmlPipe';
     UserAccountComponent,
     CategoryGroupComponent,
     CategorySubComponent,
-    SafeHtmlPipe  
+    SafeHtmlPipe,
+    UserManagerComponent,
+    UserEditComponent,
+    CommentManagerComponent,
+    AdminEditComponent  
   ],
   imports: [
     BrowserModule,

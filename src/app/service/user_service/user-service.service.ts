@@ -53,4 +53,12 @@ export class UserServiceService implements OnInit{
     );
   }
 
+  GetAllUser(){
+    return this.http.get<UserModel[]>(`http://localhost:8080/api/v1/users`);
+  }
+
+  DeleteUserById(id : number){
+    return this.http.delete(`http://localhost:8080/api/v1/users/${id}`);
+  }
+
 }

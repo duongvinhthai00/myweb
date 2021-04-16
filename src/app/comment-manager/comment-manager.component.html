@@ -1,0 +1,106 @@
+<div class="content-wrapper" style="margin-left: 250px;">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Quản Lý Người Dùng</h1>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <!-- Default box -->
+    <div class="card card-solid">
+      <div class="card-body">
+        <div class="row">
+          <nav class="w-100">
+            <div class="nav nav-tabs" id="product-tab" role="tablist">
+              <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc"
+                role="tab" aria-controls="product-desc" aria-selected="true">Danh Sách Người Dùng</a>
+            </div>
+          </nav>
+          <div class="tab-content p-3" id="nav-tabContent" style="width: 100%;">
+            <div class="tab-pane fade active show" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
+              <!--NOi DUng-->
+              <div class="row">
+                <!--Table Here-->
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-header" style="background-color: cadetblue;color: greenyellow;">
+                      <h3 class="card-title">Danh Sách Người Dùng</h3>
+                    </div>
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <form style="width: 33%;float: right;">
+                        <div class="input-group">
+                          <input style="height: 41px;" type="text" class="form-control form-control-lg" name="search"
+                            [(ngModel)]="searchText" placeholder="Tìm Kiếm">
+                          <div style="height: 41px;" class="input-group-append">
+                            <button type="submit" class="btn btn-lg btn-default">
+                              <i class="fa fa-search"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                      <table id="customers">
+                        <tr>
+                          <th style="text-align: center;">STT</th>
+                          <th style="text-align: center;">Ảnh Người Dùng</th>
+                          <th style="text-align: center;">Tên Người Dùng</th>
+                          <th style="text-align: center;">Nội Dung</th>
+                          <th style="text-align: center;">Ảnh Sản Phẩm</th>
+                          <th style="text-align: center;">Tên Sản Phẩm</th>
+                          <th style="text-align: center;">Ngày Tạo</th>
+                          <th style="text-align: center;width: 94px;">Hành Động</th>
+                        </tr>
+                        <tr
+                          *ngFor="let item of comment_list | filter:searchText | paginate :{id:'pag1', itemsPerPage: maxPageItems,
+                  currentPage: page,
+                  totalItems: comment_list?.length};let idx = index">
+                          <td>{{this.idx + 1}}</td>
+                          <td><img style="width: 100px; height: 100px;"
+                              src="../assets/image/{{this.item.user_id.avatar}}"
+                              alt=""></td>
+                          <td>{{this.item.user_id.name}}</td>
+                          <td>{{this.item.content}}</td>
+                          <td><img style="width: 100px; height: 100px;"
+                              src="../assets/image/{{this.item.pro_id.pro_avatar}}" alt=""></td>
+                          <td>{{this.item.pro_id.pr_name}}</td>
+                          <td>{{this.item.created_at | date : 'dd/MM/yyyy - hh:mm'}}</td>
+                          <td>
+                            <b style="font-size: 16px;">
+                              <a (click)="deleteCommentById(this.item.id,this.item.pro_id.id)"
+                                style="padding: 8px;color: white;background-color: red;"><i
+                                  class="fas fa-trash"></i></a>
+                            </b>
+                          </td>
+                        </tr>
+                      </table>
+                      <pagination-controls id="pag1" directionLinks="true" (pageChange)="pageChanged($event)"
+                        maxSize="1000"></pagination-controls>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+                </div>
+                <!--Table Here-->
+              </div>
+              <!--Noi Dung-->
+            </div>
+            <!--NOi DUng-->
+            <!--NOi Dung-->
+          </div>
+        </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+  </section>
+  <!-- /.content -->
+</div>

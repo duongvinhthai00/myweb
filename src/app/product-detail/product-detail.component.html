@@ -110,6 +110,9 @@
 						</li>
 						<li><a *ngIf="this.checkRating" data-prodtab-num="5" data-prodtab="#prod-tab-5">Đánh Giá Sản
 								Phẩm</a></li>
+
+						<li><a data-prodtab-num="6" id="prod-props" data-prodtab="#prod-tab-6">Bình Luận</a>
+						</li>
 					</ul>
 					<div class="prod-tab-cont">
 						<p data-prodtab-num="2" class="prod-tab-mob" data-prodtab="#prod-tab-2">CHI TIẾT</p>
@@ -145,6 +148,40 @@
 							</div>
 							<input style="float: right;margin-right: 43px;
 						margin-top: 29px;" class="btn btn-info" type="submit" value="Xác Nhận">
+						</div>
+						<p data-prodtab-num="6" class="prod-tab-mob" data-prodtab="#prod-tab-6">BÌNH LUẬN</p>
+						<div class="prod-tab prod-props" id="prod-tab-6">
+							<form (ngSubmit)="CommentSubmit(textarea)" *ngIf="this.user_comment" [formGroup]="this.commentForm">
+							
+							<div style="display: block;">
+								<div style="display: flex;justify-content: space-around;">
+								<img src="../assets/image/{{this.user_comment?.avatar}}" style="width: 50px;height: 50px;" alt="">
+								<textarea formControlName="content" (click)="Comment()" #textarea style="width: 90%;"></textarea>
+								</div>
+							</div>
+							<div *ngIf="isComment" style="float: right;">
+								<button  (click)="offArea(textarea)" class="buttonsss">Hủy</button>
+								<input  type="submit" class="buttonss" value="Bình Luận">
+							</div>
+							</form>
+							<div style="margin-top: 53px;">
+							  <div *ngFor="let item of this.comment_list"
+							    style="display: flex;justify-content: space-around;margin-bottom: 10px;">
+							    <img src="../assets/image/{{this.item?.user_id.avatar}}" style="width: 50px;height: 50px;" alt="">
+							    <div style="width: 85%;">
+							      <b style="margin:0px 0px 9px;">{{this.item.user_id.name}} <i>{{this.item.created_at | date : 'dd/MM/yyyy - hh:mm'}}</i> </b>
+							      <p>{{this.item.content}}</p>
+							    </div>
+								<a _ngcontent-ytm-c46="" *ngIf="this.item.user_id?.id == this.user_comment?.id;else delethide" (click)="deleteCommentById(this.item.id,this.item.pro_id.id)" style="padding: 8px; color: black;display: block;margin-top: 15px;"><i _ngcontent-ytm-c46=""
+								    class="fas fa-trash" aria-hidden="true"></i></a>
+								<ng-template #delethide>
+									<a _ngcontent-ytm-c46="" hidden
+									  style="visibility: hidden;padding: 8px; color: black;display: block;margin-top: 15px;"><i
+									    _ngcontent-ytm-c46=""
+									    class="fas fa-trash"  aria-hidden="true"></i></a>
+								</ng-template>
+							  </div>
+							</div>
 						</div>
 					</div>
 				</div>

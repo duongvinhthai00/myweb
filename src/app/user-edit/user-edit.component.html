@@ -1,0 +1,107 @@
+<ng-container *ngIf="this.user">
+  <div class="content-wrapper" style="margin-left: 250px">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 style="color: black;">Quản Lý Người Dùng</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card card-solid">
+        <div class="card-body">
+          <div class="row">
+            <nav class="w-100">
+              <div class="nav nav-tabs" id="product-tab" role="tablist">
+                <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc"
+                  role="tab" aria-controls="product-desc" aria-selected="true">Thông Tin Người Dùng</a>
+              </div>
+            </nav>
+            <div class="tab-content p-3" id="nav-tabContent" style="width: 100%;">
+              <div class="tab-pane fade active show" id="product-desc" role="tabpanel"
+                aria-labelledby="product-desc-tab">
+                <!--NOi DUng-->
+                <div class="row">
+                  <div class="col-md-9" style="margin: 0 auto;">
+                    <div class="card card-primary">
+                      <div class="card-header" style="background-color: #4a5a69;">
+                        <h3 class="card-title">Thông Tin Người Dùng</h3>
+
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                          </button>
+                        </div>
+                      </div>
+
+                      <form [formGroup]="this.userForm" (ngSubmit)="Submit()">
+                        <div class="card-body" style="display: block;">
+                          <div class="form-group">
+                            <label for="inputName">Tên Người Dùng</label>
+                            <input formControlName="name" type="text" id="inputName" class="form-control">
+                            <span style="color: red;text-transform:capitalize;"
+                              *ngIf="this.error?.name">{{this.error.name}}</span>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="inputName">Email</label>
+                            <input formControlName="email" type="text" id="inputName" class="form-control">
+                            <span style="color: red;text-transform:capitalize;"
+                              *ngIf="this.error?.email">{{this.error.email}}</span>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="inputName">Số Điện Thoại</label>
+                            <input formControlName="phone" type="number" id="inputName" class="form-control">
+                            <span style="color: red;text-transform:capitalize;"
+                              *ngIf="this.error?.phone">{{this.error.phone}}</span>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="inputName">Địa Chỉ</label>
+                            <input formControlName="address" type="text" id="inputName" class="form-control">
+                            <span style="color: red;text-transform:capitalize;"
+                              *ngIf="this.error?.address">{{this.error.address}}</span>
+                          </div>
+                          <div class="form-group">
+                            <div class="timeline-body">
+                              <img src="{{this.url}}" width="150" height="100" alt="...">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="custom-file">
+                              <input type="file" (change)="ShowOneFileUpload($event)" class="custom-file-input"
+                                id="exampleInputFile">
+                              <label class="custom-file-label" for="exampleInputFile">Đổi Ảnh Đại Diện</label>
+                            </div>
+                          </div>
+                          <input type="submit" class="btn btn-info float-right" value="Cập Nhật">
+                        </div>
+                      </form>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                </div>
+                <!--Noi Dung-->
+              </div>
+              <!--NOi DUng-->
+              <!--NOi Dung-->
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+</ng-container>

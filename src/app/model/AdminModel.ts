@@ -8,5 +8,6 @@ export interface AdminModel{
     password :string
     created_at ?: Date,
     update_at ?: Date,
-    user_name : string
+    user_name : string,
+    address : string
 }

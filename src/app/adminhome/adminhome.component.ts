@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TransactionServiceService } from '../service/transaction_service/transaction-service.service';
+import { AdminModel } from '../model/AdminModel';
+import { AdminServiceService } from '../service/admin_service/admin-service.service';
 @Component({
   selector: 'app-adminhome',
   templateUrl: './adminhome.component.html',
@@ -10,9 +11,10 @@ import { TransactionServiceService } from '../service/transaction_service/transa
 })
 
 export class AdminhomeComponent implements OnInit {
-  constructor(private router : Router) { }
-
+  constructor(private router : Router,private adminSer : AdminServiceService) { }
+  admin : AdminModel;
   ngOnInit(): void {
+    this.admin = JSON.parse(localStorage.getItem(this.adminSer.keyLogin));
   }
 
   keyAdmin = "adminLogined";

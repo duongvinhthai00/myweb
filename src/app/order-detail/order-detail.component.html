@@ -55,14 +55,14 @@
                         </div>
                         <div>Địa Chỉ : {{this.transaction.tr_address}}</div>
                         <div>Email: {{this.transaction.tr_user_id.email}}</div>
-                        <div>Phone: {{this.transaction.tr_phone}}</div>
+                        <div>Phone: 0{{this.transaction.tr_phone}}</div>
                     </div>
 
                     <div class="col-sm-4">
                       <h6 class="mb-3">Hình Thức Giao Dịch :</h6>
                       <div>Hình Thức Giao Hàng : {{this.transaction.tr_transport_id.name}}</div>
                       <div>Thời Gian Giao Hàng : {{this.transaction.tr_transport_id.time}}</div>
-                      <div>Phí Vận Chuyển : {{this.transaction.tr_transport_id.fee | currency : "VND"}}</div>
+                      <div>Phí Giao Hàng : {{this.transaction.tr_transport_id.fee | currency : "VND"}}</div>
                       <div *ngIf="this.transaction.payment == 0">Hình Thức Thanh Toán : Thanh Toán Sau Khi Nhận Hàng</div>
                       <div *ngIf="this.transaction.payment == 1">Hình Thức Thanh Toán : Thanh Toán Bằng Thẻ Ngân Hàng
                       </div>
