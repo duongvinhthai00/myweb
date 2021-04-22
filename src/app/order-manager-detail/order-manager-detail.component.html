@@ -38,12 +38,14 @@
               <div class="row mb-4">
                 <div class="col-sm-4">
                   <h6 class="mb-3">Người Gửi:</h6>
-                  <div>
-                    <strong>Admin</strong>
-                  </div>
-                  <div>Công Ty Một Thành Viên</div>
-                  <div>Email: admin@admin.vn</div>
-                  <div>Phone: 18001600</div>
+                  <ng-container *ngFor="let item of this.admin">
+                    <div>
+                      <strong>{{item.name}}(Admin)</strong>
+                    </div>
+                    <div>Địa Chỉ : {{item.address}}</div>
+                    <div>Email: {{item.email}}</div>
+                    <div>Phone: {{item.phone}}</div>
+                  </ng-container>
                 </div>
 
                 <div class="col-sm-4">
@@ -53,7 +55,7 @@
                   </div>
                   <div>Địa Chỉ : {{this.transaction.tr_address}}</div>
                   <div>Email: {{this.transaction.tr_user_id.email}}</div>
-                  <div>Phone: 0{{this.transaction.tr_phone}}</div>
+                  <div>Phone: {{this.transaction.tr_phone}}</div>
                 </div>
 
                 <div *ngIf="this.transaction.tr_transport_id" class="col-sm-4">

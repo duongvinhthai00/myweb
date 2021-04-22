@@ -12,6 +12,9 @@
     user-select: none;
   }
   
+  strong {
+    color: black;
+  }
 
   .buttonss {
     background-color: #4CAF50;

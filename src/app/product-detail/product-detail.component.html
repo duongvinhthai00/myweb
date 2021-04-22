@@ -97,7 +97,8 @@
 					<b style="font-size: 22px;color: cadetblue;">Số Lượng Còn : {{productDetail?.pro_number}}</b>
 				</div>
 				<div style="margin-top: 10px;">
-					<h3 style="font-size: 20px;">MÔ TẢ :</h3>
+					<h3 class="dep" style="font-size: 20px;color: black;text-align: center;background-color: #ffee1d;">MÔ TẢ SẢN PHẨM</h3>
+					<br>
 					<div style="font-size: 15px;" [innerHTML]="this.productDetail?.pro_description | safeHtml"></div>
 				</div>
 			</div>
@@ -151,7 +152,8 @@
 						</div>
 						<p data-prodtab-num="6" class="prod-tab-mob" data-prodtab="#prod-tab-6">BÌNH LUẬN</p>
 						<div class="prod-tab prod-props" id="prod-tab-6">
-							<form (ngSubmit)="CommentSubmit(textarea)" *ngIf="this.user_comment" [formGroup]="this.commentForm">
+							<form (ngSubmit)="CommentSubmit(textarea)" *ngIf="this.user_comment && this.checkRating"
+							  [formGroup]="this.commentForm">
 							
 							<div style="display: block;">
 								<div style="display: flex;justify-content: space-around;">

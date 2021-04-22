@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { pluck } from 'rxjs/operators';
+import { AdminModel } from '../model/AdminModel';
 import { OrderModel, TransactionModel } from '../model/TransactionModel';
+import { AdminServiceService } from '../service/admin_service/admin-service.service';
 import { TransactionServiceService } from '../service/transaction_service/transaction-service.service';
 
 @Component({
@@ -11,9 +13,13 @@ import { TransactionServiceService } from '../service/transaction_service/transa
 })
 export class OrderDetailComponent implements OnInit {
   transaction : TransactionModel;
-  constructor(private transactionService : TransactionServiceService,private route : ActivatedRoute) { }
+  constructor(private transactionService : TransactionServiceService,private route : ActivatedRoute,private adminSer : AdminServiceService) { }
   orderList : OrderModel[];
+  admin : AdminModel[] = [];
   ngOnInit(): void {
+    this.adminSer.GetAllAdmins().subscribe(data=>{
+      this.admin = data;
+    })
     this.route.params.pipe(
       pluck('slug')
     ).subscribe(slug=>{
